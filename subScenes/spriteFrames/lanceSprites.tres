@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b4tf52v8samix"]
+
+[ext_resource type="Texture2D" uid="uid://cax1sy8tp6blf" path="res://images/sprites/lance/default.png" id="1_7l4bf"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7l4bf")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://xmcicp7sda2m"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_dhs5a"]
+[ext_resource type="SpriteFrames" uid="uid://d03t7mxqa8cc5" path="res://subScenes/spriteFrames/willowSprites.tres" id="2_pooub"]
+
+[node name="willow" type="Node3D"]
+script = ExtResource("1_dhs5a")
+knownName = "Willow Asher"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(0.9, 0.621, 0.85815, 1)
+double_sided = false
+sprite_frames = ExtResource("2_pooub")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_pooub")
+autoplay = "default"

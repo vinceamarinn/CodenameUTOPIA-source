@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ubqo4dnxjk8s"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_ffswy"]
+[ext_resource type="SpriteFrames" uid="uid://dombdmr8nda2d" path="res://subScenes/spriteFrames/ryujiSprites.tres" id="2_s3uh1"]
+
+[node name="ryuji" type="Node3D"]
+script = ExtResource("1_ffswy")
+knownName = "Ryuji Ryuichi"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(1, 0.43, 0.43, 1)
+double_sided = false
+sprite_frames = ExtResource("2_s3uh1")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_s3uh1")
+autoplay = "default"

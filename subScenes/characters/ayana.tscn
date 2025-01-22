@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxfkv5b7ugk5e"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_hvcro"]
+[ext_resource type="SpriteFrames" uid="uid://b2f36upkn36qb" path="res://subScenes/spriteFrames/ayanaSprites.tres" id="2_g8snw"]
+
+[node name="ayana" type="Node3D"]
+script = ExtResource("1_hvcro")
+knownName = "Ayana Susume"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(0.323595, 0.51, 0.2499, 1)
+double_sided = false
+sprite_frames = ExtResource("2_g8snw")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_g8snw")
+autoplay = "default"

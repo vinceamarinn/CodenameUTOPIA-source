@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b050h4e8khjw1"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_s0jgm"]
+[ext_resource type="SpriteFrames" uid="uid://b1mejdxuqa47l" path="res://subScenes/spriteFrames/reinaSprites.tres" id="2_2h01n"]
+
+[node name="reina" type="Node3D"]
+script = ExtResource("1_s0jgm")
+knownName = "Reina Watanabe"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(0.58944, 0.4752, 0.72, 1)
+double_sided = false
+sprite_frames = ExtResource("2_2h01n")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_2h01n")
+autoplay = "default"

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6els74rljank"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_p7l78"]
+[ext_resource type="SpriteFrames" uid="uid://x0iae13wosm" path="res://subScenes/spriteFrames/gokiSprites.tres" id="2_uytph"]
+
+[node name="goki" type="Node3D"]
+script = ExtResource("1_p7l78")
+knownName = "Gōki Yoshiaki"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(0.5252, 0.78, 0.507, 1)
+double_sided = false
+sprite_frames = ExtResource("2_uytph")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_uytph")
+autoplay = "default"

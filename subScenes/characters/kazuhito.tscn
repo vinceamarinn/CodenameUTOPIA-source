@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cysqol4qo7vgl"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_x5p0k"]
+[ext_resource type="SpriteFrames" uid="uid://ctsl1ewxfsuvy" path="res://subScenes/spriteFrames/kazuhitoSprites.tres" id="2_dt6fv"]
+
+[node name="kazuhito" type="Node3D"]
+script = ExtResource("1_x5p0k")
+knownName = "'Kazuhito'"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+modulate = Color(0.21, 0.21, 0.21, 1)
+double_sided = false
+sprite_frames = ExtResource("2_dt6fv")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_dt6fv")
+autoplay = "default"

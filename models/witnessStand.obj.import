@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://m07trmqv2jj7"
+path="res://.godot/imported/witnessStand.obj-df7c570524f273d272b665db7ea75529.mesh"
+
+[deps]
+
+files=["res://.godot/imported/witnessStand.obj-df7c570524f273d272b665db7ea75529.mesh"]
+
+source_file="res://models/witnessStand.obj"
+dest_files=["res://.godot/imported/witnessStand.obj-df7c570524f273d272b665db7ea75529.mesh", "res://.godot/imported/witnessStand.obj-df7c570524f273d272b665db7ea75529.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

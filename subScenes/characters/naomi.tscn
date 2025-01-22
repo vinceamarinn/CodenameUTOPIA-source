@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://tbkl1xq0nk6t"]
+
+[ext_resource type="Script" path="res://scripts/spriteHandler.gd" id="1_phmo2"]
+[ext_resource type="SpriteFrames" uid="uid://1sjqa3dywrgd" path="res://subScenes/spriteFrames/naomiSprites.tres" id="2_8dnhc"]
+
+[node name="naomi" type="Node3D"]
+script = ExtResource("1_phmo2")
+knownName = "Naomi Anttonen"
+
+[node name="front" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("2_8dnhc")
+autoplay = "default"
+
+[node name="back" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-0.375, 0, -1.78823e-08, 0, 0.375, 0, 1.78823e-08, 0, -0.375, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_8dnhc")
+autoplay = "default"

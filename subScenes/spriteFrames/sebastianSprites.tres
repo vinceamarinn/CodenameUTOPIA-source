@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://rc8j14giyqvc"]
+
+[ext_resource type="Texture2D" uid="uid://c4ah3ou04jvp2" path="res://images/sprites/sebastian/default.png" id="1_2qh58"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2qh58")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

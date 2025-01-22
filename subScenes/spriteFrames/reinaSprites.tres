@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://b1mejdxuqa47l"]
+
+[ext_resource type="Texture2D" uid="uid://b1287ufdpt506" path="res://images/sprites/reina/default.png" id="1_i1ddh"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i1ddh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

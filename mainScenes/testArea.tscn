@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1jf7anrrlq5p"]
+
+[ext_resource type="Script" path="res://scripts/dialogueModule.gd" id="1_otewp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ytr0"]
+
+[node name="testArea" type="Node3D"]
+script = ExtResource("1_otewp")
+
+[node name="Map" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(105, 0, 0, 0, 1, 0, 0, 0, 105, 0, 0, 0)
+mesh = SubResource("BoxMesh_6ytr0")
+skeleton = NodePath("")
+
+[node name="Characters" type="Node3D" parent="."]

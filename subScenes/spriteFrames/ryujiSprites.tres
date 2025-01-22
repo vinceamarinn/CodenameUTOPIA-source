@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dombdmr8nda2d"]
+
+[ext_resource type="Texture2D" uid="uid://d2fk38hban4cu" path="res://images/sprites/ryuji/default.png" id="1_s5oys"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s5oys")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
