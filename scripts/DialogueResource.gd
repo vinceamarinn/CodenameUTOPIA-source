@@ -13,11 +13,14 @@ class_name DialogueResource
 
 @export_group("Camera Settings")
 @export var CameraSubject:String ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
-@export_enum("Pan", "Zoom", "Warp") var CameraType ## Type of camera movement. Only works in Trials. If left blank, no camera movement takes place, no matter if other options are selected.
-@export_enum("Left", "Right", "Up", "Down", "In", "Out") var CameraDirection ## Direction of camera movement. Only works in Trials.
-@export_range(0, 360, 1) var CameraRotation = 0 ## Rotation of the camera during the camera movement. Only works in Trials.
 @export var CameraTime:float = 5 ## Time it takes for the camera movement to conclude. Default is 5 seconds. Only works in Trials.
 @export var OverrideTransition:bool = false ## Behavior depends on current setting - if currently in-trial, turning it on makes the camera smoothly move from the previous position. If not in-trial, turning it on makes the camera snap from the previous position. Leaving it off does the opposite in both cases.
+@export_subgroup("Camera Movement Settings")
+@export_enum("Pan", "Zoom", "Snap") var CameraType:String ## Type of camera movement. Only works in Trials. If left blank, no camera movement takes place, no matter if other options are selected.
+@export_enum("Left", "Right", "Up", "Down", "In", "Out") var CameraDirection:String ## Direction of camera movement. Only works in Trials.
+@export_subgroup("Camera Rotation Settings")
+@export_range(-360, 360, 1) var CameraRotation = 0 ## Rotation of the camera during the camera movement. Only works in Trials.
+@export var TweenRotation:bool = false ## Determine whether the rotation is passive (false) or if it's part of the camera movement (true).
 
 @export_group("Audio Settings")
 @export_subgroup("Sound Settings")

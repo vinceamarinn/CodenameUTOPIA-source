@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=36 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="ArrayMesh" uid="uid://m07trmqv2jj7" path="res://models/witnessStand.obj" id="1_dek83"]
 [ext_resource type="Script" path="res://scripts/trialHandler.gd" id="1_hx5tj"]
@@ -52,56 +52,78 @@ albedo_color = Color(1, 0.46, 0.46, 1)
 albedo_color = Color(0.415686, 0.223529, 0.0352941, 1)
 albedo_texture = ExtResource("2_syam6")
 
-[sub_resource type="Resource" id="Resource_yw76f"]
+[sub_resource type="Resource" id="Resource_rxbtm"]
 script = ExtResource("23_rlahc")
-Speaker = "sebastian"
-Line = "Hrm… I suppose I should begin things with an opening statement…"
-Sprite = "sigma"
+Speaker = "shiro"
+Line = "wooooooah woooahghghghgh whats going on im so dizzy aahhfhfghghdsgsdjk"
+Sprite = ""
 HideCharacterName = false
 TextColor = Color(1, 1, 1, 1)
 SkipScrolling = false
 CameraSubject = ""
-CameraType = 0
-CameraDirection = 2
-CameraRotation = 0
-CameraTime = 0.5
+CameraTime = 20.0
 OverrideTransition = false
+CameraType = "Zoom"
+CameraDirection = "In"
+CameraRotation = 360
+TweenRotation = true
 MuteMusic = false
 MutingSpeed = 1.5
 CharacterLeaves = false
 
-[sub_resource type="Resource" id="Resource_oimvj"]
+[sub_resource type="Resource" id="Resource_vos0t"]
 script = ExtResource("23_rlahc")
-Speaker = "madame"
-Line = "Welcome, everyone, to the Class Trial - the climax of the Killing Game! Here, in this very courtroom, you will be your own defendants, your own attorneys, your own jury…"
+Speaker = "yuuka"
+Line = "SHUT THE FUCK UP SHIRO"
 Sprite = ""
 HideCharacterName = false
 TextColor = Color(1, 1, 1, 1)
 SkipScrolling = false
 CameraSubject = ""
-CameraType = 1
-CameraDirection = 5
-CameraRotation = 0
-CameraTime = 7.0
-OverrideTransition = true
+CameraTime = 0.35
+OverrideTransition = false
+CameraType = "Zoom"
+CameraDirection = "In"
+CameraRotation = 10
+TweenRotation = true
 MuteMusic = false
 MutingSpeed = 1.5
 CharacterLeaves = false
 
-[sub_resource type="Resource" id="Resource_d825v"]
+[sub_resource type="Resource" id="Resource_xie5p"]
 script = ExtResource("23_rlahc")
-Speaker = "madame"
-Line = "…for your lives are at stake, and your votes are your only saving grace."
+Speaker = "shiro"
+Line = ":("
 Sprite = ""
 HideCharacterName = false
 TextColor = Color(1, 1, 1, 1)
 SkipScrolling = false
 CameraSubject = ""
-CameraType = null
-CameraDirection = null
-CameraRotation = 0
 CameraTime = 5.0
 OverrideTransition = false
+CameraType = "Snap"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+
+[sub_resource type="Resource" id="Resource_2cmj8"]
+script = ExtResource("23_rlahc")
+Speaker = "ryuji"
+Line = "yuuka please calm the fuck down holy shit youre scaring her                                               (and me)"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 10.0
+OverrideTransition = true
+CameraType = "Pan"
+CameraDirection = "Left"
+CameraRotation = -2
+TweenRotation = true
 MuteMusic = false
 MutingSpeed = 1.5
 CharacterLeaves = false
@@ -118,7 +140,7 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_iayqd")
 
 [node name="Camera" parent="." instance=ExtResource("1_osge0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.26856, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.725, -14.7767)
 
 [node name="Map" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -744,6 +766,6 @@ transform = Transform3D(-0.980785, 0, 0.19509, 0, 1, 0, -0.19509, 0, -0.980785, 
 
 [node name="0" type="Node" parent="TrialScripts/Trial1"]
 script = ExtResource("22_tdiee")
-Lines = Array[ExtResource("23_rlahc")]([SubResource("Resource_yw76f"), SubResource("Resource_oimvj"), SubResource("Resource_d825v")])
+Lines = Array[ExtResource("23_rlahc")]([SubResource("Resource_rxbtm"), SubResource("Resource_vos0t"), SubResource("Resource_xie5p"), SubResource("Resource_2cmj8")])
 
 [node name="UI" parent="." instance=ExtResource("24_g2m3c")]

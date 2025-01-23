@@ -1,12 +1,43 @@
 extends Node3D
-var CurrScene:Node3D
-var PlayerUI:CanvasLayer
+var CurrScene:Node3D = null
+var PlayerUI:CanvasLayer = null
+
+var Enabled:bool = false
+var CurrScrollTween:Tween = null
+var CurrCamTween:Tween = null
+
+signal SpeakingChanged(value:int)
+var Speaking:bool:
+	set(NewValue):
+		if Speaking == NewValue: return
+		Speaking = NewValue
+		SpeakingChanged.emit(NewValue)
 
 func InitModule(Scene):
+	Enabled = true
 	CurrScene = Scene
 	PlayerUI = Scene.get_node("UI")
 
+func EndSession():
+	Enabled = false
+	CurrScene = null
+	PlayerUI = null
+
+func _input(event: InputEvent) -> void:
+	if Enabled == false: return
+	
+	if event.is_action_pressed("SkipDialogue"):
+		if Speaking == true:
+			CurrScrollTween.emit_signal("finished")
+			CurrScrollTween.kill()
+			CurrScrollTween = null
+		elif Speaking == false:
+			Speaking = not Speaking
+
 func DialogueLine(LineInfo):
+	if Enabled == false: return
+	Speaking = true
+	
 	# INIT============================
 	# Load things in the scene
 	var CharGroup = CurrScene.get_node("Characters") # get character group in scene
@@ -28,6 +59,8 @@ func DialogueLine(LineInfo):
 	LineText.text = LineInfo.Line
 	LineText.visible_characters = 0 # set text to display no characters at first
 	ContArrow.visible = false # hide arrow at first
+	Camera.fov = 75
+	Camera.rotation.z = 0
 	
 	# Set text color if needed
 	if LineText.modulate != LineInfo.TextColor:
@@ -38,24 +71,99 @@ func DialogueLine(LineInfo):
 		Speaker.ChangeSprite(LineInfo.Sprite)
 	
 	# CAMERA============================
-	var ForwardFace = Speaker.transform * (Vector3.BACK * 6)
-	print(ForwardFace)
-	Camera.position = Vector3(ForwardFace.x, Speaker.position.y + 2, ForwardFace.z)
-	Camera.look_at(Vector3(Speaker.position.x, Camera.position.y, Speaker.position.z))
+	if LineInfo.CameraType != "": # only run if there is a camera type specified
+		if CurrCamTween != null:
+			CurrCamTween.kill()
+			CurrCamTween = null
+		
+		# Identify camera subject
+		var CamSubject:Node3D
+		if LineInfo.CameraSubject == "":
+			CamSubject = Speaker
+		else:
+			CamSubject = CharGroup.get_node(LineInfo.CameraSubject)
+		
+		var BaseVector = Vector3(0, 2, 6)
+		var PosTable = {
+			"Pan" = {
+				"Left" = [Vector3(3, 0, 0), Vector3(-.25, 0, 0)],
+				"Right" = [Vector3(-3, 0, 0), Vector3(.25, 0, 0)],
+				"Up" = [Vector3(0, -3, 0), Vector3(0, .25, 0)],
+				"Down" = [Vector3(0, 3, 0), Vector3(0, -.25, 0)],
+			},
+			
+			"Zoom" = {
+				"In" = [Vector3(0, 0, 2), Vector3(0, 0, -2)],
+				"Out" = [Vector3(0, 0, -2), Vector3(0, 0, 2)],
+			},
+		}
+		
+		# Preset determine initial position (needed for transition tween
+		var InitPos:Vector3
+		var InitRot:Vector3
+		if LineInfo.CameraType == "Snap":
+			InitPos = CamSubject.transform * BaseVector
+		else:
+			InitPos = CamSubject.transform * (BaseVector + PosTable[LineInfo.CameraType][LineInfo.CameraDirection][0])
+		
+		if LineInfo.TweenRotation == false or LineInfo.CameraType == "Snap":
+			InitRot = CamSubject.rotation_degrees + Vector3(0, 0, LineInfo.CameraRotation)
+		else:
+			InitRot = CamSubject.rotation_degrees - Vector3(0, 0, LineInfo.CameraRotation)
+		
+		# Execute transition in if enabled
+		if (LineInfo.OverrideTransition == true and CurrScene.name == "trial") or (LineInfo.OverrideTransition == false and CurrScene.name != "trial"):
+			var TransTween = create_tween()
+			TransTween.set_parallel(true)
+			
+			TransTween.tween_property(Camera, "position", InitPos, .35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+			TransTween.tween_property(Camera, "rotation_degrees", InitRot, .35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+			await TransTween.finished
+		else:
+			Camera.position = InitPos
+			Camera.rotation_degrees = InitRot
+		
+		if LineInfo.CameraType != "Snap":
+			var CamTween = create_tween()
+			CurrCamTween = CamTween
+			CamTween.set_parallel(true)
+			
+			CamTween.tween_property(
+				Camera,
+				"position",
+				CamSubject.transform * (BaseVector + PosTable[LineInfo.CameraType][LineInfo.CameraDirection][1]),
+				LineInfo.CameraTime
+			).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+			
+			if LineInfo.TweenRotation == true:
+				CamTween.tween_property(
+					Camera,
+					"rotation_degrees:z",
+					LineInfo.CameraRotation,
+					LineInfo.CameraTime
+				).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+		
 	
 	# PROCESS LINE============================
 	var LineLength = LineText.text.length()
 	var ScrollSpeed = .025 # time it takes for the digit to scroll
 	
+	# Call character to leave the room if they're in the room
+	if LineInfo.CharacterLeaves == true:
+		Speaker.LeaveRoom()
+	
 	if LineInfo.SkipScrolling  == false: # skip the scrolling if it's on
 		var ScrollTween = create_tween()
 		ScrollTween.tween_property(LineText, "visible_characters", LineLength, ScrollSpeed * LineLength).set_trans(Tween.TRANS_LINEAR)
-		ScrollTween.play()
+		CurrScrollTween = ScrollTween
+		
 		await ScrollTween.finished
 	
+	Speaking = false
 	ContArrow.visible = true
 	LineText.visible_characters = -1
-	await get_tree().create_timer(3).timeout
+	
+	await SpeakingChanged
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -13,3 +13,5 @@ func _ready() -> void:
 		
 		for j in LineResource:
 			await DialogueModule.DialogueLine(j)
+	
+	DialogueModule.EndSession()
