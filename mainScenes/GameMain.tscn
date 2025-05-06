@@ -16,7 +16,7 @@ sky = SubResource("Sky_b4u30")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Main" type="Node"]
+[node name="GameMain" type="Node"]
 
 [node name="AudioBusses" type="Node" parent="."]
 
@@ -55,4 +55,4 @@ environment = SubResource("Environment_23dgj")
 
 [node name="Characters" type="Node3D" parent="3DScenes"]
 
-[node name="2DScenes" type="Node" parent="."]
+[node name="2DScenes" type="Node2D" parent="."]

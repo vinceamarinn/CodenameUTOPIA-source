@@ -15,6 +15,10 @@ run/main_scene="res://mainScenes/GameMain.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
+
 [display]
 
 window/size/viewport_width=1600
