@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1jf7anrrlq5p"]
+
+[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/SceneCharRESOURCE.gd" id="1_behxj"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueRESOURCE.gd" id="2_hj282"]
+[ext_resource type="Script" uid="uid://ds1v5vmt3lfko" path="res://scripts/resources/SceneCharARRAY.gd" id="3_cyve6"]
+
+[sub_resource type="Resource" id="Resource_qmyie"]
+script = ExtResource("1_behxj")
+Name = "daiya"
+Position = Vector3(0, 0, 0)
+Rotation = Vector3(0, 0, 0)
+AttachedDialogue = Array[ExtResource("2_hj282")]([])
+
+[sub_resource type="Resource" id="Resource_nphd7"]
+script = ExtResource("1_behxj")
+Name = "reina"
+Position = Vector3(5, 0, 0)
+Rotation = Vector3(0, 0, 0)
+AttachedDialogue = Array[ExtResource("2_hj282")]([])
+
+[sub_resource type="Resource" id="Resource_yie60"]
+script = ExtResource("3_cyve6")
+SceneCharacterArray = Array[ExtResource("1_behxj")]([SubResource("Resource_qmyie"), SubResource("Resource_nphd7")])
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ytr0"]
+
+[node name="testArea" type="Node3D"]
+metadata/SceneCharacters = {
+"Testing1": SubResource("Resource_yie60")
+}
+
+[node name="Map" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Floor" type="MeshInstance3D" parent="Map"]
+transform = Transform3D(105, 0, 0, 0, 1, 0, 0, 0, 105, 0, 0, 0)
+mesh = SubResource("BoxMesh_6ytr0")
+skeleton = NodePath("")
+
+[node name="Characters" type="Node3D" parent="."]

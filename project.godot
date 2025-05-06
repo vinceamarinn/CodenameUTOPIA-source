@@ -10,14 +10,10 @@ config_version=5
 
 [application]
 
-config/name="ProjectUtopia"
-run/main_scene="res://mainScenes/trial.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/name="CodenameUTOPIA"
+run/main_scene="res://mainScenes/GameMain.tscn"
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
-
-[autoload]
-
-DialogueModule="*res://scripts/dialogueModule.gd"
 
 [display]
 
@@ -26,6 +22,10 @@ window/size/viewport_height=900
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=2
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [input]
 

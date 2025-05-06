@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 var CurrScene:Node3D = null
 var PlayerUI:CanvasLayer = null
 
@@ -72,6 +72,7 @@ func DialogueLine(LineInfo):
 	
 	# CAMERA============================
 	if LineInfo.CameraType != "": # only run if there is a camera type specified
+		# Cancel previous current camera tween
 		if CurrCamTween != null:
 			CurrCamTween.kill()
 			CurrCamTween = null
@@ -83,6 +84,7 @@ func DialogueLine(LineInfo):
 		else:
 			CamSubject = CharGroup.get_node(LineInfo.CameraSubject)
 		
+		# Define base vector & positions for each different camera option
 		var BaseVector = Vector3(0, 2, 6)
 		var PosTable = {
 			"Pan" = {
@@ -98,7 +100,7 @@ func DialogueLine(LineInfo):
 			},
 		}
 		
-		# Preset determine initial position (needed for transition tween
+		# Determine initial position (needed for transition tween)
 		var InitPos:Vector3
 		var InitRot:Vector3
 		if LineInfo.CameraType == "Snap":
@@ -106,6 +108,7 @@ func DialogueLine(LineInfo):
 		else:
 			InitPos = CamSubject.transform * (BaseVector + PosTable[LineInfo.CameraType][LineInfo.CameraDirection][0])
 		
+		# Determine initial rotation (needed for transition tween)
 		if LineInfo.TweenRotation == false or LineInfo.CameraType == "Snap":
 			InitRot = CamSubject.rotation_degrees + Vector3(0, 0, LineInfo.CameraRotation)
 		else:
@@ -119,15 +122,17 @@ func DialogueLine(LineInfo):
 			TransTween.tween_property(Camera, "position", InitPos, .35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			TransTween.tween_property(Camera, "rotation_degrees", InitRot, .35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 			await TransTween.finished
-		else:
+		else: # If no transition, just set it to the initial from the get-go
 			Camera.position = InitPos
 			Camera.rotation_degrees = InitRot
 		
+		# Execute camera tween if not supposed to snap
 		if LineInfo.CameraType != "Snap":
 			var CamTween = create_tween()
 			CurrCamTween = CamTween
 			CamTween.set_parallel(true)
 			
+			# Position tween
 			CamTween.tween_property(
 				Camera,
 				"position",
@@ -135,6 +140,7 @@ func DialogueLine(LineInfo):
 				LineInfo.CameraTime
 			).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			
+			# Rotation tween
 			if LineInfo.TweenRotation == true:
 				CamTween.tween_property(
 					Camera,
