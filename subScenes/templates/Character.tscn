@@ -1,16 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca1krhe3erxo8"]
+[gd_scene load_steps=2 format=3 uid="uid://ca1krhe3erxo8"]
 
 [ext_resource type="Script" uid="uid://c1qkaep2inu40" path="res://scripts/CharacterMain.gd" id="1_jlaap"]
-[ext_resource type="SpriteFrames" uid="uid://gktglqkacvai" path="res://subScenes/spriteFrames/yuutoSprites.tres" id="2_n33eg"]
 
 [node name="Character" type="Node3D"]
 script = ExtResource("1_jlaap")
 
 [node name="FrontSprite" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.375, 0, -1.49012e-08, 0, 0.375, 0, 1.49012e-08, 0, 0.375, 0, 0, 0)
-modulate = Color(0.3549, 0.438165, 0.91, 1)
 double_sided = false
-sprite_frames = ExtResource("2_n33eg")
 autoplay = "default"
 
 [node name="BackSprite" type="AnimatedSprite3D" parent="."]
@@ -18,5 +15,4 @@ transform = Transform3D(-0.375, 0, -3.27835e-08, 0, 0.375, 0, 3.27835e-08, 0, -0
 flip_h = true
 modulate = Color(0, 0, 0, 1)
 double_sided = false
-sprite_frames = ExtResource("2_n33eg")
 autoplay = "default"

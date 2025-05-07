@@ -1,5 +1,5 @@
 extends Resource
-class_name SceneCharRESOURCE
+class_name CharState
 
 @export_group("General")
 @export var Name:String ## Name of the character to pull.

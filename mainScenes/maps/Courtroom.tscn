@@ -1,24 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=7 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="ArrayMesh" uid="uid://m07trmqv2jj7" path="res://models/witnessStand.obj" id="1_dek83"]
 [ext_resource type="Texture2D" uid="uid://cbhnnufwfw80v" path="res://models/Union1_diff.png" id="2_syam6"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/madame.tscn" id="3_rghp4"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/reina.tscn" id="4_krllk"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/yuuka.tscn" id="5_t1yks"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/ren.tscn" id="6_4e26j"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/sebastian.tscn" id="7_a5fm4"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/ayana.tscn" id="8_hnmr6"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/shiro.tscn" id="9_q3r4e"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/ikue.tscn" id="10_g3tjf"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/willow.tscn" id="11_bflov"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/ryuji.tscn" id="12_ra222"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/sukai.tscn" id="13_wbhye"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/naomi.tscn" id="14_h8ke1"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/kazuhito.tscn" id="15_tkpvo"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/daiya.tscn" id="16_yesjt"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/lance.tscn" id="17_mnbjb"]
-[ext_resource type="PackedScene" path="res://subScenes/characters/goki.tscn" id="18_p2y62"]
-[ext_resource type="PackedScene" uid="uid://ca1krhe3erxo8" path="res://subScenes/templates/Character.tscn" id="19_rfhhq"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bmxh1"]
 
@@ -49,10 +32,10 @@ transform = Transform3D(-4.37114e-08, 0, 5, 0, 6, 0, -1, 0, -2.18557e-07, -1.022
 mesh = SubResource("BoxMesh_qmk1p")
 skeleton = NodePath("")
 
-[node name="trialStands" type="Node3D" parent="."]
+[node name="Stands" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="stand3" type="MeshInstance3D" parent="trialStands"]
+[node name="stand3" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.980785, 0, 0.19509, 0, 1, 0, -0.19509, 0, -0.980785, -2.14599, 2.6, 10.7886)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -86,7 +69,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand11" type="MeshInstance3D" parent="trialStands"]
+[node name="stand11" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.980785, 0, -0.19509, 0, 1, 0, 0.19509, 0, 0.980785, 2.14599, 2.6, -10.7886)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -120,7 +103,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand4" type="MeshInstance3D" parent="trialStands"]
+[node name="stand4" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.831469, 0, 0.55557, 0, 1, 0, -0.55557, 0, -0.831469, -6.11127, 2.6, 9.14616)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -154,7 +137,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand12" type="MeshInstance3D" parent="trialStands"]
+[node name="stand12" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.83147, 0, -0.55557, 0, 1, 0, 0.55557, 0, 0.83147, 6.11127, 2.6, -9.14616)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -188,7 +171,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand5" type="MeshInstance3D" parent="trialStands"]
+[node name="stand5" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.55557, 0, 0.83147, 0, 1, 0, -0.83147, 0, -0.55557, -9.14616, 2.6, 6.11127)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -222,7 +205,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand13" type="MeshInstance3D" parent="trialStands"]
+[node name="stand13" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.55557, 0, -0.83147, 0, 1, 0, 0.83147, 0, 0.55557, 9.14616, 2.6, -6.11127)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -256,7 +239,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand14" type="MeshInstance3D" parent="trialStands"]
+[node name="stand14" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.19509, 0, -0.980785, 0, 1, 0, 0.980785, 0, 0.19509, 10.7886, 2.6, -2.14599)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -290,7 +273,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand6" type="MeshInstance3D" parent="trialStands"]
+[node name="stand6" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.19509, 0, 0.980785, 0, 1, 0, -0.980785, 0, -0.19509, -10.7886, 2.6, 2.14599)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -324,7 +307,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand7" type="MeshInstance3D" parent="trialStands"]
+[node name="stand7" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.19509, 0, 0.980785, 0, 1, 0, -0.980785, 0, 0.19509, -10.7886, 2.6, -2.14599)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -358,7 +341,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand15" type="MeshInstance3D" parent="trialStands"]
+[node name="stand15" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.19509, 0, -0.980785, 0, 1, 0, 0.980785, 0, -0.19509, 10.7886, 2.6, 2.14599)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -392,7 +375,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand8" type="MeshInstance3D" parent="trialStands"]
+[node name="stand8" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.55557, 0, 0.83147, 0, 1, 0, -0.83147, 0, 0.55557, -9.14617, 2.6, -6.11127)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -426,7 +409,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand16" type="MeshInstance3D" parent="trialStands"]
+[node name="stand16" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.55557, 0, -0.83147, 0, 1, 0, 0.83147, 0, -0.55557, 9.14617, 2.6, 6.11127)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -460,7 +443,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand9" type="MeshInstance3D" parent="trialStands"]
+[node name="stand9" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.83147, 0, 0.55557, 0, 1, 0, -0.55557, 0, 0.83147, -6.11127, 2.6, -9.14617)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -494,7 +477,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand1" type="MeshInstance3D" parent="trialStands"]
+[node name="stand1" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.83147, 0, -0.55557, 0, 1, 0, 0.55557, 0, -0.83147, 6.11127, 2.6, 9.14617)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -528,7 +511,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand2" type="MeshInstance3D" parent="trialStands"]
+[node name="stand2" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(-0.980785, 0, -0.19509, 0, 1, 0, 0.19509, 0, -0.980785, 2.14599, 2.6, 10.7886)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -562,7 +545,7 @@ surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
 
-[node name="stand10" type="MeshInstance3D" parent="trialStands"]
+[node name="stand10" type="MeshInstance3D" parent="Stands"]
 transform = Transform3D(0.980785, 0, 0.19509, 0, 1, 0, -0.19509, 0, 0.980785, -2.14599, 2.6, -10.7886)
 mesh = ExtResource("1_dek83")
 skeleton = NodePath("../..")
@@ -595,56 +578,3 @@ surface_material_override/25 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/26 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/27 = SubResource("StandardMaterial3D_udvw5")
 surface_material_override/28 = SubResource("StandardMaterial3D_udvw5")
-
-[node name="Characters" type="Node3D" parent="."]
-
-[node name="madame" parent="Characters" instance=ExtResource("3_rghp4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7, -21)
-
-[node name="reina" parent="Characters" instance=ExtResource("4_krllk")]
-transform = Transform3D(0.980785, 0, 0.19509, 0, 1, 0, -0.19509, 0, 0.980785, -2.34109, 4.7, -11.7694)
-
-[node name="yuuka" parent="Characters" instance=ExtResource("5_t1yks")]
-transform = Transform3D(-0.980785, 0, -0.19509, 0, 1, 0, 0.19509, 0, -0.980785, 2.34108, 4.7, 11.7694)
-
-[node name="ren" parent="Characters" instance=ExtResource("6_4e26j")]
-transform = Transform3D(0.980785, 0, -0.19509, 0, 1, 0, 0.19509, 0, 0.980785, 2.34108, 4.7, -11.7694)
-
-[node name="sebastian" parent="Characters" instance=ExtResource("7_a5fm4")]
-transform = Transform3D(-0.83147, 0, -0.55557, 0, 1, 0, 0.55557, 0, -0.83147, 6.66684, 4.7, 9.97763)
-
-[node name="ayana" parent="Characters" instance=ExtResource("8_hnmr6")]
-transform = Transform3D(0.83147, 0, 0.55557, 0, 1, 0, -0.55557, 0, 0.83147, -6.66684, 4.7, -9.97763)
-
-[node name="shiro" parent="Characters" instance=ExtResource("9_q3r4e")]
-transform = Transform3D(0.55557, 0, 0.83147, 0, 1, 0, -0.83147, 0, 0.55557, -9.97764, 4.7, -6.66684)
-
-[node name="ikue" parent="Characters" instance=ExtResource("10_g3tjf")]
-transform = Transform3D(-0.55557, 0, -0.83147, 0, 1, 0, 0.83147, 0, -0.55557, 9.97763, 4.7, 6.66684)
-
-[node name="willow" parent="Characters" instance=ExtResource("11_bflov")]
-transform = Transform3D(-0.19509, 0, -0.980785, 0, 1, 0, 0.980785, 0, -0.19509, 11.7694, 4.7, 2.34108)
-
-[node name="ryuji" parent="Characters" instance=ExtResource("12_ra222")]
-transform = Transform3D(0.19509, 0, 0.980785, 0, 1, 0, -0.980785, 0, 0.19509, -11.7694, 4.7, -2.34108)
-
-[node name="sukai" parent="Characters" instance=ExtResource("13_wbhye")]
-transform = Transform3D(-0.19509, 0, 0.980785, 0, 1, 0, -0.980785, 0, -0.19509, -11.7694, 4.7, 2.34108)
-
-[node name="naomi" parent="Characters" instance=ExtResource("14_h8ke1")]
-transform = Transform3D(0.19509, 0, -0.980785, 0, 1, 0, 0.980785, 0, 0.19509, 11.7694, 4.7, -2.34108)
-
-[node name="kazuhito" parent="Characters" instance=ExtResource("15_tkpvo")]
-transform = Transform3D(-0.55557, 0, 0.831469, 0, 1, 0, -0.831469, 0, -0.55557, -9.97763, 4.7, 6.66684)
-
-[node name="daiya" parent="Characters" instance=ExtResource("16_yesjt")]
-transform = Transform3D(0.55557, 0, -0.83147, 0, 1, 0, 0.83147, 0, 0.55557, 9.97763, 4.7, -6.66684)
-
-[node name="lance" parent="Characters" instance=ExtResource("17_mnbjb")]
-transform = Transform3D(-0.83147, 0, 0.55557, 0, 1, 0, -0.55557, 0, -0.83147, -6.66684, 4.7, 9.97763)
-
-[node name="goki" parent="Characters" instance=ExtResource("18_p2y62")]
-transform = Transform3D(0.83147, 0, -0.55557, 0, 1, 0, 0.55557, 0, 0.83147, 6.66684, 4.7, -9.97763)
-
-[node name="yuuto" parent="Characters" instance=ExtResource("19_rfhhq")]
-transform = Transform3D(-0.980785, 0, 0.19509, 0, 1, 0, -0.19509, 0, -0.980785, -2.34108, 4.7, 11.7694)

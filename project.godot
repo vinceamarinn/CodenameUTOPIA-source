@@ -18,13 +18,17 @@ config/icon="res://icon.svg"
 [autoload]
 
 ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
+GeneralModule="res://scripts/modules/GeneralModule.gd"
+DataStateHandler="res://scripts/modules/DataStateHandler.gd"
+UiHandler="res://scripts/modules/UIHandler.gd"
+AreaHandler="res://scripts/modules/AreaHandler.gd"
+CameraModule="res://scripts/modules/CameraModule.gd"
+DialogueModule="res://scripts/modules/DialogueModule.gd"
 
 [display]
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 window/vsync/vsync_mode=2
 
 [gui]

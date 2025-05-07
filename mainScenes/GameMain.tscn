@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6p1y76q6kro1"]
+[gd_scene load_steps=5 format=3 uid="uid://b6p1y76q6kro1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51ki2"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fjdhl"]
 sky_top_color = Color(0.51365, 0.68596, 1, 1)
@@ -29,15 +32,26 @@ bus = &"SFX"
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioBusses"]
 bus = &"Voices"
 
+[node name="2DScenes" type="Node2D" parent="."]
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Transition" type="Panel" parent="UI"]
+visible = false
+z_index = 999
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_51ki2")
 
 [node name="Worldview" type="Node" parent="."]
 
@@ -50,9 +64,8 @@ metadata/_edit_lock_ = true
 environment = SubResource("Environment_23dgj")
 
 [node name="Camera" type="Camera3D" parent="Worldview"]
+unique_name_in_owner = true
 
 [node name="3DScenes" type="Node" parent="."]
 
 [node name="Characters" type="Node3D" parent="3DScenes"]
-
-[node name="2DScenes" type="Node2D" parent="."]
