@@ -1,5 +1,5 @@
 extends Resource
-class_name DialogueRESOURCE
+class_name DialogueLine
 
 @export_group("General Settings")
 @export var Speaker:String ## Name of the character speaking.

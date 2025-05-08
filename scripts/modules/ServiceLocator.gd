@@ -6,16 +6,15 @@ var services:Dictionary = {}
 # in order to use the functions of a specific module.
 # This makes it so that we only have to actually load one module to access any module we want, which is pretty handy.
 
-# register service in service locator
-func register_service(name:String, new_service:Object) -> void:
-	if name in services: return # if the service is already registered, don't proceed
-	services[name] = new_service
+func register_service(service_name:String, new_service:Object) -> void: ## Registers the given service with the provided name.
+	if service_name in services: return # if the service is already registered, don't proceed
+	services[service_name] = new_service
 
 # get service in registered services
-func get_service(name:String) -> Object:
-	if !(services.has(name)): return null # if the service is not registered, don't proceed
-	return services[name]
+func get_service(service_name:String) -> Object: ## Returns the requested service.
+	if !(services.has(service_name)): return null # if the service is not registered, don't proceed
+	return services[service_name]
 
-func erase_service(name:String) -> void:
-	if !(services.has(name)): return # if the service is not registered, don't proceed
-	services.erase(name)
+func erase_service(service_name:String) -> void: ## Erases the requested service.
+	if !(services.has(service_name)): return # if the service is not registered, don't proceed
+	services.erase(service_name)

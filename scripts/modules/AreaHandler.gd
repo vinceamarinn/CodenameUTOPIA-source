@@ -67,5 +67,5 @@ func load_area(area_name:String, state:String) -> void: ## Handles the loading &
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically
 	
-	load_area("TestArea", "testdemo")
+	load_area("TestArea", "sigmund")
 	load_player("yuuka")

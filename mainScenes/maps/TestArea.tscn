@@ -1,46 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=3 format=3 uid="uid://c1jf7anrrlq5p"]
 
-[ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStates.gd" id="1_0mrs5"]
-[ext_resource type="Script" uid="uid://ds1v5vmt3lfko" path="res://scripts/resources/CharStateARRAY.gd" id="2_r4ipe"]
-[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_xlf1l"]
+[ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_0mrs5"]
 [ext_resource type="PackedScene" uid="uid://c4bbihmyg1ked" path="res://subScenes/Floor.tscn" id="6_0hvvn"]
-
-[sub_resource type="Resource" id="Resource_e0v5q"]
-script = ExtResource("3_xlf1l")
-Name = 3
-Position = Vector3(0, 3, -10)
-Rotation = Vector3(0, 0, 60)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
-
-[sub_resource type="Resource" id="Resource_i5pp0"]
-script = ExtResource("2_r4ipe")
-CharacterStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_e0v5q")])
-metadata/_custom_type_script = "uid://ds1v5vmt3lfko"
-
-[sub_resource type="Resource" id="Resource_r4ipe"]
-script = ExtResource("3_xlf1l")
-Name = 0
-Position = Vector3(3, 0, -5)
-Rotation = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
-
-[sub_resource type="Resource" id="Resource_xlf1l"]
-script = ExtResource("3_xlf1l")
-Name = 1
-Position = Vector3(-3, 0, -5)
-Rotation = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
-
-[sub_resource type="Resource" id="Resource_0hvvn"]
-script = ExtResource("2_r4ipe")
-CharacterStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_r4ipe"), SubResource("Resource_xlf1l")])
-metadata/_custom_type_script = "uid://ds1v5vmt3lfko"
 
 [node name="testArea" type="Node3D"]
 script = ExtResource("1_0mrs5")
-AreaStates = Dictionary[String, ExtResource("2_r4ipe")]({
-"sigmund": SubResource("Resource_i5pp0"),
-"testdemo": SubResource("Resource_0hvvn")
-})
 
 [node name="Floor" parent="." instance=ExtResource("6_0hvvn")]
