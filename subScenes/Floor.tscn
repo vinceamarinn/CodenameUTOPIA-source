@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4bbihmyg1ked"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xlf1l"]
+size = Vector3(105, 1, 105)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xpuui"]
+data = PackedVector3Array(-52.5, 0.5, 52.5, 52.5, 0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, -52.5, 52.5, -0.5, -52.5, -52.5, 0.5, -52.5, -52.5, -0.5, -52.5, 52.5, -0.5, -52.5, 52.5, 0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, -52.5, 52.5, -0.5, 52.5, -52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, 0.5, 52.5, -52.5, 0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, 0.5, -52.5, 52.5, 0.5, -52.5, -52.5, -0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, -0.5, 52.5, 52.5, -0.5, -52.5, -52.5, -0.5, -52.5)
+
+[node name="Floor" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_xlf1l")
+
+[node name="Floor_col" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_col"]
+shape = SubResource("ConcavePolygonShape3D_xpuui")

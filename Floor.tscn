@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c68rttpayngue"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ytr0"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gfwnf"]
+points = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5)
+
+[node name="Floor" type="MeshInstance3D"]
+transform = Transform3D(-4.5897e-06, 0, 105, 0, 1, 0, -105, 0, -4.5897e-06, 0, 0, 0)
+mesh = SubResource("BoxMesh_6ytr0")
+skeleton = NodePath("")
+
+[node name="Floor_col" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_col"]
+shape = SubResource("ConvexPolygonShape3D_gfwnf")

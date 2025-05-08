@@ -1,9 +1,24 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=12 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStates.gd" id="1_0mrs5"]
 [ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueRESOURCE.gd" id="2_hj282"]
 [ext_resource type="Script" uid="uid://ds1v5vmt3lfko" path="res://scripts/resources/CharStateARRAY.gd" id="2_r4ipe"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_xlf1l"]
+[ext_resource type="PackedScene" uid="uid://d4euykki01y7t" path="res://subScenes/Player.tscn" id="5_xlf1l"]
+[ext_resource type="PackedScene" uid="uid://c4bbihmyg1ked" path="res://subScenes/Floor.tscn" id="6_0hvvn"]
+
+[sub_resource type="Resource" id="Resource_e0v5q"]
+script = ExtResource("3_xlf1l")
+Name = "kazuhito"
+Position = Vector3(0, 3, -10)
+Rotation = Vector3(0, 0, 60)
+AttachedDialogue = Array[ExtResource("2_hj282")]([])
+metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+
+[sub_resource type="Resource" id="Resource_i5pp0"]
+script = ExtResource("2_r4ipe")
+CharacterStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_e0v5q")])
+metadata/_custom_type_script = "uid://ds1v5vmt3lfko"
 
 [sub_resource type="Resource" id="Resource_r4ipe"]
 script = ExtResource("3_xlf1l")
@@ -26,21 +41,6 @@ script = ExtResource("2_r4ipe")
 CharacterStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_r4ipe"), SubResource("Resource_xlf1l")])
 metadata/_custom_type_script = "uid://ds1v5vmt3lfko"
 
-[sub_resource type="Resource" id="Resource_e0v5q"]
-script = ExtResource("3_xlf1l")
-Name = "kazuhito"
-Position = Vector3(0, 3, -10)
-Rotation = Vector3(0, 0, 60)
-AttachedDialogue = Array[ExtResource("2_hj282")]([])
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
-
-[sub_resource type="Resource" id="Resource_i5pp0"]
-script = ExtResource("2_r4ipe")
-CharacterStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_e0v5q")])
-metadata/_custom_type_script = "uid://ds1v5vmt3lfko"
-
-[sub_resource type="BoxMesh" id="BoxMesh_6ytr0"]
-
 [node name="testArea" type="Node3D"]
 script = ExtResource("1_0mrs5")
 AreaStates = Dictionary[String, ExtResource("2_r4ipe")]({
@@ -48,7 +48,7 @@ AreaStates = Dictionary[String, ExtResource("2_r4ipe")]({
 "testdemo": SubResource("Resource_0hvvn")
 })
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.5897e-06, 0, 105, 0, 1, 0, -105, 0, -4.5897e-06, 0, 0, 0)
-mesh = SubResource("BoxMesh_6ytr0")
-skeleton = NodePath("")
+[node name="Player" parent="." instance=ExtResource("5_xlf1l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -10)
+
+[node name="Floor" parent="." instance=ExtResource("6_0hvvn")]

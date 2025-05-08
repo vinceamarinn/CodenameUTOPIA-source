@@ -20,6 +20,10 @@ func create_character(char_info):
 	new_char.position = char_info.Position
 	new_char.rotation_degrees = char_info.Rotation
 
+func load_player():
+	var new_player = load("res://subScenes/Player.tscn").instantiate()
+	char_group.add_child(new_player)
+
 #function used to delete any areas that are given to it, also wipes loaded characters
 func unload_area(area:Node):
 	area.queue_free() # deletes the current area
@@ -54,8 +58,4 @@ func load_area(area_name:String, state:String) -> void:
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically
-	
-	await get_tree().create_timer(1).timeout
-	load_area("TestArea", "testdemo")
-	await get_tree().create_timer(3).timeout
 	load_area("TestArea", "sigmund")
