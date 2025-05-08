@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce76gmx71b3je"
-path.s3tc="res://.godot/imported/moveUp0009.png-a9b934b1dae7704272eb50210e447dfb.s3tc.ctex"
+uid="uid://cwrig2sh6wmno"
+path.s3tc="res://.godot/imported/moveSides0003.png-6883ff5ee1d70c9dd552eb16e0cc3a8d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://images/sprites/yuuto/player/moveUp0009.png"
-dest_files=["res://.godot/imported/moveUp0009.png-a9b934b1dae7704272eb50210e447dfb.s3tc.ctex"]
+source_file="res://images/sprites/yuuka/player/moveSides0003.png"
+dest_files=["res://.godot/imported/moveSides0003.png-6883ff5ee1d70c9dd552eb16e0cc3a8d.s3tc.ctex"]
 
 [params]
 

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
-GeneralModule="res://scripts/modules/GeneralModule.gd"
+GeneralModule="*res://scripts/modules/GeneralModule.gd"
 DataStateHandler="res://scripts/modules/DataStateHandler.gd"
 UiHandler="res://scripts/modules/UIHandler.gd"
 AreaHandler="res://scripts/modules/AreaHandler.gd"

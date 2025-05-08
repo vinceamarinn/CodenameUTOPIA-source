@@ -3,7 +3,7 @@ extends Node
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var transition = get_node("/root/GameMain/UI/Transition")
 
-func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: # basic transition tween
+func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ## Basic transition tween. Supports fading in, fading out and even color changing.
 	if transition.visible == false: transition.visible = true # make transition visible if it's not visible already
 	
 	var goal_table = {

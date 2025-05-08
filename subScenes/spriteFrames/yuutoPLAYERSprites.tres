@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://1ou1203lcupv"]
+[gd_resource type="SpriteFrames" load_steps=21 format=3 uid="uid://1ou1203lcupv"]
 
 [ext_resource type="Texture2D" uid="uid://bbbwtjrb4lksw" path="res://images/sprites/yuuto/player/idle0001.png" id="1_uffg6"]
 [ext_resource type="Texture2D" uid="uid://cq4n1228n1jml" path="res://images/sprites/yuuto/player/idle0005.png" id="2_n1k7l"]
@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://by1dy175xbhu1" path="res://images/sprites/yuuto/player/moveDown0003.png" id="6_0wtqn"]
 [ext_resource type="Texture2D" uid="uid://cmqnf8neafpvo" path="res://images/sprites/yuuto/player/moveDown0005.png" id="7_owpts"]
 [ext_resource type="Texture2D" uid="uid://pq3k83wws3cv" path="res://images/sprites/yuuto/player/moveDown0007.png" id="8_82ivj"]
-[ext_resource type="Texture2D" uid="uid://dqr57mddfn35e" path="res://images/sprites/yuuto/player/moveDown0009.png" id="9_xg0hi"]
-[ext_resource type="Texture2D" uid="uid://cryvyomhmbvys" path="res://images/sprites/yuuto/player/moveDown0011.png" id="10_s3wfi"]
 [ext_resource type="Texture2D" uid="uid://bq7w5s85xrkub" path="res://images/sprites/yuuto/player/moveDown0013.png" id="11_fejhk"]
 [ext_resource type="Texture2D" uid="uid://ddx0ch6r18uph" path="res://images/sprites/yuuto/player/moveDown0015.png" id="12_1swpl"]
 [ext_resource type="Texture2D" uid="uid://bkf2t2jt6vkso" path="res://images/sprites/yuuto/player/moveSides0001.png" id="13_jr41p"]
@@ -20,8 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://dbaad2lkg8sm4" path="res://images/sprites/yuuto/player/moveUp0003.png" id="18_ou22d"]
 [ext_resource type="Texture2D" uid="uid://8u14j8864r8s" path="res://images/sprites/yuuto/player/moveUp0005.png" id="19_3l3qw"]
 [ext_resource type="Texture2D" uid="uid://csoiefv7iwlj4" path="res://images/sprites/yuuto/player/moveUp0007.png" id="20_3tvlt"]
-[ext_resource type="Texture2D" uid="uid://ce76gmx71b3je" path="res://images/sprites/yuuto/player/moveUp0009.png" id="21_4iwr2"]
-[ext_resource type="Texture2D" uid="uid://chugpk2lkp0h2" path="res://images/sprites/yuuto/player/moveUp0011.png" id="22_ducx3"]
 [ext_resource type="Texture2D" uid="uid://dhoadf36s4lj1" path="res://images/sprites/yuuto/player/moveUp0013.png" id="23_ndhu7"]
 [ext_resource type="Texture2D" uid="uid://b2ghr1t4rcbmw" path="res://images/sprites/yuuto/player/moveUp0015.png" id="24_aw2wp"]
 
@@ -58,10 +54,10 @@ animations = [{
 "texture": ExtResource("8_82ivj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_xg0hi")
+"texture": ExtResource("5_cmbp1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_s3wfi")
+"texture": ExtResource("6_0wtqn")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_fejhk")
@@ -104,10 +100,10 @@ animations = [{
 "texture": ExtResource("20_3tvlt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("21_4iwr2")
+"texture": ExtResource("17_led2y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("22_ducx3")
+"texture": ExtResource("18_ou22d")
 }, {
 "duration": 1.0,
 "texture": ExtResource("23_ndhu7")

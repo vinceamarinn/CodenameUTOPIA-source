@@ -1,4 +1,42 @@
 extends Node
 
+# This module handles more generic things that do not need their own specified module, or things that don't fall into any specific module.
+# It also stores global variables like the character list, for everyone's use.
+
+enum Characters { ## Very important list of all registered characters. Used in any resources that require you to select a character.
+	# Main Characters - the 16 participants of the game & the enforcer.
+	YUUTO,
+	YUUKA,
+	LANCE,
+	KAZUHITO,
+	SUKAI,
+	RYUJI,
+	SHIRO,
+	AYANA,
+	REINA,
+	REN,
+	GOKI,
+	DAIYA,
+	NAOMI,
+	WILLOW,
+	IKUE,
+	SEBASTIAN,
+	MADAME,
+	
+	# Alt. Characters - alternative versions of characters (something like Yuuto with pajamas on instead, for example).
+	
+	# Secondary Characters - characters who appear in the story besides the main characters with a good amount of appearances.
+	
+	# Tertiary Characters - characters who only appear in the story for a few specific scenes.
+}
+
+enum PlayableChars { ## Enum list of characters you are able to play as.
+	YUUTO,
+	YUUKA
+}
+
+func get_character_name(char_id:int) -> String: ## Returns the selected character's name from their enum ID.
+	return Characters.keys()[char_id].to_lower()
+
 func _ready() -> void:
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically
