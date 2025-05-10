@@ -59,7 +59,7 @@ func load_area(area_name:String, state:String) -> void: ## Handles the loading &
 	if not state_dict[state]: return
 	
 	#after loading, create the characters based on the given data
-	var area_state = state_dict[state].CharacterStateArray
+	var area_state = state_dict[state].CharStateArray
 	for char_state in area_state:
 		create_character(char_state)
 	

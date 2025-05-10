@@ -1,9 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=10 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_0mrs5"]
+[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_r4ipe"]
+[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_xlf1l"]
 [ext_resource type="PackedScene" uid="uid://c4bbihmyg1ked" path="res://subScenes/Floor.tscn" id="6_0hvvn"]
+
+[sub_resource type="Resource" id="Resource_0hvvn"]
+script = ExtResource("3_xlf1l")
+Name = 3
+Position = Vector3(0, 3, -5)
+Rotation = Vector3(0, 0, 60)
+metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+
+[sub_resource type="Resource" id="Resource_e0v5q"]
+script = ExtResource("2_r4ipe")
+CharStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_0hvvn")])
+metadata/_custom_type_script = "uid://cdydvk1xdccnp"
+
+[sub_resource type="Resource" id="Resource_i5pp0"]
+script = ExtResource("3_xlf1l")
+Name = 0
+Position = Vector3(-3, 0, -5)
+Rotation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+
+[sub_resource type="Resource" id="Resource_wfbkh"]
+script = ExtResource("3_xlf1l")
+Name = 1
+Position = Vector3(3, 0, -5)
+Rotation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+
+[sub_resource type="Resource" id="Resource_ertr5"]
+script = ExtResource("2_r4ipe")
+CharStateArray = Array[ExtResource("3_xlf1l")]([SubResource("Resource_i5pp0"), SubResource("Resource_wfbkh")])
+metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [node name="testArea" type="Node3D"]
 script = ExtResource("1_0mrs5")
+AreaStates = Dictionary[String, ExtResource("2_r4ipe")]({
+"sigmund": SubResource("Resource_e0v5q"),
+"testdemo": SubResource("Resource_ertr5")
+})
 
 [node name="Floor" parent="." instance=ExtResource("6_0hvvn")]
