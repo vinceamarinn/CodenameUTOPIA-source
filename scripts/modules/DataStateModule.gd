@@ -1,10 +1,13 @@
 extends Node
 
-var game_data:SaveData = SaveData.new()
-var option_data:OptionData = OptionData.new()
+@export var game_data:SaveData = SaveData.new()
+@export var option_data:OptionData = OptionData.new()
 
 func get_data_path(data_file:Resource) -> String: ## Returns the default save data path.
 	return "user://" + data_file.get("RESOURCE_NAME") + ".tres"
+
+func get_area_state_name() -> String: ## Returns the name of a specific area state to load.
+	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
@@ -28,31 +31,14 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 		var property_name = property["name"]
 		set_property(data_file, property_name, loaded_data.get(property_name))
 	
+	if data_file == game_data:
+		var state_name = get_area_state_name()
+		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter)
+	
 	return true # if everything goes right then return true
+	
+	# basic game loading
 
 func _ready() -> void:
 	ServiceLocator.register_service("DataModule", self) # registers module in service locator automatically
-	
-	# TESTING
-	print(game_data.CurrentChapter)
-	print(option_data.MusicVolume)
-	
-	set_property(game_data, "CurrentChapter", 3)
-	
-	print("saving game...")
-	var savegame = save_data(game_data)
-	print("saving successful? ", savegame)
-	print("loading game...")
-	var loadgame = load_data(game_data)
-	print("loading successful? ", loadgame)
-	
-	set_property(option_data, "MusicVolume", -2)
-	set_property(option_data, "SFXVolume", 3)
-	set_property(option_data, "VoiceVolume", 0.5)
-	
-	print("saving options...")
-	var saveoption = save_data(option_data)
-	print("saving successful? ", saveoption)
-	print("loading options...")
-	var loadoption = load_data(option_data)
-	print("loading successful? ", loadoption)
+	load_data(game_data)

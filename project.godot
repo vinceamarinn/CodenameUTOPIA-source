@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Codename: UTOPIA"
-run/main_scene="res://mainScenes/GameMain.tscn"
+run/main_scene="res://main_scenes/GameMain.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="CodenameUTOPIA"
 config/features=PackedStringArray("4.4", "Forward Plus")
@@ -21,11 +21,11 @@ config/icon="res://icon.svg"
 
 ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
 GeneralModule="*res://scripts/modules/GeneralModule.gd"
-DataStateHandler="res://scripts/modules/DataStateHandler.gd"
-UiHandler="res://scripts/modules/UIHandler.gd"
-AreaHandler="res://scripts/modules/AreaHandler.gd"
-CameraModule="res://scripts/modules/CameraModule.gd"
-DialogueModule="res://scripts/modules/DialogueModule.gd"
+AreaModule="*res://scripts/modules/AreaModule.gd"
+DataStateModule="*res://scripts/modules/DataStateModule.gd"
+UIModule="*res://scripts/modules/UIModule.gd"
+CameraModule="*res://scripts/modules/CameraModule.gd"
+DialogueModule="*res://scripts/modules/DialogueModule.gd"
 
 [display]
 
