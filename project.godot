@@ -10,8 +10,10 @@ config_version=5
 
 [application]
 
-config/name="CodenameUTOPIA"
+config/name="Codename: UTOPIA"
 run/main_scene="res://mainScenes/GameMain.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="CodenameUTOPIA"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -33,7 +35,7 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_3d_auto_collision_generator/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_3d_auto_collision_generator/plugin.cfg", "res://addons/safe_resource_loader/plugin.cfg")
 
 [gui]
 
