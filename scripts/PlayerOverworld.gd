@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerOverworld
 
 const SPEED = 7.5
 @onready var anim_player = $Sprites

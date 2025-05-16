@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=9 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_8pvs2"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_0ui5h"]
 [ext_resource type="PackedScene" uid="uid://c4bbihmyg1ked" path="res://sub_scenes/Floor.tscn" id="4_q0rnr"]
+[ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="5_8pvs2"]
 
 [sub_resource type="Resource" id="Resource_r4ipe"]
 script = ExtResource("3_0ui5h")
@@ -17,30 +18,24 @@ script = ExtResource("2_8pvs2")
 CharStateArray = Array[ExtResource("3_0ui5h")]([SubResource("Resource_r4ipe")])
 metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
-[sub_resource type="Resource" id="Resource_i5pp0"]
-script = ExtResource("3_0ui5h")
-Name = 0
-Position = Vector3(-3, 0, -5)
-Rotation = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+[sub_resource type="BoxMesh" id="BoxMesh_kvvoo"]
 
-[sub_resource type="Resource" id="Resource_wfbkh"]
-script = ExtResource("3_0ui5h")
-Name = 1
-Position = Vector3(3, 0, -5)
-Rotation = Vector3(0, 0, 0)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
-
-[sub_resource type="Resource" id="Resource_ertr5"]
-script = ExtResource("2_8pvs2")
-CharStateArray = Array[ExtResource("3_0ui5h")]([SubResource("Resource_i5pp0"), SubResource("Resource_wfbkh")])
-metadata/_custom_type_script = "uid://cdydvk1xdccnp"
-
-[node name="testArea" type="Node3D"]
+[node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
 AreaStates = Dictionary[String, ExtResource("2_8pvs2")]({
-"CH0_sigmund": SubResource("Resource_xlf1l"),
-"testdemo": SubResource("Resource_ertr5")
+"CH0_sigmund": SubResource("Resource_xlf1l")
 })
 
 [node name="Floor" parent="." instance=ExtResource("4_q0rnr")]
+
+[node name="base part" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.92957, 0, 0, 0, 1.43965, 0, 0, 0, 1, 3.16285, 1.48245, -13.2947)
+mesh = SubResource("BoxMesh_kvvoo")
+
+[node name="Interactable" parent="base part" instance=ExtResource("5_8pvs2")]
+interactable_type = "ON_TOUCH"
+
+[node name="CollisionShape3D" parent="base part/Interactable" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[editable path="base part/Interactable"]
