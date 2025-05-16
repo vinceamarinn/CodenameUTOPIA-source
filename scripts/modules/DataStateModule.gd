@@ -4,10 +4,12 @@ extends Node
 @export var option_data:OptionData = OptionData.new()
 
 func get_data_path(data_file:Resource) -> String: ## Returns the default save data path.
-	return "user://" + data_file.get("RESOURCE_NAME") + ".tres"
+	return "user://" + data_file.get("RESOURCE_NAME") + ".cfg"
+	# default path example: user://SaveData.cfg
 
 func get_area_state_name() -> String: ## Returns the name of a specific area state to load.
 	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
+	# area/state example: CH0_sigmaballs
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
@@ -15,30 +17,62 @@ func set_property(data_file:Resource, property:String, new_value) -> void: ## Se
 	
 	data_file.set(property, new_value)
 
+func get_properties(data_file:Resource):
+	var property_array = [] # stores found properties
+	
+	for property in data_file.get_property_list():
+		if not "type" in property or not (property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE): continue # filters out anything that isn't an explicitly defined variable in the resource
+		property_array.append(property) # adds to list of valid properties
+	
+	return property_array # returns simple list of every found property
+
 func save_data(data_file:Resource) -> bool: ## Saves the game.
-	var err = ResourceSaver.save(data_file, get_data_path(data_file))
-	return(err == OK) # returns the result of the saving process
+	var config_file = ConfigFile.new() # create config file for editing
+	var property_list = get_properties(data_file) # get properties of the data file
+	
+	for property in property_list:
+		if property["name"] == "ClueInventory": # if array of objects that needs to be treated:
+			var clue_array = [] # array to save later
+			for clue in data_file.get(property["name"]):
+				clue_array.append(clue.serialize()) # add serialized (converted to dictionary) versions of the clues in the inventory to the array
+			
+			config_file.set_value("Save Data", property["name"], clue_array) # save the array into config file
+		else: #if it needs no treatment:
+			config_file.set_value("Save Data", property["name"], data_file.get(property["name"])) # save property into config file
+	
+	config_file.save(get_data_path(data_file)) # save config to real file!
+	return true
 
 func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
-	if not ResourceLoader.exists(get_data_path(data_file)): return false # if we cant find it, return false
+	var data_path = get_data_path(data_file) # get data path of provided data file
+	if not FileAccess.file_exists(data_path): return false # if we cant find it, return false
 	
-	var loaded_data = SafeResourceLoader.load(get_data_path(data_file)) # use safe resource loading plugin to check for malicious code
-	if loaded_data == null: return false # bad code found, don't run
+	var config_file = ConfigFile.new() # open new config file
+	var loaded_data = config_file.load(data_path) # load existing data file into empty config file
+	if loaded_data != OK: return false # failed to load, don't run
 	
-	for property in loaded_data.get_property_list():
-		if not "type" in property or not (property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE): continue # filters out anything that isn't an explicitly defined variable in the resource
+	var property_list = get_properties(data_file) # get list of properties in the data file
+	for property in property_list:
+		var property_value = config_file.get_value("Save Data", property["name"]) # get correspondant inside config file
 		
-		var property_name = property["name"]
-		set_property(data_file, property_name, loaded_data.get(property_name))
+		if property["name"] == "ClueInventory": # if array of objects that needs to be treated:
+			var new_inv:Array[Clue] = [] # array to load later
+			
+			for clue_dict in property_value:
+				new_inv.append(Clue.create_from_dict(clue_dict)) # re-convert any dictionary clues into actual clue objects
+			
+			set_property(data_file, property["name"], new_inv) # load the clue inventory
+			
+		else:
+			set_property(data_file, property["name"], property_value) # load the property!
 	
-	if data_file == game_data:
-		var state_name = get_area_state_name()
-		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter)
+	if data_file == game_data: # if we're loading the game, run basic initialization process
+		var state_name = get_area_state_name() # get current area/state
+		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
 	
 	return true # if everything goes right then return true
-	
-	# basic game loading
 
 func _ready() -> void:
 	ServiceLocator.register_service("DataModule", self) # registers module in service locator automatically
-	load_data(game_data)
+	var err = load_data(game_data)
+	print("save data loaded successfully? ", err)

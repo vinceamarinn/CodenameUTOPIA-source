@@ -1,5 +1,4 @@
 extends Area3D
-
 @export_enum("ON_INTERACT", "ON_TOUCH") var interactable_type:String = "ON_INTERACT"
 
 func _on_body_entered(body: Node3D) -> void:
