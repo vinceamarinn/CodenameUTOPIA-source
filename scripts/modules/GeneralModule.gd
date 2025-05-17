@@ -38,5 +38,14 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 func get_character_name(char_id:int) -> String: ## Returns the selected character's name from their enum ID.
 	return Characters.keys()[char_id].to_lower()
 
+func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.
+	var property_array = [] # stores found properties
+	
+	for property in resource.get_property_list():
+		if not "type" in property or not (property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE) or not (property["usage"] & PROPERTY_USAGE_STORAGE): continue # filters out anything that isn't an explicitly defined variable in the resource
+		property_array.append(property) # adds to list of valid properties
+	
+	return property_array # returns simple list of every found property
+
 func _ready() -> void:
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically

@@ -17,18 +17,9 @@ func set_property(data_file:Resource, property:String, new_value) -> void: ## Se
 	
 	data_file.set(property, new_value)
 
-func get_properties(data_file:Resource):
-	var property_array = [] # stores found properties
-	
-	for property in data_file.get_property_list():
-		if not "type" in property or not (property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE): continue # filters out anything that isn't an explicitly defined variable in the resource
-		property_array.append(property) # adds to list of valid properties
-	
-	return property_array # returns simple list of every found property
-
 func save_data(data_file:Resource) -> bool: ## Saves the game.
 	var config_file = ConfigFile.new() # create config file for editing
-	var property_list = get_properties(data_file) # get properties of the data file
+	var property_list = GeneralModule.get_resource_properties(data_file) # get properties of the data file
 	
 	for property in property_list:
 		if property["name"] == "ClueInventory": # if array of objects that needs to be treated:
@@ -51,7 +42,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	var loaded_data = config_file.load(data_path) # load existing data file into empty config file
 	if loaded_data != OK: return false # failed to load, don't run
 	
-	var property_list = get_properties(data_file) # get list of properties in the data file
+	var property_list = GeneralModule.get_resource_properties(data_file) # get list of properties in the data file
 	for property in property_list:
 		var property_value = config_file.get_value("Save Data", property["name"]) # get correspondant inside config file
 		
