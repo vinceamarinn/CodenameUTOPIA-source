@@ -37,6 +37,10 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 
 func get_character_name(char_id:int) -> String: ## Returns the selected character's name from their enum ID.
 	return Characters.keys()[char_id].to_lower()
+	
+func get_chapter_state_name() -> String: ## Returns the chapter + state combo based on the current data. Used primarily to feed the area module information on which area state to load.
+	return "CH" + str(DataStateModule.game_data.CurrentChapter) + "_" + DataStateModule.game_data.CurrentState
+	# area/state example: CH69_sigma_fortnite_balls
 
 func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.
 	var property_array = [] # stores found properties

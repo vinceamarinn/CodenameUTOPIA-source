@@ -70,6 +70,9 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	for char_state in area_state:
 		create_character(char_state)
 
+func interact(interactable: Interactable, data:Variant = null):
+	pass
+
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically
 	print("sigma")

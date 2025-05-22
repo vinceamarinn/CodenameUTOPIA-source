@@ -7,10 +7,6 @@ func get_data_path(data_file:Resource) -> String: ## Returns the default save da
 	return "user://" + data_file.get("RESOURCE_NAME") + ".cfg"
 	# default path example: user://SaveData.cfg
 
-func get_area_state_name() -> String: ## Returns the name of a specific area state to load.
-	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
-	# area/state example: CH0_sigmaballs
-
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
 	if data_file.get(property) == new_value: return # don't execute if the value is unchanged
@@ -58,7 +54,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 			set_property(data_file, property["name"], property_value) # load the property!
 	
 	if data_file == game_data: # if we're loading the game, run basic initialization process
-		var state_name = get_area_state_name() # get current area/state
+		var state_name = GeneralModule.get_chapter_state_name() # get current area/state
 		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
 	
 	return true # if everything goes right then return true

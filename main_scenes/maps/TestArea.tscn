@@ -44,7 +44,10 @@ transform = Transform3D(1.92957, 0, 0, 0, 1.43965, 0, 0, 0, 1, 0.243448, 1.48245
 mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part" instance=ExtResource("5_8pvs2")]
-interactable_type = "ON_TOUCH"
+interactable_type = 1
+action_data = Dictionary[String, Variant]({
+"print_text": "hello guys! wow! so sigma!"
+})
 
 [node name="CollisionShape3D" parent="base part/Interactable" index="0"]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
