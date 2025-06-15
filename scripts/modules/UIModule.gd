@@ -3,6 +3,8 @@ extends Node
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var transition = get_node("/root/GameMain/UI/Transition")
 
+signal transition_ended
+
 func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ## Basic transition tween. Supports fading in, fading out and even color changing.
 	if transition.visible == false: transition.visible = true # make transition visible if it's not visible already
 	
@@ -24,6 +26,8 @@ func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ##
 	trans_tween.set_trans(Tween.TRANS_QUAD)
 	
 	trans_tween.tween_property(transition, "modulate", end_goal, time)
+	await trans_tween.finished
+	emit_signal("transition_ended")
 
 func _ready() -> void:
 	transition.visible = false

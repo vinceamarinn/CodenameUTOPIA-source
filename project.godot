@@ -21,9 +21,9 @@ config/icon="res://icon.svg"
 
 ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
 GeneralModule="*res://scripts/modules/GeneralModule.gd"
+UIModule="*res://scripts/modules/UIModule.gd"
 AreaModule="*res://scripts/modules/AreaModule.gd"
 DataStateModule="*res://scripts/modules/DataStateModule.gd"
-UIModule="*res://scripts/modules/UIModule.gd"
 CameraModule="*res://scripts/modules/CameraModule.gd"
 DialogueModule="*res://scripts/modules/DialogueModule.gd"
 

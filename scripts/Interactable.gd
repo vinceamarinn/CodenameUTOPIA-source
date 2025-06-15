@@ -28,11 +28,9 @@ func execute_action():
 
 func _on_body_entered(body: Node3D) -> void:
 	if not body is PlayerOverworld: return
-	print(body.name, " entered interaction range")
 	
 	match interactable_type:
 		InteractableType.ON_TOUCH:
-			print("should trigger interaction event")
 			execute_action()
 		InteractableType.ON_INTERACT:
 			print("should create popup to trigger event on interaction")
@@ -41,7 +39,6 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _on_body_exited(body: Node3D) -> void:
 	if not body is PlayerOverworld: return
-	print(body.name, " left interaction range")
 	
 	if interactable_type == InteractableType.ON_INTERACT:
 		print("should destroy popup")

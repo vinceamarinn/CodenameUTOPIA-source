@@ -46,6 +46,9 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	var area_path = "res://main_scenes/maps/" + area_name + ".tscn"
 	if not ResourceLoader.exists(area_path): return
 	
+	UIModule.trans("in", 0.85, Color.BLACK, false)
+	await UIModule.transition_ended
+	
 	#unload any already existing areas
 	for children in scenes_3D.get_children():
 		if children == char_group: continue
@@ -69,6 +72,8 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	var area_state = state_dict[state].CharStateArray
 	for char_state in area_state:
 		create_character(char_state)
+	
+	UIModule.trans("out", 1, Color.BLACK, false)
 
 func interact(interactable: Interactable, data:Variant = null):
 	pass
