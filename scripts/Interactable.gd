@@ -22,7 +22,10 @@ func execute_action():
 			var print_text = action_data.get("print_text")
 			print(print_text)
 		InteractAction.LOAD_AREA:
-			print("sigmund freud")
+			var area_name = action_data.get("load_area")
+			var state_name = GeneralModule.get_chapter_state_name()
+			var playable_char = DataStateModule.game_data.PlayerCharacter
+			AreaModule.load_area(area_name, state_name, playable_char)
 		_:
 			pass
 

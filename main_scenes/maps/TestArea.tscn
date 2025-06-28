@@ -45,8 +45,9 @@ mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part" instance=ExtResource("5_8pvs2")]
 interactable_type = 1
+interact_action = 1
 action_data = Dictionary[String, Variant]({
-"print_text": "hello guys! wow! so sigma!"
+"load_area": &"Courtroom"
 })
 
 [node name="CollisionShape3D" parent="base part/Interactable" index="0"]

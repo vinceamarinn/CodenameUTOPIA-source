@@ -1,7 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=11 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="ArrayMesh" uid="uid://m07trmqv2jj7" path="res://models/witnessStand.obj" id="1_dek83"]
+[ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_f0jdl"]
 [ext_resource type="Texture2D" uid="uid://cbhnnufwfw80v" path="res://models/Union1_diff.png" id="2_syam6"]
+[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_ve6fs"]
+[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_o6xhn"]
+
+[sub_resource type="Resource" id="Resource_nrhaa"]
+script = ExtResource("2_ve6fs")
+CharStateArray = Array[ExtResource("3_o6xhn")]([])
+metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bmxh1"]
 
@@ -15,6 +23,10 @@ albedo_color = Color(0.415686, 0.223529, 0.0352941, 1)
 albedo_texture = ExtResource("2_syam6")
 
 [node name="Courtroom" type="Node3D"]
+script = ExtResource("1_f0jdl")
+AreaStates = Dictionary[String, ExtResource("2_ve6fs")]({
+"CH0_sigmund": SubResource("Resource_nrhaa")
+})
 
 [node name="DebateCircle" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1.5299e-06, 0, 35, 0, 0.379, 0, -35, 0, -1.5299e-06, 0, 0.5, 0)
