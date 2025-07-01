@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_8pvs2"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_0ui5h"]
-[ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="5_8pvs2"]
+[ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 
 [sub_resource type="Resource" id="Resource_r4ipe"]
 script = ExtResource("3_0ui5h")
@@ -24,6 +24,7 @@ size = Vector3(105, 1, 105)
 data = PackedVector3Array(-52.5, 0.5, 52.5, 52.5, 0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, -52.5, 52.5, -0.5, -52.5, -52.5, 0.5, -52.5, -52.5, -0.5, -52.5, 52.5, -0.5, -52.5, 52.5, 0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, -52.5, 52.5, -0.5, 52.5, -52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, 0.5, 52.5, -52.5, 0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, 0.5, -52.5, 52.5, 0.5, -52.5, -52.5, -0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, -0.5, 52.5, 52.5, -0.5, -52.5, -52.5, -0.5, -52.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kvvoo"]
+size = Vector3(2, 4.19, 2.515)
 
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
@@ -39,18 +40,10 @@ mesh = SubResource("BoxMesh_xlf1l")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor_col"]
 shape = SubResource("ConcavePolygonShape3D_xpuui")
 
-[node name="base part" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.92957, 0, 0, 0, 1.43965, 0, 0, 0, 1, 0.243448, 1.48245, -13.2947)
+[node name="base part-col" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.243448, 2.04169, -13.2947)
 mesh = SubResource("BoxMesh_kvvoo")
 
-[node name="Interactable" parent="base part" instance=ExtResource("5_8pvs2")]
-interactable_type = 1
-interact_action = 1
-action_data = Dictionary[String, Variant]({
-"load_area": &"Courtroom"
-})
+[node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 
-[node name="CollisionShape3D" parent="base part/Interactable" index="0"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
-
-[editable path="base part/Interactable"]
+[editable path="base part-col/Interactable"]
