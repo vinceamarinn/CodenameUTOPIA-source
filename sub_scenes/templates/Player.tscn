@@ -9,7 +9,7 @@ size = Vector3(3.09723, 5.29565, 0.102295)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_8a1cs")
 
-[node name="Sprites" type="AnimatedSprite3D" parent="."]
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
 sprite_frames = ExtResource("2_y40vr")
 animation = &"idle"
 autoplay = "idle"

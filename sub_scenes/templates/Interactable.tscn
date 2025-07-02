@@ -7,10 +7,6 @@
 
 [node name="Interactable" type="Area3D"]
 script = ExtResource("1_k7ad7")
-interact_action = 1
-action_data = Dictionary[String, Variant]({
-"load_area": &"Courtroom"
-})
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

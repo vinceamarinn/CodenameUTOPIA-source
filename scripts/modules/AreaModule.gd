@@ -25,6 +25,12 @@ func create_character(char_info): ## Creates a character from the base template 
 	char_group.add_child(new_char)
 	new_char.position = char_info.Position
 	new_char.rotation_degrees = char_info.Rotation
+	
+	# create any attached interactables
+	if char_info.Interaction:
+		var new_interactable = load("res://sub_scenes/templates/Interactable.tscn").instantiate()
+		new_interactable.interactable_data = char_info.Interaction
+		new_char.add_child(new_interactable)
 
 func load_player(player_char): ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
@@ -32,7 +38,7 @@ func load_player(player_char): ## Loads the player character during overworld se
 	
 	var player_name = GeneralModule.get_character_name(player_char)
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
-	new_player.get_node("Sprites").sprite_frames = char_sprites
+	new_player.get_node("Sprite").sprite_frames = char_sprites
 
 func unload_characters(): ## Unloads any currently loaded characters.
 	for chars in char_group.get_children():

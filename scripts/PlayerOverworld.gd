@@ -2,10 +2,10 @@ extends CharacterBody3D
 class_name PlayerOverworld
 
 const SPEED = 7.5
-@onready var anim_player = $Sprites
+@onready var anim_player = $Sprite
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	# Add the gravity.wa
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	

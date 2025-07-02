@@ -1,4 +1,5 @@
 extends Node3D
+class_name Character
 
 @export var knownName:String ## Name that shows up in the dialogue boxes.
 @onready var frontSprite = $FrontSprite
