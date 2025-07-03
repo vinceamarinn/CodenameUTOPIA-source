@@ -31,6 +31,7 @@ interact_action = 1
 action_data = Dictionary[String, Variant]({
 "load_area": &"TestArea"
 })
+interaction_range = 0.0
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvw5"]

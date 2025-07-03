@@ -14,3 +14,4 @@ enum InteractAction {
 @export var interactable_type:InteractableType ## Type of interaction that triggers the interactable. being met.
 @export var interact_action:InteractAction ## Action executed upon meeting the interaction requirements.
 @export var action_data:Dictionary[String, Variant] ## Data to pass as arguments for the chosen action.
+@export var interaction_range:float = 0 ## Range of the interactable's collision detector. If left at 0 or negative, will not apply.

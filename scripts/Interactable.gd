@@ -4,10 +4,11 @@ class_name Interactable
 var is_within_range:bool = false ## Determines whether or not the player is within an interactable's range, in case it matters for activation conditions.
 var interactable_fired:bool = false ## Locks the code from running again if the interactable has already been ran.
 
-@export var interactable_data:InteractableData ## Data resource for the interactable data.
+@export var interactable_data:InteractableData ## Data resource for the interactable data. Read its documentation for what the values below do.
 @onready var interactable_type = interactable_data.interactable_type
 @onready var interact_action = interactable_data.interact_action
 @onready var action_data = interactable_data.action_data
+@onready var interaction_range = interactable_data.interaction_range
 
 @onready var interaction_prompt:SpriteBase3D = $Prompt ## The prompt.
 
@@ -36,6 +37,9 @@ func _input(event: InputEvent) -> void: # handle input for on_interact interacta
 		execute_action()
 
 func _ready() -> void:
+	if interaction_range > 0: # set the size of the interaction range if the value was modified
+		self.get_node("CollisionShape3D").scale = Vector3(interaction_range, interaction_range, interaction_range)
+	
 	# set up the interactable!!!
 	if interactable_type == InteractableData.InteractableType.ON_TOUCH: return # no need to do this if it's a non interact interactable
 	var interactable_parent = self.get_parent() # get the interactable's parent
@@ -48,7 +52,7 @@ func _ready() -> void:
 	elif interactable_parent is Character or interactable_parent is PlayerOverworld: # if it's a character
 		var sprite = interactable_parent.get_node("Sprite")
 		var texture_size = sprite.get_sprite_frames().get_frame_texture(sprite.animation, sprite.frame).get_size().y
-		visual_size = texture_size * sprite.pixel_size
+		visual_size = texture_size * sprite.pixel_size * sprite.scale.y
 		
 	interaction_prompt.position.y += visual_size/2 + 1 # set popup final position
 	interaction_prompt.visible = false
