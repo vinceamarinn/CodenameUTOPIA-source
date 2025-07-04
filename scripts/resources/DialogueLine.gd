@@ -2,8 +2,8 @@ extends Resource
 class_name DialogueLine
 
 @export_group("General Settings")
-@export var Speaker:String ## Name of the character speaking.
-@export_multiline var Line:String
+@export var Speaker:GeneralModule.Characters ## Name of the character speaking.
+@export_multiline var Line:String ## It's the dialogue line. Self-explanatory.
 @export var Sprite:String ## Name of the sprite intended for the character.
 
 @export_group("Text Settings")

@@ -1,10 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=27 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_8pvs2"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_0ui5h"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
+[ext_resource type="Script" uid="uid://cvb40j2xpohix" path="res://scripts/resources/DialogueHolder.gd" id="6_q0rnr"]
+[ext_resource type="Script" uid="uid://dmswqxpuqpl2d" path="res://scripts/resources/DialogueArray.gd" id="7_1pv0l"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="7_hxjik"]
+[ext_resource type="Script" uid="uid://ceupaljyam8v1" path="res://scripts/resources/DialogueTree.gd" id="9_1pv0l"]
 
 [sub_resource type="Resource" id="Resource_0ui5h"]
 script = ExtResource("5_8pvs2")
@@ -48,6 +52,147 @@ action_data = Dictionary[String, Variant]({
 interaction_range = 0.0
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
+[sub_resource type="Resource" id="Resource_1pv0l"]
+script = ExtResource("7_hxjik")
+Speaker = 3
+Line = "hey im cool asf"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_qd0dc"]
+script = ExtResource("7_hxjik")
+Speaker = 0
+Line = "nah"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_ik3eo"]
+script = ExtResource("7_hxjik")
+Speaker = 3
+Line = "wow"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_t4as1"]
+script = ExtResource("7_1pv0l")
+DialogueArray = Array[ExtResource("7_hxjik")]([SubResource("Resource_1pv0l"), SubResource("Resource_qd0dc"), SubResource("Resource_ik3eo")])
+metadata/_custom_type_script = "uid://dmswqxpuqpl2d"
+
+[sub_resource type="Resource" id="Resource_3ye7f"]
+script = ExtResource("7_hxjik")
+Speaker = 3
+Line = "hey i already told you im cool"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_u7d5k"]
+script = ExtResource("7_hxjik")
+Speaker = 3
+Line = "fuck off"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_2jahj"]
+script = ExtResource("7_1pv0l")
+DialogueArray = Array[ExtResource("7_hxjik")]([SubResource("Resource_3ye7f"), SubResource("Resource_u7d5k")])
+metadata/_custom_type_script = "uid://dmswqxpuqpl2d"
+
+[sub_resource type="Resource" id="Resource_8oshy"]
+script = ExtResource("7_hxjik")
+Speaker = 3
+Line = "KILL YOURSELF"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = ""
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = ""
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 1.5
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_p6gnr"]
+script = ExtResource("7_1pv0l")
+DialogueArray = Array[ExtResource("7_hxjik")]([SubResource("Resource_8oshy")])
+metadata/_custom_type_script = "uid://dmswqxpuqpl2d"
+
+[sub_resource type="Resource" id="Resource_h1kik"]
+script = ExtResource("9_1pv0l")
+dialogue_tree = Array[ExtResource("7_1pv0l")]([SubResource("Resource_t4as1"), SubResource("Resource_2jahj"), SubResource("Resource_p6gnr")])
+loop_tree = true
+metadata/_custom_type_script = "uid://ceupaljyam8v1"
+
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
 AreaStates = Dictionary[String, ExtResource("2_8pvs2")]({
@@ -68,5 +213,9 @@ mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_8pvs2")
+
+[node name="dialogue tree test" type="Node" parent="."]
+script = ExtResource("6_q0rnr")
+dialogue = SubResource("Resource_h1kik")
 
 [editable path="base part-col/Interactable"]

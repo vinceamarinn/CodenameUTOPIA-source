@@ -1,2 +1,2 @@
 extends Node
-@export var DialogueArray:Array[DialogueLine]
+@export var dialogue:DialogueTree

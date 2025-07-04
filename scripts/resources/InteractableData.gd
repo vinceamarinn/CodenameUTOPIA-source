@@ -9,6 +9,7 @@ enum InteractableType { ## List of possible interaction types.
 enum InteractAction {
 	PRINT_TEXT, ## Debug action. Simply prints the text on the interactable data.
 	LOAD_AREA, ## Calls the area module to load a new area.
+	PLAY_DIALOGUE ## Calls the dialogue module to iterate through a dialogue tree.
 }
 
 @export var interactable_type:InteractableType ## Type of interaction that triggers the interactable. being met.
