@@ -1,17 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=13 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="ArrayMesh" uid="uid://m07trmqv2jj7" path="res://models/witnessStand.obj" id="1_dek83"]
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_f0jdl"]
 [ext_resource type="Texture2D" uid="uid://cbhnnufwfw80v" path="res://models/Union1_diff.png" id="2_syam6"]
-[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_ve6fs"]
-[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_o6xhn"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_ve6fs"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_o6xhn"]
-
-[sub_resource type="Resource" id="Resource_nrhaa"]
-script = ExtResource("2_ve6fs")
-CharStateArray = Array[ExtResource("3_o6xhn")]([])
-metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_bmxh1"]
 top_radius = 17.0
@@ -46,9 +39,6 @@ data = PackedVector3Array(-52.5, 0.5, 52.5, 52.5, 0.5, 52.5, -52.5, -0.5, 52.5, 
 
 [node name="Courtroom" type="Node3D"]
 script = ExtResource("1_f0jdl")
-AreaStates = Dictionary[String, ExtResource("2_ve6fs")]({
-"CH0_sigmund": SubResource("Resource_nrhaa")
-})
 
 [node name="DebateCircle" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.5, 0)

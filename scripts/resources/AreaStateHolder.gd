@@ -1,3 +1,3 @@
 extends Node
 
-@export var AreaStates:Dictionary[String, CharStateArray]
+@export var area_states:Dictionary[String, CharStateArray]

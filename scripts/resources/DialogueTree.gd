@@ -1,6 +1,8 @@
 extends Resource
 class_name DialogueTree
 
-@export var dialogue_tree:Array[DialogueArray] ## Array of dialogue arrays. Each dialogue array is one sequence of dialogue. The tree will iterate one array at a time.
-@export var loop_tree:bool = false ## Makes the dialogue tree loop once it reaches the final array. If left false, attempting to repeat dialogue plays the final array. Will obviously have no effect if the tree is only one array long.
-var array_tracker:int = 0 ## Tracks which array should be played. Automatically changes when dialogue iterates.
+@export var dialogue_tree:Array[DialogueArray] ## The dialogue tree. Not much to say here.
+
+## Determines the behavior of the tree once it reaches its final dialogue array. [br][br]Setting it to false means the tree will repeat the final array of dialogue upon repeated interactions, while setting it to true will start the tree again from the start.
+@export var loop_tree:bool = false
+var array_tracker:int = 0 ## Tracks which array of dialogue should be played and read through. The loop_tree variable essentially changes the logic of this value.

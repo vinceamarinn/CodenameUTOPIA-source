@@ -1,4 +1,4 @@
 extends Resource
 class_name DialogueArray
 
-@export var DialogueArray:Array[DialogueLine]
+@export var dialogue_array:Array[DialogueLine] ## Array of dialogue lines, representing a single dialogue string.
