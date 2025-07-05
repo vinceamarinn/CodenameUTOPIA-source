@@ -51,10 +51,6 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	#get the area's supposed path, end the code if the area doesn't exist
 	var area_path = "res://main_scenes/maps/" + area_name + ".tscn"
 	if not ResourceLoader.exists(area_path): return
-	var new_area = load(area_path).instantiate()
-	
-	var state_dict = new_area.area_states
-	if not state_dict.get(state): return
 	
 	UIModule.trans("in", 0.85, Color.BLACK, false)
 	await UIModule.transition_ended
@@ -66,22 +62,21 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	unload_characters()
 	
 	#load, clone & insert the new area
+	var new_area = load(area_path).instantiate()
 	scenes_3D.add_child(new_area)
 	new_area.position.y -= 5
+	
+	var state_dict = new_area.area_states
+	if state_dict.get(state):
+		#create the characters from the state
+		var area_state = state_dict[state].character_state_array
+		for char_state in area_state:
+			create_character(char_state)
 	
 	#after loading, create the characters based on the given data
 	#create the player
 	load_player(player)
-	
-	#create the characters from the state
-	var area_state = state_dict[state].character_state_array
-	for char_state in area_state:
-		create_character(char_state)
-	
 	UIModule.trans("out", 1, Color.BLACK, false)
-
-func interact(interactable: Interactable, data:Variant = null):
-	pass
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically
