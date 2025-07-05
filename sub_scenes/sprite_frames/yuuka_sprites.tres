@@ -1,14 +1,14 @@
 [gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dfbj1ivswx0x1"]
 
-[ext_resource type="Texture2D" uid="uid://brv5b6agpy3ux" path="res://images/sprites/yuuka/default.png" id="1_e3s3y"]
+[ext_resource type="Texture2D" uid="uid://3xo5nrlvnwxp" path="res://images/sprites/yuuka/sketch.png" id="1_ufks4"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_e3s3y")
+"texture": ExtResource("1_ufks4")
 }],
-"loop": false,
+"loop": true,
 "name": &"default",
 "speed": 1.0
 }]

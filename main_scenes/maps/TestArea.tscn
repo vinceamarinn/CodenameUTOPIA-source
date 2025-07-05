@@ -1,19 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=25 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
-[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_8pvs2"]
-[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_0ui5h"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
 [ext_resource type="Script" uid="uid://6qxeoxiy8qk8" path="res://scripts/resources/DialogueHolder.gd" id="6_1pv0l"]
 [ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="7_qd0dc"]
 [ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="8_ik3eo"]
 [ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="9_h1kik"]
-
-[sub_resource type="Resource" id="Resource_0ui5h"]
-script = ExtResource("2_8pvs2")
-character_state_array = Array[ExtResource("3_0ui5h")]([])
-metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_xlf1l"]
 size = Vector3(105, 1, 105)
@@ -237,9 +230,6 @@ metadata/_custom_type_script = "uid://cry7q52aiw4rr"
 
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
-area_states = Dictionary[String, ExtResource("2_8pvs2")]({
-"CH0_sigmund": SubResource("Resource_0ui5h")
-})
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_xlf1l")
@@ -250,7 +240,7 @@ mesh = SubResource("BoxMesh_xlf1l")
 shape = SubResource("ConcavePolygonShape3D_xpuui")
 
 [node name="base part-col" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15661, 1.50181, -13.2947)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.502, -13.295)
 mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]

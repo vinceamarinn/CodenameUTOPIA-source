@@ -25,6 +25,7 @@ func create_character(char_info): ## Creates a character from the base template 
 	char_group.add_child(new_char)
 	new_char.position = char_info.Position
 	new_char.rotation_degrees = char_info.Rotation
+	new_char.position.y -= 5
 	
 	# create any attached interactables
 	if char_info.Interaction:
