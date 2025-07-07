@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c1aahs40oghg1"
+path="res://.godot/imported/Katashi Twins Pursuit - DEFAULT.ogg-485bbe27f750d4f8ed88d5df5a6da5cc.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Katashi Twins Pursuit - DEFAULT.ogg"
+dest_files=["res://.godot/imported/Katashi Twins Pursuit - DEFAULT.ogg-485bbe27f750d4f8ed88d5df5a6da5cc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

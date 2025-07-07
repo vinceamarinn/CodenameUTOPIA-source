@@ -16,3 +16,4 @@ enum InteractAction {
 @export var interact_action:InteractAction ## Action executed upon meeting the interaction requirements.
 @export var action_data:Dictionary[String, Variant] ## Data to pass as arguments for the chosen action.
 @export var interaction_range:float = 0 ## Range of the interactable's collision detector. If left at 0 or negative, will not apply.
+@export var interactable_sfx:AudioStreamOggVorbis ## Sound effect that will play when the interactable is activated. If left blank, only the default sound will be played.

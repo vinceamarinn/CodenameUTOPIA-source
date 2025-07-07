@@ -43,7 +43,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -63,7 +63,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -83,7 +83,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -108,7 +108,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -128,7 +128,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -148,7 +148,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -173,7 +173,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -193,7 +193,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -213,7 +213,7 @@ CameraDirection = ""
 CameraRotation = 0
 TweenRotation = false
 MuteMusic = false
-MutingSpeed = 1.5
+MutingSpeed = 2.0
 CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 

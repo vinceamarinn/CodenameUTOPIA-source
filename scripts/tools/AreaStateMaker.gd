@@ -8,7 +8,7 @@ extends EditorScript
 func print_error(message:String): ## Just an easy convenient way to print an error message of the script.
 	print("ERROR! ", message)
 
-func _run():
+func create_area_state(): ## Creates an area state out of the current Characters node.
 	print("Executing ", get_script().resource_path.get_file(), "!")
 	print("STAGE 1: Verifying fundamentals")
 	print("Detecting if script is running in-editor...")
@@ -99,3 +99,6 @@ func _run():
 	
 	print("Done!")
 	print("Execution complete!")
+
+func _run():
+	create_area_state()

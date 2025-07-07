@@ -1,4 +1,8 @@
 extends Node
+@onready var audio_busses:Node = get_node("/root/GameMain/AudioBusses")
+@onready var music_player:AudioStreamPlayer = audio_busses.get_node("MusicPlayer")
+@onready var sfx_player:AudioStreamPlayer = audio_busses.get_node("SFXPlayer")
+@onready var voice_player:AudioStreamPlayer = audio_busses.get_node("VoicePlayer")
 
 # This module handles more generic things that do not need their own specified module, or things that don't fall into any specific module.
 # It also stores global variables like the character list, for everyone's use.
@@ -34,6 +38,32 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUTO,
 	YUUKA
 }
+
+func stop_music(fade_time:int) -> void: ## Stops currently playing music.
+	if not music_player.stream: return
+	var volume_tween = create_tween().set_parallel(true)
+	volume_tween.tween_property(music_player, "volume_linear", 0, fade_time)
+	
+	await volume_tween.finished
+	music_player.stop()
+	music_player.volume_linear = 1
+	
+	await get_tree().create_timer(1).timeout
+
+func play_music(music:AudioStream) -> void: ## Plays the provided music track.
+	if music_player.playing:
+		await stop_music(1.5)
+	
+	music_player.stream = music
+	music_player.play()
+
+func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
+	sfx_player.stream = sfx
+	sfx_player.play()
+
+func play_voiceline(voiceline:AudioStream) -> void: ## Plays the provided voiceline.
+	voice_player.stream = voiceline
+	voice_player.play()
 
 func get_character_name(char_ID:int) -> String: ## Returns the selected character's name from their enum ID.
 	return Characters.keys()[char_ID].to_lower()

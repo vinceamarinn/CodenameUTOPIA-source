@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://1daat2oc82ue"
+path="res://.godot/imported/Katashi Twins Pursuit - CUT TO THE CHASE.ogg-26dd25fde8f03f422684f768a1ee2223.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Katashi Twins Pursuit - CUT TO THE CHASE.ogg"
+dest_files=["res://.godot/imported/Katashi Twins Pursuit - CUT TO THE CHASE.ogg-26dd25fde8f03f422684f768a1ee2223.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

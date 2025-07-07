@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/Beautiful.ogg-27de6dd75cdb8703483fccbd25a59cd
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

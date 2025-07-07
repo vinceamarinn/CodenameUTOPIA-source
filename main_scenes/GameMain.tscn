@@ -40,6 +40,7 @@ metadata/sigmundfreud = SubResource("Resource_0h2mm")
 bus = &"Music"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="AudioBusses"]
+max_polyphony = 5
 bus = &"SFX"
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioBusses"]

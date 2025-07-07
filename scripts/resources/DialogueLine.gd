@@ -35,7 +35,8 @@ class_name DialogueLine
 
 @export_subgroup("Music Settings")
 @export var MuteMusic:bool = false ## If enabled, the music fades out on this line.
-@export var MutingSpeed:float = 1.5 ## Determines the speed at which the music fades out.
+@export var MutingSpeed:float = 2 ## Determines the speed at which the music fades out, if muting is enabled.
+@export var PlayMusic:AudioStreamOggVorbis ## If muting is not enabled, the currently playing music will change to the one selected here.
 
 @export_subgroup("SFX Settings")
 
