@@ -56,6 +56,9 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	if data_file == game_data: # if we're loading the game, run basic initialization process
 		var state_name = GeneralModule.get_chapter_state_name() # get current area/state
 		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
+		
+		if game_data.CurrentMusic != "":
+			GeneralModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music
 	
 	return true # if everything goes right then return true
 

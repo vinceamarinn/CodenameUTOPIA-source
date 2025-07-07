@@ -7,8 +7,10 @@
 script = ExtResource("2_0h2mm")
 CurrentChapter = 0
 CurrentState = ""
-CurrentMap = ""
 PlayerCharacter = 0
+CurrentMap = ""
+CurrentMusic = ""
+CharacterStateOverride = Array[String]([])
 ClueInventory = Array[ExtResource("1_ckldy")]([])
 metadata/_custom_type_script = "uid://b45k4twfhl6qu"
 

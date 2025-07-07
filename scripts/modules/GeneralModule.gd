@@ -39,6 +39,9 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUKA
 }
 
+func get_file_name(file) -> String: ## Gets the name of a file from its path.
+	return file.resource_path.get_file().get_basename()
+
 func stop_music(fade_time:int) -> void: ## Stops currently playing music.
 	if not music_player.stream: return
 	var volume_tween = create_tween().set_parallel(true)
@@ -47,6 +50,7 @@ func stop_music(fade_time:int) -> void: ## Stops currently playing music.
 	await volume_tween.finished
 	music_player.stop()
 	music_player.volume_linear = 1
+	DataStateModule.game_data.CurrentMusic = ""
 	
 	await get_tree().create_timer(1).timeout
 
@@ -56,6 +60,7 @@ func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	
 	music_player.stream = music
 	music_player.play()
+	DataStateModule.game_data.CurrentMusic = get_file_name(music)
 
 func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
 	sfx_player.stream = sfx
