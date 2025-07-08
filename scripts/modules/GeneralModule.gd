@@ -43,21 +43,27 @@ func get_file_name(file) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
 
 func stop_music(fade_time:int) -> void: ## Stops currently playing music.
-	if not music_player.stream: return
+	if not music_player.playing: return # if music is not playing, dont do anything
+	
+	# create fade out effect
 	var volume_tween = create_tween().set_parallel(true)
 	volume_tween.tween_property(music_player, "volume_linear", 0, fade_time)
-	
 	await volume_tween.finished
+	
+	# stop the music, update the music in the game data, revert the tween
 	music_player.stop()
 	music_player.volume_linear = 1
 	DataStateModule.game_data.CurrentMusic = ""
 	
+	# wait a little more (this is only usually relevant if the function is being called from the music playing function)
 	await get_tree().create_timer(1).timeout
 
 func play_music(music:AudioStream) -> void: ## Plays the provided music track.
+	# stop and fade out the previous track if a track is already playing
 	if music_player.playing:
 		await stop_music(1.5)
 	
+	# play the music! and update it on the data module
 	music_player.stream = music
 	music_player.play()
 	DataStateModule.game_data.CurrentMusic = get_file_name(music)

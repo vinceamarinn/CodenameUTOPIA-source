@@ -6,7 +6,7 @@ extends Node
 func process_dialogue_line(line_info:DialogueLine): ## Processes the given dialogue line using its provided information.
 	print(GeneralModule.get_character_name(line_info.Speaker) + ": " + line_info.Line)
 
-func read_dialogue(tree_data:DialogueTree): ## Iterates through a given dialogue tree.
+func read_dialogue_tree(tree_data:DialogueTree): ## Iterates through a given dialogue tree.
 	var dialogue_tree = tree_data.dialogue_tree # get dialogue tree
 	var loop_tree = tree_data.loop_tree # get loop value
 	
@@ -26,3 +26,6 @@ func read_dialogue(tree_data:DialogueTree): ## Iterates through a given dialogue
 
 func _ready() -> void:
 	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically
+	
+	await get_tree().create_timer(3).timeout
+	read_dialogue_tree(scenes_3D.get_node("TestArea/dialogue tree test").tree_data)

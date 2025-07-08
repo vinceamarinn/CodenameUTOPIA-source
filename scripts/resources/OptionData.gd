@@ -1,8 +1,6 @@
 extends Resource
 class_name OptionData
 
-const RESOURCE_NAME = "OptionData"
-
 @export_group("General Settings")
 
 @export_subgroup("Volume")

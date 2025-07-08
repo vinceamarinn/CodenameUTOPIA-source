@@ -30,6 +30,7 @@ func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ##
 	emit_signal("transition_ended")
 
 func _ready() -> void:
+	# initialize transition UI
 	transition.visible = false
 	transition.modulate.a = 0
 	ServiceLocator.register_service("UIModule", self) # registers module in service locator automatically

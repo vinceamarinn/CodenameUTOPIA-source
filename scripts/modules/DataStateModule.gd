@@ -1,11 +1,11 @@
 extends Node
 
-@export var game_data:SaveData = SaveData.new()
+@export var game_data:SaveStateData = SaveStateData.new()
 @export var option_data:OptionData = OptionData.new()
 
 func get_data_path(data_file:Resource) -> String: ## Returns the default save data path.
-	return "user://" + data_file.get("RESOURCE_NAME") + ".cfg"
-	# default path example: user://SaveData.cfg
+	return "user://" + GeneralModule.get_file_name(data_file.get_script()) + ".cfg"
+	# default path example: user://SaveStateData.cfg
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
@@ -23,16 +23,18 @@ func save_data(data_file:Resource) -> bool: ## Saves the game.
 			for clue in data_file.get(property["name"]):
 				clue_array.append(clue.serialize()) # add serialized (converted to dictionary) versions of the clues in the inventory to the array
 			
-			config_file.set_value("Save Data", property["name"], clue_array) # save the array into config file
+			config_file.set_value("Save State Data", property["name"], clue_array) # save the array into config file
 		else: #if it needs no treatment:
-			config_file.set_value("Save Data", property["name"], data_file.get(property["name"])) # save property into config file
+			config_file.set_value("Save State Data", property["name"], data_file.get(property["name"])) # save property into config file
 	
 	config_file.save(get_data_path(data_file)) # save config to real file!
 	return true
 
 func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	var data_path = get_data_path(data_file) # get data path of provided data file
+	print(data_path)
 	if not FileAccess.file_exists(data_path): return false # if we cant find it, return false
+	print("passed loading")
 	
 	var config_file = ConfigFile.new() # open new config file
 	var loaded_data = config_file.load(data_path) # load existing data file into empty config file
@@ -40,7 +42,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	
 	var property_list = GeneralModule.get_resource_properties(data_file) # get list of properties in the data file
 	for property in property_list:
-		var property_value = config_file.get_value("Save Data", property["name"]) # get correspondant inside config file
+		var property_value = config_file.get_value("Save State Data", property["name"]) # get correspondant inside config file
 		
 		if property["name"] == "ClueInventory": # if array of objects that needs to be treated:
 			var new_inv:Array[Clue] = [] # array to load later
@@ -57,7 +59,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 		var state_name = GeneralModule.get_chapter_state_name() # get current area/state
 		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
 		
-		if game_data.CurrentMusic != "":
+		if game_data.CurrentMusic != "": # load current music and play it
 			GeneralModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music
 	
 	return true # if everything goes right then return true
