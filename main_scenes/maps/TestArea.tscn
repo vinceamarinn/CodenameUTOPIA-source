@@ -1,12 +1,22 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=12 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
+[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
+[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_qd0dc"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
-[ext_resource type="Script" uid="uid://6qxeoxiy8qk8" path="res://scripts/resources/DialogueHolder.gd" id="6_1pv0l"]
-[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="7_qd0dc"]
-[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="8_ik3eo"]
-[ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="9_h1kik"]
+
+[sub_resource type="Resource" id="Resource_uk4lw"]
+script = ExtResource("3_qd0dc")
+Name = 3
+Position = Vector3(0, 0, -10)
+Rotation = Vector3(0, 0, 0)
+metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+
+[sub_resource type="Resource" id="Resource_h7yec"]
+script = ExtResource("2_1pv0l")
+character_state_array = Array[ExtResource("3_qd0dc")]([SubResource("Resource_uk4lw")])
+metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_xlf1l"]
 size = Vector3(105, 1, 105)
@@ -27,209 +37,11 @@ action_data = Dictionary[String, Variant]({
 interaction_range = 0.0
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
-[sub_resource type="Resource" id="Resource_1pv0l"]
-script = ExtResource("8_ik3eo")
-Speaker = 4
-Line = "yknow i think you two would be good shipped together"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_qd0dc"]
-script = ExtResource("8_ik3eo")
-Speaker = 2
-Line = "THEY'RE SHIPPING ME? TO WHERE???"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_ik3eo"]
-script = ExtResource("8_ik3eo")
-Speaker = 13
-Line = "god you're such a loser"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_h1kik"]
-script = ExtResource("7_qd0dc")
-dialogue_array = Array[ExtResource("8_ik3eo")]([SubResource("Resource_1pv0l"), SubResource("Resource_qd0dc"), SubResource("Resource_ik3eo")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
-
-[sub_resource type="Resource" id="Resource_u7d5k"]
-script = ExtResource("8_ik3eo")
-Speaker = 1
-Line = "how long does it take you to style your hair in the morning"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_2jahj"]
-script = ExtResource("8_ik3eo")
-Speaker = 3
-Line = "however long it takes for you to get a verdict bitch"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_8oshy"]
-script = ExtResource("8_ik3eo")
-Speaker = 1
-Line = "........."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_t4as1"]
-script = ExtResource("7_qd0dc")
-dialogue_array = Array[ExtResource("8_ik3eo")]([SubResource("Resource_u7d5k"), SubResource("Resource_2jahj"), SubResource("Resource_8oshy")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
-
-[sub_resource type="Resource" id="Resource_p6gnr"]
-script = ExtResource("8_ik3eo")
-Speaker = 9
-Line = "is it not possible she willingly ingested the poison?"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_wq2lk"]
-script = ExtResource("8_ik3eo")
-Speaker = 8
-Line = "willingly ingested? ...heh... i could NEVER do that"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_33k6n"]
-script = ExtResource("8_ik3eo")
-Speaker = 11
-Line = "SHUT UP"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_3ye7f"]
-script = ExtResource("7_qd0dc")
-dialogue_array = Array[ExtResource("8_ik3eo")]([SubResource("Resource_p6gnr"), SubResource("Resource_wq2lk"), SubResource("Resource_33k6n")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
-
-[sub_resource type="Resource" id="Resource_hxjik"]
-script = ExtResource("9_h1kik")
-dialogue_tree = Array[ExtResource("7_qd0dc")]([SubResource("Resource_h1kik"), SubResource("Resource_t4as1"), SubResource("Resource_3ye7f")])
-loop_tree = true
-metadata/_custom_type_script = "uid://cry7q52aiw4rr"
-
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
+area_states = Dictionary[String, ExtResource("2_1pv0l")]({
+"CH0_sigmund": SubResource("Resource_h7yec")
+})
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_xlf1l")
@@ -245,9 +57,5 @@ mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_8pvs2")
-
-[node name="dialogue tree test" type="Node" parent="."]
-script = ExtResource("6_1pv0l")
-tree_data = SubResource("Resource_hxjik")
 
 [editable path="base part-col/Interactable"]

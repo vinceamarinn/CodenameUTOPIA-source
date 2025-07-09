@@ -13,7 +13,7 @@ extends Node
 @onready var char_template = load("res://sub_scenes/templates/Character.tscn")
 @onready var player_template = load("res://sub_scenes/templates/Player.tscn")
 
-func create_character(char_info): ## Creates a character from the base template using the given information, and places them in the map.
+func create_character(char_info) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	var char_name = GeneralModule.get_character_name(char_info.Name)
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + char_name + "_sprites.tres")
 	var new_char = char_template.instantiate()
@@ -33,7 +33,7 @@ func create_character(char_info): ## Creates a character from the base template 
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
-func load_player(player_char): ## Loads the player character during overworld sections.
+func load_player(player_char) -> void: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
 	char_group.add_child(new_player)
 	
@@ -41,11 +41,11 @@ func load_player(player_char): ## Loads the player character during overworld se
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
 	new_player.get_node("Sprite").sprite_frames = char_sprites
 
-func unload_characters(): ## Unloads any currently loaded characters.
+func unload_characters() -> void: ## Unloads any currently loaded characters.
 	for chars in char_group.get_children():
 		chars.queue_free()
 
-func unload_area(area:Node): ## Deletes the provided area. Also wipes any currently loaded characters.
+func unload_area(area:Node) -> void: ## Deletes the provided area. Also wipes any currently loaded characters.
 	area.queue_free() # deletes the current area
 
 func load_area(area_name:String, state:String, player:GeneralModule.PlayableChars) -> void: ## Handles the loading & processing of areas and the area's data based on the given state.
@@ -67,10 +67,15 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	scenes_3D.add_child(new_area)
 	new_area.position.y -= 5
 	
+	# load area state
 	var state_dict = new_area.area_states
+	var on_enter_dialogue = null
+	
 	if state_dict.get(state):
 		#create the characters from the state
 		var area_state = state_dict[state].character_state_array
+		on_enter_dialogue = state_dict[state].on_enter_dialogue # stores the on enter dialogue's value for later
+		
 		for char_state in area_state:
 			create_character(char_state)
 	
@@ -78,6 +83,11 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	#create the player
 	load_player(player)
 	UIModule.trans("out", 1, Color.BLACK, false)
+	await UIModule.transition_ended
+	
+	#play on enter dialogue if it exists
+	if on_enter_dialogue:
+		DialogueModule.read_dialogue_array(on_enter_dialogue)
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

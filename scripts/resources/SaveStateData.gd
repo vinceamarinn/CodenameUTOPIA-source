@@ -11,7 +11,7 @@ const RESOURCE_NAME = "SaveStateData"
 @export_group("Game State Data")
 @export var CurrentMap:String = "" ## Tracks the area in which you last saved your game.
 @export var CurrentMusic:String = "" ## Tracks the song that was playing when you last saved your game.
-@export var CharacterStateOverride:Array[String] = [] ## Tracks any changes in the character list of a given area.
+@export var RemovedCharaters:Array[String] = [] ## Stores the names of any characters who were removed from the last-saved area state.
 
 @export_group("Player Data")
 @export var ClueInventory:Array[Clue] = [] ## Tracks your current clue inventory.

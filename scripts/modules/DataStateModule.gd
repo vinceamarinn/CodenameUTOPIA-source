@@ -32,9 +32,7 @@ func save_data(data_file:Resource) -> bool: ## Saves the game.
 
 func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	var data_path = get_data_path(data_file) # get data path of provided data file
-	print(data_path)
 	if not FileAccess.file_exists(data_path): return false # if we cant find it, return false
-	print("passed loading")
 	
 	var config_file = ConfigFile.new() # open new config file
 	var loaded_data = config_file.load(data_path) # load existing data file into empty config file

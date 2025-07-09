@@ -29,6 +29,12 @@ func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ##
 	await trans_tween.finished
 	emit_signal("transition_ended")
 
+func remove_ui_element(ui_element) -> void:
+	pass
+
+func add_ui_element(ui_element) -> void:
+	pass
+
 func _ready() -> void:
 	# initialize transition UI
 	transition.visible = false

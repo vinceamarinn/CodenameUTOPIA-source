@@ -5,10 +5,10 @@ extends EditorScript
 @export var overwrite_existing_characters:bool = true
 @export var cleanup_character_node:bool = true
 
-func print_error(message:String): ## Just an easy convenient way to print an error message of the script.
+func print_error(message:String) -> void: ## Just an easy convenient way to print an error message of the script.
 	print("ERROR! ", message)
 
-func create_area_state(): ## Creates an area state out of the current Characters node.
+func create_area_state() -> void: ## Creates an area state out of the current Characters node.
 	print("Executing ", get_script().resource_path.get_file(), "!")
 	print("STAGE 1: Verifying fundamentals")
 	print("Detecting if script is running in-editor...")
@@ -100,5 +100,5 @@ func create_area_state(): ## Creates an area state out of the current Characters
 	print("Done!")
 	print("Execution complete!")
 
-func _run():
+func _run() -> void:
 	create_area_state()

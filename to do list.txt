@@ -1,0 +1,2 @@
+- add dialogue box and make dialogue actually work beyond just debug printing (long term work, would take some days at most)
+- add character state override tracking so that characters who leave the scene aren't added back on reload (probably like an hour if everything goes well and i make it a pretty basic system)

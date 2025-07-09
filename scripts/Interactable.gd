@@ -17,7 +17,7 @@ func show_prompt(on_off:bool) -> void: ## Handles popup animation.
 
 func execute_action(): ## Executes the interaction action accordingly.
 	if interactable_fired: return
-	interactable_fired = true
+	#interactable_fired = true
 	show_prompt(false)
 	
 	match interact_action:
@@ -29,8 +29,12 @@ func execute_action(): ## Executes the interaction action accordingly.
 			var state_name = GeneralModule.get_chapter_state_name()
 			var playable_char = DataStateModule.game_data.PlayerCharacter
 			AreaModule.load_area(area_name, state_name, playable_char)
-		InteractableData.InteractAction.PLAY_DIALOGUE:
-			pass
+		InteractableData.InteractAction.READ_DIALOGUE:
+			var dialogue_data = action_data.get("read_dialogue")
+			if dialogue_data is DialogueArray:
+				DialogueModule.read_dialogue_array(dialogue_data)
+			elif dialogue_data is DialogueTree:
+				DialogueModule.read_dialogue_tree(dialogue_data)
 		_:
 			pass
 
