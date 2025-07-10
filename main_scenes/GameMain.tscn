@@ -10,7 +10,7 @@ CurrentState = ""
 PlayerCharacter = 0
 CurrentMap = ""
 CurrentMusic = ""
-RemovedCharaters = Array[String]([])
+RemovedCharacters = Dictionary[String, Array]({})
 ClueInventory = Array[ExtResource("1_ckldy")]([])
 metadata/_custom_type_script = "uid://b45k4twfhl6qu"
 

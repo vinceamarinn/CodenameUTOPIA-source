@@ -5,10 +5,13 @@ class_name Character
 @onready var frontSprite = $Sprite
 @onready var backSprite = $BackSprite
 
+#just so i dont have to keep writing it
+@onready var game_data = DataStateModule.game_data
+
 func change_sprite(sprite):
 	print("my sprite is supposed to change here LOL")
 
-func leave_room():
+func leave_area():
 	var fade_timer:float = 1.25
 	await get_tree().create_timer(.5).timeout
 	
@@ -20,4 +23,5 @@ func leave_room():
 		transp_tween.play()
 	
 	await get_tree().create_timer(fade_timer + .5).timeout
+	game_data.RemovedCharacters[game_data.CurrentMap].append(self.name)
 	self.queue_free()

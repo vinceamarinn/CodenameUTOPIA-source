@@ -9,12 +9,18 @@ extends Node
 @onready var char_group = get_node("/root/GameMain/3DScenes/Characters")
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 
+#just so i dont have to keep writing it
+@onready var game_data = DataStateModule.game_data
+
 #templates
 @onready var char_template = load("res://sub_scenes/templates/Character.tscn")
 @onready var player_template = load("res://sub_scenes/templates/Player.tscn")
 
 func create_character(char_info) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	var char_name = GeneralModule.get_character_name(char_info.Name)
+	if game_data.RemovedCharacters.get(game_data.CurrentMap):
+		if char_name in game_data.RemovedCharacters[game_data.CurrentMap]: return
+	
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + char_name + "_sprites.tres")
 	var new_char = char_template.instantiate()
 	new_char.name = char_name
@@ -66,6 +72,7 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	var new_area = load(area_path).instantiate()
 	scenes_3D.add_child(new_area)
 	new_area.position.y -= 5
+	game_data.CurrentMap = area_name
 	
 	# load area state
 	var state_dict = new_area.area_states
@@ -79,7 +86,10 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 		for char_state in area_state:
 			create_character(char_state)
 	
-	#after loading, create the characters based on the given data
+	#clear removed character dictionary, add tag for current area
+	game_data.RemovedCharacters.clear()
+	game_data.RemovedCharacters.set(area_name, [])
+	
 	#create the player
 	load_player(player)
 	UIModule.trans("out", 1, Color.BLACK, false)

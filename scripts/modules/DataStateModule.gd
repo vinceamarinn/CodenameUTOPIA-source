@@ -64,5 +64,9 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 
 func _ready() -> void:
 	ServiceLocator.register_service("DataModule", self) # registers module in service locator automatically
+	
 	var err = load_data(game_data)
 	print("save data loaded successfully? ", err)
+	
+	await get_tree().create_timer(10).timeout
+	save_data(game_data)
