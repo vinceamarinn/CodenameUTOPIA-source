@@ -4,6 +4,8 @@ extends Node
 @onready var sfx_player:AudioStreamPlayer = audio_busses.get_node("SFXPlayer")
 @onready var voice_player:AudioStreamPlayer = audio_busses.get_node("VoicePlayer")
 
+@onready var game_data = DataStateModule.game_data
+
 # This module handles more generic things that do not need their own specified module, or things that don't fall into any specific module.
 # It also stores global variables like the character list, for everyone's use.
 
@@ -28,6 +30,7 @@ enum Characters { ## Very important list of all registered characters. Used in a
 	MADAME,
 	
 	# Alt. Characters - alternative versions of characters (something like Yuuto with pajamas on instead, for example).
+	SHIZUKA,
 	
 	# Secondary Characters - characters who appear in the story besides the main characters with a good amount of appearances.
 	
@@ -37,6 +40,34 @@ enum Characters { ## Very important list of all registered characters. Used in a
 enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUTO,
 	YUUKA
+}
+
+var known_name_list:Dictionary = { ## Dictionary assigning every character to their known name.
+	# Main Characters
+	Characters.YUUTO: "Yuuto Katashi",
+	Characters.YUUKA: "Yuuka Katashi",
+	Characters.LANCE: "Lance Katsunosuke",
+	Characters.KAZUHITO: "'Kazuhito'",
+	Characters.SUKAI: "Sukai Manato",
+	Characters.RYUJI: "Ryuji Ryuichi",
+	Characters.SHIRO: "Shiro Sakamoto",
+	Characters.AYANA: "Ayana Susume",
+	Characters.REINA: "Reina Watanabe",
+	Characters.REN: "Ren Watanabe",
+	Characters.GOKI: "Gōki Yoshiaki",
+	Characters.DAIYA: "Daiya Adelaide",
+	Characters.NAOMI: "Naomi Anttonen",
+	Characters.WILLOW: "Willow Asher",
+	Characters.IKUE: "Ikue Fuyumi",
+	Characters.SEBASTIAN: "Sebastian Kagaku",
+	Characters.MADAME: "The Madame",
+	
+	# Alt. Characters
+	Characters.SHIZUKA: "Shizuka Yukino",
+	
+	# Secondary Characters
+	
+	# Tertiary Characters
 }
 
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
@@ -53,7 +84,7 @@ func stop_music(fade_time:int) -> void: ## Stops currently playing music.
 	# stop the music, update the music in the game data, revert the tween
 	music_player.stop()
 	music_player.volume_linear = 1
-	DataStateModule.game_data.CurrentMusic = ""
+	game_data.CurrentMusic = ""
 	
 	# wait a little more (this is only usually relevant if the function is being called from the music playing function)
 	await get_tree().create_timer(1).timeout
@@ -66,7 +97,7 @@ func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# play the music! and update it on the data module
 	music_player.stream = music
 	music_player.play()
-	DataStateModule.game_data.CurrentMusic = get_file_name(music)
+	game_data.CurrentMusic = get_file_name(music)
 
 func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
 	sfx_player.stream = sfx
@@ -83,7 +114,7 @@ func get_character_ID(char_name:String) -> int: ## Returns the selected characte
 	return Characters.keys().find(char_name.to_upper())
 
 func get_chapter_state_name() -> String: ## Returns the chapter + state combo based on the current data. Used primarily to feed the area module information on which area state to load.
-	return "CH" + str(DataStateModule.game_data.CurrentChapter) + "_" + DataStateModule.game_data.CurrentState
+	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
 	# area/state example: CH69_sigma_fortnite_balls
 
 func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.

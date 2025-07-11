@@ -1,8 +1,6 @@
 extends Resource
 class_name SaveStateData
 
-const RESOURCE_NAME = "SaveStateData"
-
 @export_group("Story Data")
 @export var CurrentChapter:int = 0 ## Tracks the current chapter of the game.
 @export var CurrentState:String = "" ## Tracks the current state name of the game.

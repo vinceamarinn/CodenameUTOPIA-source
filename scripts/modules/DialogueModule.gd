@@ -4,8 +4,8 @@ extends Node
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
 
 func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the given dialogue line using its provided information.
-	print(GeneralModule.get_character_name(line_info.Speaker) + ": " + line_info.Line)
-
+	print(GeneralModule.get_character_name(line_info.Speaker) + ": " + tr(line_info.Line))
+	
 func read_dialogue_array(array_data:DialogueArray) -> void:
 	var dialogue_array = array_data.dialogue_array
 	for dialogue_line in dialogue_array: #iterate through every dialogue line in the dialogue array and process it
@@ -29,3 +29,5 @@ func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a g
 
 func _ready() -> void:
 	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically
+	await get_tree().create_timer(5).timeout
+	read_dialogue_array(scenes_3D.get_node("TestArea").get_node("Node").array_data)

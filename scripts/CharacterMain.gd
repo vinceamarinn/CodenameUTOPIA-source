@@ -2,16 +2,16 @@ extends Node3D
 class_name Character
 
 @export var known_name:String ## Name that shows up in the dialogue boxes.
-@onready var frontSprite = $Sprite
-@onready var backSprite = $BackSprite
+@onready var front_sprite = $Sprite
+@onready var back_sprite = $BackSprite
 
 #just so i dont have to keep writing it
 @onready var game_data = DataStateModule.game_data
 
-func change_sprite(sprite):
-	print("my sprite is supposed to change here LOL")
+func change_sprite(sprite) -> void:
+	pass
 
-func leave_area():
+func leave_area() -> void:
 	var fade_timer:float = 1.25
 	await get_tree().create_timer(.5).timeout
 	
@@ -25,3 +25,7 @@ func leave_area():
 	await get_tree().create_timer(fade_timer + .5).timeout
 	game_data.RemovedCharacters[game_data.CurrentMap].append(self.name)
 	self.queue_free()
+
+func _ready() -> void:
+	var name_list = GeneralModule.known_name_list
+	known_name = name_list[GeneralModule.get_character_ID(self.name)]

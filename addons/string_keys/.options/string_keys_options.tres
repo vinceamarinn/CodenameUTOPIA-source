@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="StringKeysOptions" load_steps=2 format=3 uid="uid://db7mvmuhcbtvo"]
+
+[ext_resource type="Script" uid="uid://qi14f2qsd6jy" path="res://addons/string_keys/string_keys_options.gd" id="1_egc0w"]
+
+[resource]
+script = ExtResource("1_egc0w")
+translation_file = "res://translations/translations.csv"
+patterns_to_search = Array[String](["tr(\"STR_KEY\")", "Tr(\"STR_KEY\")", "text = \"STR_KEY\"", "title = \"STR_KEY\"", "hint_tooltip = \"STR_KEY\"", "Line = \"STR_KEY\""])
+file_types_to_search = Array[String]([".gd", ".cs", ".vs", ".tscn", ".tres", ".scn", ".res"])
+directories_to_ignore = Array[String](["res://.git/", "res://.import/", "res://addons/", "res://localization/"])
+locales = Array[String](["en", "pt", "es"])
+tag_seperator = "$$"
+require_tag = false
+remove_unused = true
+modified_files_only = false
+print_debug_output = false

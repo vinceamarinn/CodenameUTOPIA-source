@@ -1,16 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=7 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_f0jdl"]
-[ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_nrhaa"]
-[ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_42k1y"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="5_ve6fs"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="6_o6xhn"]
 [ext_resource type="PackedScene" uid="uid://ivtu64oqjrag" path="res://models/Map Vincent.fbx" id="6_ve6fs"]
-
-[sub_resource type="Resource" id="Resource_0ext5"]
-script = ExtResource("2_nrhaa")
-character_state_array = Array[ExtResource("3_42k1y")]([])
-metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrhaa"]
 size = Vector3(2, 2, 2)
@@ -27,9 +20,6 @@ metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [node name="Courtroom" type="Node3D"]
 script = ExtResource("1_f0jdl")
-area_states = Dictionary[String, ExtResource("2_nrhaa")]({
-"CH0_sigmund": SubResource("Resource_0ext5")
-})
 
 [node name="Map Vincent" parent="." instance=ExtResource("6_ve6fs")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
