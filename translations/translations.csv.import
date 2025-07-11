@@ -2,14 +2,14 @@
 
 importer="csv_translation"
 type="Translation"
-uid="uid://dpp6nt4yalecf"
+uid="uid://e7xx1yibecle"
 
 [deps]
 
-files=["res://translations/translations.en.translation", "res://translations/translations.pt.translation"]
+files=["res://translations/translations.en.translation", "res://translations/translations.pt.translation", "res://translations/translations.es.translation"]
 
 source_file="res://translations/translations.csv"
-dest_files=["res://translations/translations.en.translation", "res://translations/translations.pt.translation"]
+dest_files=["res://translations/translations.en.translation", "res://translations/translations.pt.translation", "res://translations/translations.es.translation"]
 
 [params]
 

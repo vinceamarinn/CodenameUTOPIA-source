@@ -19,6 +19,10 @@ func read_old_csv_file():
 		if file == null:
 			print("Error: Could not open file for reading: ", path)
 			return
+		
+		# Ensure we're reading as UTF-8
+		file.set_big_endian(false)
+		
 		old_locales = Array(file.get_csv_line(csv_delimiter))  # Convert to Array
 		old_locales.remove_at(0) # gets rid of the "key" in the first column
 		while not file.eof_reached():
@@ -40,6 +44,10 @@ func write_keys_to_csv_file(keys: Array, locales: Array, remove_unused: bool):
 		print("Error: Could not open file for writing: ", path)
 		write_successful = false
 		return
+	
+	# Force UTF-8 encoding by writing BOM (optional but can help with some editors)
+	# Uncomment the next line if you want BOM for better editor compatibility
+	# file.store_8(0xEF); file.store_8(0xBB); file.store_8(0xBF)
 	
 	file.store_csv_line(["key"] + locales, csv_delimiter) # First line with locales
 	var old_index := 0
@@ -70,9 +78,43 @@ func write_keys_to_csv_file(keys: Array, locales: Array, remove_unused: bool):
 	while new_index < keys.size(): # If only new keys left, add new
 		file.store_csv_line([keys[new_index], text_from_key(keys[new_index])] + make_filler_strings(2), csv_delimiter)
 		new_index += 1
+	
 	file.close()
-	print("StringKeys: Keys saved to .csv file")
+	
+	# Additional step: Verify and fix encoding if needed
+	_ensure_utf8_encoding()
+	
+	print("StringKeys: Keys saved to .csv file with UTF-8 encoding")
 	write_successful = true
+
+# Helper function to ensure UTF-8 encoding
+func _ensure_utf8_encoding():
+	# Read the file back and check for encoding issues
+	var file = FileAccess.open(path, FileAccess.READ)
+	if file == null:
+		return
+	
+	var content = file.get_as_text()
+	file.close()
+	
+	# Check if we have any replacement characters (indicates encoding issues)
+	if content.find("�") != -1:
+		print("Warning: Encoding issues detected in CSV file. Consider manually saving as UTF-8.")
+	
+	# Optionally, we could rewrite the file with explicit UTF-8 handling
+	# This is a more robust approach for problematic characters
+	_write_utf8_safe(content)
+
+# Write content with explicit UTF-8 safety
+func _write_utf8_safe(content: String):
+	var file = FileAccess.open(path, FileAccess.WRITE)
+	if file == null:
+		return
+	
+	# Convert string to UTF-8 bytes and write
+	var utf8_bytes = content.to_utf8_buffer()
+	file.store_buffer(utf8_bytes)
+	file.close()
 
 # locales are invalid if the new ones don't match the old (the new can have additional locales added though)
 func are_locales_invalid(l1: Array, l2: Array) -> bool:

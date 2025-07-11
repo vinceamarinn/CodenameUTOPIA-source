@@ -13,4 +13,4 @@ tag_seperator = "$$"
 require_tag = false
 remove_unused = true
 modified_files_only = false
-print_debug_output = false
+print_debug_output = true

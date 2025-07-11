@@ -28,6 +28,7 @@ func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a g
 			tree_data.array_tracker = 0
 
 func _ready() -> void:
+	TranslationServer.set_locale("pt")
 	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically
 	await get_tree().create_timer(5).timeout
 	read_dialogue_array(scenes_3D.get_node("TestArea").get_node("Node").array_data)
