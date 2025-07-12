@@ -152,7 +152,7 @@ func DialogueLine(LineInfo):
 	
 	# PROCESS LINE============================
 	var LineLength = LineText.text.length()
-	var ScrollSpeed = .025 # time it takes for the digit to scroll
+	var ScrollSpeed = .025
 	
 	# Call character to leave the room if they're in the room
 	if LineInfo.CharacterLeaves == true:

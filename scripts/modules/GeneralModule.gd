@@ -42,28 +42,28 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUKA
 }
 
-var known_name_list:Dictionary = { ## Dictionary assigning every character to their known name.
+var known_names_list:Dictionary = { ## Dictionary assigning every character to their known name.
 	# Main Characters
-	Characters.YUUTO: "Yuuto Katashi",
-	Characters.YUUKA: "Yuuka Katashi",
-	Characters.LANCE: "Lance Katsunosuke",
-	Characters.KAZUHITO: "'Kazuhito'",
-	Characters.SUKAI: "Sukai Manato",
-	Characters.RYUJI: "Ryuji Ryuichi",
-	Characters.SHIRO: "Shiro Sakamoto",
-	Characters.AYANA: "Ayana Susume",
-	Characters.REINA: "Reina Watanabe",
-	Characters.REN: "Ren Watanabe",
-	Characters.GOKI: "Gōki Yoshiaki",
-	Characters.DAIYA: "Daiya Adelaide",
-	Characters.NAOMI: "Naomi Anttonen",
-	Characters.WILLOW: "Willow Asher",
-	Characters.IKUE: "Ikue Fuyumi",
-	Characters.SEBASTIAN: "Sebastian Kagaku",
-	Characters.MADAME: "The Madame",
+	Characters.YUUTO: tr("Yuuto Katashi"),
+	Characters.YUUKA: tr("Yuuka Katashi"),
+	Characters.LANCE: tr("Lance Katsunosuke"),
+	Characters.KAZUHITO: [tr("'Kazuhito'"), tr("Kazuhito Kobayashi")],
+	Characters.SUKAI: tr("Sukai Manato"),
+	Characters.RYUJI: tr("Ryuji Ryuichi"),
+	Characters.SHIRO: tr("Shiro Sakamoto"),
+	Characters.AYANA: tr("Ayana Susume"),
+	Characters.REINA: tr("Reina Watanabe"),
+	Characters.REN: tr("Ren Watanabe"),
+	Characters.GOKI: tr("Gōki Yoshiaki"),
+	Characters.DAIYA: tr("Daiya Adelaide"),
+	Characters.NAOMI: tr("Naomi Anttonen"),
+	Characters.WILLOW: tr("Willow Asher"),
+	Characters.IKUE: tr("Ikue Fuyumi"),
+	Characters.SEBASTIAN: tr("Sebastian Kagaku"),
+	Characters.MADAME: tr("The Madame"),
 	
 	# Alt. Characters
-	Characters.SHIZUKA: "Shizuka Yukino",
+	Characters.SHIZUKA: tr("Shizuka Yukino"),
 	
 	# Secondary Characters
 	
@@ -113,6 +113,9 @@ func get_character_name(char_ID:int) -> String: ## Returns the selected characte
 func get_character_ID(char_name:String) -> int: ## Returns the selected character's name from their enum ID.
 	return Characters.keys().find(char_name.to_upper())
 
+func get_character_known_name(char_info:Characters) -> String: ## Returns the selected character's known name.
+	return known_names_list[char_info]
+
 func get_chapter_state_name() -> String: ## Returns the chapter + state combo based on the current data. Used primarily to feed the area module information on which area state to load.
 	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
 	# area/state example: CH69_sigma_fortnite_balls
@@ -128,3 +131,11 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 
 func _ready() -> void:
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically
+	
+	# update kazuhito's name based on story flags
+	var kazuhito_names = known_names_list[Characters.KAZUHITO]
+	if game_data.KazuhitoRevealed:
+		known_names_list[Characters.KAZUHITO] = kazuhito_names[1]
+	else:
+		known_names_list[Characters.KAZUHITO] = kazuhito_names[0]
+	TranslationServer.set_locale("pt")

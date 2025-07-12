@@ -1,7 +1,6 @@
 extends Node3D
 class_name Character
 
-@export var known_name:String ## Name that shows up in the dialogue boxes.
 @onready var front_sprite = $Sprite
 @onready var back_sprite = $BackSprite
 
@@ -27,5 +26,4 @@ func leave_area() -> void:
 	self.queue_free()
 
 func _ready() -> void:
-	var name_list = GeneralModule.known_name_list
-	known_name = name_list[GeneralModule.get_character_ID(self.name)]
+	pass

@@ -97,7 +97,7 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	
 	#play on enter dialogue if it exists
 	if on_enter_dialogue:
-		DialogueModule.read_dialogue_array(on_enter_dialogue)
+		DialogueModule.read_dialogue(on_enter_dialogue)
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

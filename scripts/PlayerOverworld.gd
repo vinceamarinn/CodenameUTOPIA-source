@@ -3,11 +3,23 @@ class_name PlayerOverworld
 
 const SPEED = 7.5
 @onready var anim_player = $Sprite
+@export var can_move:bool = true
+
+signal can_interact_changed
+@export var can_interact:bool = true:
+	set(new_value):
+		if can_interact != new_value:
+			can_interact = new_value
+			can_interact_changed.emit(new_value)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.wa
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+		
+	if not can_move: 
+		anim_player.play("idle")
+		return
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -36,5 +48,4 @@ func _physics_process(delta: float) -> void:
 		anim_player.play("idle") # stop playing moving animations
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
 	move_and_slide()

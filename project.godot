@@ -31,6 +31,7 @@ DialogueModule="*res://scripts/modules/DialogueModule.gd"
 
 window/size/viewport_width=1600
 window/size/viewport_height=900
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=2
 
 [editor_plugins]
@@ -71,4 +72,4 @@ interact={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.pt.translation")
+locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.pt.translation", "res://translations/translations.es.translation")

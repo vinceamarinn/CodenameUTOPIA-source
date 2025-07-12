@@ -23,9 +23,9 @@ func save_data(data_file:Resource) -> bool: ## Saves the game.
 			for clue in data_file.get(property["name"]):
 				clue_array.append(clue.serialize()) # add serialized (converted to dictionary) versions of the clues in the inventory to the array
 			
-			config_file.set_value("Save State Data", property["name"], clue_array) # save the array into config file
+			config_file.set_value("Save Data", property["name"], clue_array) # save the array into config file
 		else: #if it needs no treatment:
-			config_file.set_value("Save State Data", property["name"], data_file.get(property["name"])) # save property into config file
+			config_file.set_value("Save Data", property["name"], data_file.get(property["name"])) # save property into config file
 	
 	config_file.save(get_data_path(data_file)) # save config to real file!
 	return true
@@ -40,7 +40,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	
 	var property_list = GeneralModule.get_resource_properties(data_file) # get list of properties in the data file
 	for property in property_list:
-		var property_value = config_file.get_value("Save State Data", property["name"]) # get correspondant inside config file
+		var property_value = config_file.get_value("Save Data", property["name"]) # get correspondant inside config file
 		
 		if property["name"] == "ClueInventory": # if array of objects that needs to be treated:
 			var new_inv:Array[Clue] = [] # array to load later
@@ -67,6 +67,5 @@ func _ready() -> void:
 	
 	var err = load_data(game_data)
 	print("save data loaded successfully? ", err)
-	
-	await get_tree().create_timer(10).timeout
-	save_data(game_data)
+	var err2 = load_data(option_data)
+	print("option data loaded successfully? ", err2)

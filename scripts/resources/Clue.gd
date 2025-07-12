@@ -8,8 +8,8 @@ enum ClueTypes {
 }
 
 @export_group("General")
-@export var Name:String ## Name of the clue.
-@export_multiline var Description:String ## Description of the clue. Length may vary.
+@export var ClueName:String ## Name of the clue.
+@export_multiline var ClueDescription:String ## Description of the clue. Length may vary.
 # icon
 # location
 

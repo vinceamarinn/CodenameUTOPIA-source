@@ -1,24 +1,79 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=18 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_qd0dc"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
-[ext_resource type="Script" uid="uid://dpwjch8ugtlid" path="res://scripts/resources/DialogueArrayHolder.gd" id="6_hxjik"]
 [ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="7_1pv0l"]
 [ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="8_qd0dc"]
 
-[sub_resource type="Resource" id="Resource_uk4lw"]
+[sub_resource type="Resource" id="Resource_hxjik"]
+script = ExtResource("7_1pv0l")
+Speaker = 3
+Line = "hi."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 2.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_1pv0l"]
+script = ExtResource("7_1pv0l")
+Speaker = 3
+Line = "i dont like you."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 2.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_qd0dc"]
+script = ExtResource("8_qd0dc")
+dialogue_array = Array[ExtResource("7_1pv0l")]([SubResource("Resource_hxjik"), SubResource("Resource_1pv0l")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_0ui5h"]
+script = ExtResource("5_8pvs2")
+interactable_type = 0
+interact_action = 2
+action_data = Dictionary[String, Variant]({
+"read_dialogue": SubResource("Resource_qd0dc")
+})
+interaction_range = 0.0
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
+
+[sub_resource type="Resource" id="Resource_q0rnr"]
 script = ExtResource("3_qd0dc")
 Name = 3
-Position = Vector3(0, 0, -10)
+Position = Vector3(7, 0, -10)
 Rotation = Vector3(0, 0, 0)
+Interaction = SubResource("Resource_0ui5h")
 metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
 
 [sub_resource type="Resource" id="Resource_h7yec"]
 script = ExtResource("2_1pv0l")
-character_state_array = Array[ExtResource("3_qd0dc")]([SubResource("Resource_uk4lw")])
+character_state_array = Array[ExtResource("3_qd0dc")]([SubResource("Resource_q0rnr")])
 metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_xlf1l"]
@@ -40,151 +95,6 @@ action_data = Dictionary[String, Variant]({
 interaction_range = 0.0
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
-[sub_resource type="Resource" id="Resource_hxjik"]
-script = ExtResource("7_1pv0l")
-Speaker = 8
-Line = "Well, I saw her from the third floor, not the first. She was kinda cowering and I was watching from the top and all."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_1pv0l"]
-script = ExtResource("7_1pv0l")
-Speaker = 9
-Line = "Makes perfect sense to me."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_qd0dc"]
-script = ExtResource("7_1pv0l")
-Speaker = 11
-Line = "And you didn't think to mention that?"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_ik3eo"]
-script = ExtResource("7_1pv0l")
-Speaker = 8
-Line = "Never thought the place my feet were standing at was gonna be relevant... bitch."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_h1kik"]
-script = ExtResource("7_1pv0l")
-Speaker = 11
-Line = "Care to speak up?"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_t4as1"]
-script = ExtResource("7_1pv0l")
-Speaker = 6
-Line = "Wait a minute, Mr. Yuuto. Why would the culprit poison Ms. Naomi, only to then stab her in her back anyways? I'm not fully convinced.."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_u7d5k"]
-script = ExtResource("7_1pv0l")
-Speaker = 9
-Line = "There could be a multitude of answers to that question."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_3ye7f"]
-script = ExtResource("8_qd0dc")
-dialogue_array = Array[ExtResource("7_1pv0l")]([SubResource("Resource_hxjik"), SubResource("Resource_1pv0l"), SubResource("Resource_qd0dc"), SubResource("Resource_ik3eo"), SubResource("Resource_h1kik"), SubResource("Resource_t4as1"), SubResource("Resource_u7d5k")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
-
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
 area_states = Dictionary[String, ExtResource("2_1pv0l")]({
@@ -205,9 +115,5 @@ mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_8pvs2")
-
-[node name="Node" type="Node" parent="."]
-script = ExtResource("6_hxjik")
-array_data = SubResource("Resource_3ye7f")
 
 [editable path="base part-col/Interactable"]
