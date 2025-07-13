@@ -1,2 +1,3 @@
-- add dialogue box and make dialogue actually work beyond just debug printing (long term work, would take some days at most)
-- add character state override tracking so that characters who leave the scene aren't added back on reload (probably like an hour if everything goes well and i make it a pretty basic system)
+- continue ironing out interactable system so player cannot interact or move while action is in progress
+- iron out interactable system so player can only interact with the closest thing to it at any given time (in case of on_interact types)
+- add a little more dialogue box functionality

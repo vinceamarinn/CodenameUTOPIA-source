@@ -39,13 +39,14 @@ func create_character(char_info) -> void: ## Creates a character from the base t
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
-func load_player(player_char) -> void: ## Loads the player character during overworld sections.
+func load_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
 	char_group.add_child(new_player)
 	
 	var player_name = GeneralModule.get_character_name(player_char)
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
 	new_player.get_node("Sprite").sprite_frames = char_sprites
+	return new_player
 
 func unload_characters() -> void: ## Unloads any currently loaded characters.
 	for chars in char_group.get_children():
@@ -91,13 +92,16 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	game_data.RemovedCharacters.set(area_name, [])
 	
 	#create the player
-	load_player(player)
+	var new_player = load_player(player)
 	UIModule.trans("out", 1, Color.BLACK, false)
 	await UIModule.transition_ended
 	
 	#play on enter dialogue if it exists
 	if on_enter_dialogue:
-		DialogueModule.read_dialogue(on_enter_dialogue)
+		await DialogueModule.read_dialogue(on_enter_dialogue)
+	
+	new_player.can_move = true
+	new_player.can_interact = true
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

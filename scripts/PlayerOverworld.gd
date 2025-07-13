@@ -3,10 +3,10 @@ class_name PlayerOverworld
 
 const SPEED = 7.5
 @onready var anim_player = $Sprite
-@export var can_move:bool = true
+@export var can_move:bool = false
 
 signal can_interact_changed
-@export var can_interact:bool = true:
+@export var can_interact:bool = false:
 	set(new_value):
 		if can_interact != new_value:
 			can_interact = new_value

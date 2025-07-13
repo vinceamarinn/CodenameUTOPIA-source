@@ -1,79 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=12 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_qd0dc"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
-[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="7_1pv0l"]
-[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="8_qd0dc"]
 
-[sub_resource type="Resource" id="Resource_hxjik"]
-script = ExtResource("7_1pv0l")
-Speaker = 3
-Line = "hi."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_1pv0l"]
-script = ExtResource("7_1pv0l")
-Speaker = 3
-Line = "i dont like you."
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
-CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 2.0
-CharacterLeaves = false
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_qd0dc"]
-script = ExtResource("8_qd0dc")
-dialogue_array = Array[ExtResource("7_1pv0l")]([SubResource("Resource_hxjik"), SubResource("Resource_1pv0l")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
-
-[sub_resource type="Resource" id="Resource_0ui5h"]
-script = ExtResource("5_8pvs2")
-interactable_type = 0
-interact_action = 2
-action_data = Dictionary[String, Variant]({
-"read_dialogue": SubResource("Resource_qd0dc")
-})
-interaction_range = 0.0
-metadata/_custom_type_script = "uid://dpfovalhplvc6"
-
-[sub_resource type="Resource" id="Resource_q0rnr"]
+[sub_resource type="Resource" id="Resource_ik3eo"]
 script = ExtResource("3_qd0dc")
 Name = 3
-Position = Vector3(7, 0, -10)
+Position = Vector3(-7, 5, -10)
 Rotation = Vector3(0, 0, 0)
-Interaction = SubResource("Resource_0ui5h")
 metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
 
-[sub_resource type="Resource" id="Resource_h7yec"]
+[sub_resource type="Resource" id="Resource_h1kik"]
 script = ExtResource("2_1pv0l")
-character_state_array = Array[ExtResource("3_qd0dc")]([SubResource("Resource_q0rnr")])
+character_state_array = Array[ExtResource("3_qd0dc")]([SubResource("Resource_ik3eo")])
 metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_xlf1l"]
@@ -98,7 +40,7 @@ metadata/_custom_type_script = "uid://dpfovalhplvc6"
 [node name="TestArea" type="Node3D"]
 script = ExtResource("1_i7cpd")
 area_states = Dictionary[String, ExtResource("2_1pv0l")]({
-"CH0_sigmund": SubResource("Resource_h7yec")
+"CH0_sigmund": SubResource("Resource_h1kik")
 })
 
 [node name="Floor" type="MeshInstance3D" parent="."]
@@ -110,10 +52,18 @@ mesh = SubResource("BoxMesh_xlf1l")
 shape = SubResource("ConcavePolygonShape3D_xpuui")
 
 [node name="base part-col" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.502, -13.295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33571, 1.502, -13.295)
 mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_8pvs2")
 
+[node name="base part-col2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58586, 1.502, -13.295)
+mesh = SubResource("BoxMesh_kvvoo")
+
+[node name="Interactable" parent="base part-col2" instance=ExtResource("4_i7cpd")]
+interactable_data = SubResource("Resource_8pvs2")
+
 [editable path="base part-col/Interactable"]
+[editable path="base part-col2/Interactable"]

@@ -35,10 +35,12 @@ class_name DialogueLine
 
 @export_subgroup("Music Settings")
 @export var MuteMusic:bool = false ## If enabled, the music fades out on this line.
-@export var MutingSpeed:float = 2 ## Determines the speed at which the music fades out, if muting is enabled.
-@export var PlayMusic:AudioStreamOggVorbis ## If muting is not enabled, the currently playing music will change to the one selected here.
+@export var MutingSpeed:float = 3 ## Determines the time it takes, in seconds, at which the music fades out, if muting is enabled.
+@export var PlayMusic:AudioStreamOggVorbis ## The currently playing music will change to the one selected here. If muting is enabled, then it will take priority over this.
 
-@export_subgroup("SFX Settings")
+@export_subgroup("SFX & Voice Settings")
+@export var PlaySoundEffect:AudioStreamOggVorbis ## Play the chosen sound effect.
+@export var PlayVoiceline:AudioStreamOggVorbis ## Play the chosen voiceline.
 
 @export_group("Misc. Settings")
 @export var CharacterLeaves:bool = false ## If true, the character will leave the scene upon speaking their line.

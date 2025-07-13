@@ -87,12 +87,12 @@ func stop_music(fade_time:int) -> void: ## Stops currently playing music.
 	game_data.CurrentMusic = ""
 	
 	# wait a little more (this is only usually relevant if the function is being called from the music playing function)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(.5).timeout
 
 func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# stop and fade out the previous track if a track is already playing
 	if music_player.playing:
-		await stop_music(1.5)
+		await stop_music(3)
 	
 	# play the music! and update it on the data module
 	music_player.stream = music
