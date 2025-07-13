@@ -1,16 +1,166 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=25 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_qd0dc"]
+[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="4_hxjik"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="4_i7cpd"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="5_1pv0l"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
+[ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="6_qd0dc"]
+
+[sub_resource type="Resource" id="Resource_hxjik"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "Ah, it's you..."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_1pv0l"]
+script = ExtResource("5_1pv0l")
+Speaker = 0
+Line = "Tell me, how long do you take to comb your hair in the morning?"
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_qd0dc"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "However long it takes your ass to get a verdict, bitch."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_wq2lk"]
+script = ExtResource("5_1pv0l")
+Speaker = 0
+Line = "...sure."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_t4as1"]
+script = ExtResource("4_hxjik")
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_hxjik"), SubResource("Resource_1pv0l"), SubResource("Resource_qd0dc"), SubResource("Resource_wq2lk")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_3ye7f"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "Hey, I kinda told ya to fuck off."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_u7d5k"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "Unless ya really lookin' to get ya teeth broken."
+Sprite = ""
+HideCharacterName = false
+TextColor = Color(1, 1, 1, 1)
+SkipScrolling = false
+CameraSubject = null
+CameraTime = 5.0
+OverrideTransition = false
+CameraType = "None"
+CameraDirection = ""
+CameraRotation = 0
+TweenRotation = false
+MuteMusic = false
+MutingSpeed = 3.0
+CharacterLeaves = false
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_2jahj"]
+script = ExtResource("4_hxjik")
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_3ye7f"), SubResource("Resource_u7d5k")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_8oshy"]
+script = ExtResource("6_qd0dc")
+dialogue_tree = Array[ExtResource("4_hxjik")]([SubResource("Resource_t4as1"), SubResource("Resource_2jahj")])
+loop_tree = false
+metadata/_custom_type_script = "uid://cry7q52aiw4rr"
+
+[sub_resource type="Resource" id="Resource_p6gnr"]
+script = ExtResource("5_8pvs2")
+interactable_type = 0
+interact_action = 2
+action_data = Dictionary[String, Variant]({
+"read_dialogue": SubResource("Resource_8oshy")
+})
+interaction_range = 0.0
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [sub_resource type="Resource" id="Resource_ik3eo"]
 script = ExtResource("3_qd0dc")
 Name = 3
 Position = Vector3(-7, 5, -10)
 Rotation = Vector3(0, 0, 0)
+Interaction = SubResource("Resource_p6gnr")
 metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
 
 [sub_resource type="Resource" id="Resource_h1kik"]
@@ -52,18 +202,10 @@ mesh = SubResource("BoxMesh_xlf1l")
 shape = SubResource("ConcavePolygonShape3D_xpuui")
 
 [node name="base part-col" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33571, 1.502, -13.295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.183093, 1.502, -13.295)
 mesh = SubResource("BoxMesh_kvvoo")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_8pvs2")
 
-[node name="base part-col2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58586, 1.502, -13.295)
-mesh = SubResource("BoxMesh_kvvoo")
-
-[node name="Interactable" parent="base part-col2" instance=ExtResource("4_i7cpd")]
-interactable_data = SubResource("Resource_8pvs2")
-
 [editable path="base part-col/Interactable"]
-[editable path="base part-col2/Interactable"]

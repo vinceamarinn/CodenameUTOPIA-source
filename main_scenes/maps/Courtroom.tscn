@@ -88,7 +88,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="base part-col" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0301461, 2.23454, -1.86873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94183, 2.23454, -1.86873)
 mesh = SubResource("BoxMesh_nrhaa")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("5_ve6fs")]

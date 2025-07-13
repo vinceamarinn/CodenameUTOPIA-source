@@ -1,3 +1,1 @@
-- continue ironing out interactable system so player cannot interact or move while action is in progress
-- iron out interactable system so player can only interact with the closest thing to it at any given time (in case of on_interact types)
-- add a little more dialogue box functionality
+idk LOL

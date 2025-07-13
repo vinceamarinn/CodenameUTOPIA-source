@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6p1y76q6kro1"]
+[gd_scene load_steps=9 format=3 uid="uid://b6p1y76q6kro1"]
 
 [ext_resource type="Script" uid="uid://rtec6w3dr678" path="res://scripts/resources/Clue.gd" id="1_ckldy"]
 [ext_resource type="Script" uid="uid://b45k4twfhl6qu" path="res://scripts/resources/SaveStateData.gd" id="2_0h2mm"]
+[ext_resource type="Script" uid="uid://bh8k8r6injjfe" path="res://main_scenes/fhdsabdasbjidas.gd" id="3_5aqgg"]
 
 [sub_resource type="Resource" id="Resource_0h2mm"]
 script = ExtResource("2_0h2mm")
@@ -70,6 +71,20 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_51ki2")
 
+[node name="saveshit" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="save" type="Button" parent="UI/saveshit"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 50
+text = "save game"
+flat = true
+script = ExtResource("3_5aqgg")
+
 [node name="Worldview" type="Node" parent="."]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Worldview"]
@@ -82,7 +97,10 @@ environment = SubResource("Environment_23dgj")
 
 [node name="Camera" type="Camera3D" parent="Worldview"]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.61796)
 
 [node name="3DScenes" type="Node" parent="."]
 
 [node name="Characters" type="Node3D" parent="3DScenes"]
+
+[connection signal="pressed" from="UI/saveshit/save" to="UI/saveshit/save" method="_on_pressed"]

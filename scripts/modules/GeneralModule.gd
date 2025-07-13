@@ -138,4 +138,5 @@ func _ready() -> void:
 		known_names_list[Characters.KAZUHITO] = kazuhito_names[1]
 	else:
 		known_names_list[Characters.KAZUHITO] = kazuhito_names[0]
+	
 	TranslationServer.set_locale("pt")
