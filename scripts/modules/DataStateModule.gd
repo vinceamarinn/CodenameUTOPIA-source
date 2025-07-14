@@ -7,6 +7,13 @@ func get_data_path(data_file:Resource) -> String: ## Returns the default save da
 	return "user://" + GeneralModule.get_file_name(data_file.get_script()) + ".cfg"
 	# default path example: user://SaveStateData.cfg
 
+func get_chapter_state_name() -> String: ## Returns the chapter + state combo based on the current data. Used primarily to feed the area module information on which area state to load.
+	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
+	# area/state example: CH69_sigma_fortnite_balls
+
+func check_if_trial() -> bool: ## Verifies if the chapter state starts with TRIAL (indicating we're in-trial).
+	return game_data.CurrentState.begins_with("TRIAL_")
+
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
 	if data_file.get(property) == new_value: return # don't execute if the value is unchanged
@@ -54,7 +61,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 			set_property(data_file, property["name"], property_value) # load the property!
 	
 	if data_file == game_data: # if we're loading the game, run basic initialization process
-		var state_name = GeneralModule.get_chapter_state_name() # get current area/state
+		var state_name = get_chapter_state_name() # get current area/state
 		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
 		
 		if game_data.CurrentMusic != "": # load current music and play it
@@ -69,3 +76,5 @@ func _ready() -> void:
 	print("save data loaded successfully? ", err)
 	var err2 = load_data(option_data)
 	print("option data loaded successfully? ", err2)
+	
+	print("are we in a trial? ", check_if_trial())

@@ -116,10 +116,6 @@ func get_character_ID(char_name:String) -> int: ## Returns the selected characte
 func get_character_known_name(char_info:Characters) -> String: ## Returns the selected character's known name.
 	return known_names_list[char_info]
 
-func get_chapter_state_name() -> String: ## Returns the chapter + state combo based on the current data. Used primarily to feed the area module information on which area state to load.
-	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
-	# area/state example: CH69_sigma_fortnite_balls
-
 func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.
 	var property_array = [] # stores found properties
 	

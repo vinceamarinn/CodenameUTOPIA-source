@@ -1,1 +1,36 @@
-idk LOL
+>GENERAL STUFF I SHOULD PROBS DO
+- probably organize the assets folder a little better lmfao
+- probably generalize the player overworld thing sprite loading or whatever to also work for everyone
+
+>MUSIC
+- add a new layer of chords to the final chorus of the investigation theme to make it truly feel final
+- maybe some more ear candy in between chorus 1 and verse 2 with the panty & stocking riff part?
+- record wahwah guitar for thinking time
+- probably work on danger theme some more
+
+>UI
+- pause menu with all the good stuff in it
+- more ui elements like currently playing music
+
+>SYSTEMS
+- options menu
+- title screen on game boot with debug quickstart
+- loading screen minigames!!!
+- implement trial system!!! (maybe its own module??? though i dont think thatd be super necessary)
+- on-screen tutorial system
+
+>CLUES SYSTEM
+- add obtainable clues
+- develop clue system to include photo, clue type and stuff like that
+- add clue inventory system
+
+>CAMERA SYSTEM
+- import & adapt camera functionality from old trial system
+- add new camera stuff like following the player in overworld segments
+
+>DIALOGUE SYSTEM
+- flashback system
+
+>EVENTS SYSTEM
+- add a system to add events to interactables or dialogue (maybe even its own module maybe?), so that we can do things like show an image, start a flashback, etc
+would probably work similarly to the interactable system, maybe the interactable system functionality could straight up all just be ported there LOL
