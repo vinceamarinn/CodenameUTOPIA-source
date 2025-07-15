@@ -30,6 +30,8 @@
 
 >DIALOGUE SYSTEM
 - flashback system
+- dialogue logs
+- auto scroll option
 
 >EVENTS SYSTEM
 - add a system to add events to interactables or dialogue (maybe even its own module maybe?), so that we can do things like show an image, start a flashback, etc

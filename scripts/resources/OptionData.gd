@@ -10,3 +10,6 @@ class_name OptionData
 @export_range(0, 1, 0.01) var VoiceVolume:float = 1 ## Changes the overall volume of voicelines. Default is 100%.
 
 @export_group("Keybinds")
+
+@export_group("Language Settings")
+@export var Language:String = "en" ## Language of the game text.

@@ -66,7 +66,7 @@ func execute_action(): ## Executes the interactable action once all requirements
 			_unlock_player()
 		InteractableData.InteractAction.LOAD_AREA:
 			var area_name = action_data.get("load_area")
-			var state_name = GeneralModule.get_chapter_state_name()
+			var state_name = DataStateModule.get_chapter_state_name()
 			var playable_char = DataStateModule.game_data.PlayerCharacter
 			AreaModule.load_area(area_name, state_name, playable_char)
 			# Non-repeatable action - area change will handle player state
