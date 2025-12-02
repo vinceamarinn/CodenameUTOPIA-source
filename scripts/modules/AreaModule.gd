@@ -77,12 +77,12 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	
 	# load area state
 	var state_dict = new_area.area_states
-	var on_enter_dialogue = null
+	var on_enter_event = null
 	
 	if state_dict.get(state):
 		#create the characters from the state
 		var area_state = state_dict[state].character_state_array
-		on_enter_dialogue = state_dict[state].on_enter_dialogue # stores the on enter dialogue's value for later
+		on_enter_event = state_dict[state].on_enter_event # stores the on enter event's reference for later
 		
 		for char_state in area_state:
 			create_character(char_state)
@@ -97,11 +97,11 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 	await UIModule.transition_ended
 	
 	#play on enter dialogue if it exists
-	if on_enter_dialogue:
-		await DialogueModule.read_dialogue(on_enter_dialogue)
+	if on_enter_event:
+		EventModule.process_event(on_enter_event)
 	
-	new_player.can_move = true
-	new_player.can_interact = true
+	# let player move now
+	new_player.update_locks(true)
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

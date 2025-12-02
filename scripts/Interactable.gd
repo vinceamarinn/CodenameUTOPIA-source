@@ -57,28 +57,6 @@ func execute_action(): ## Executes the interactable action once all requirements
 	
 	# call event module to execute event
 	EventModule.process_event(interact_event)
-	
-	"""
-	match event_type:
-		InteractableData.InteractAction.PRINT_TEXT:
-			var print_text = action_data.get("print_text")
-			print(print_text)
-			# Repeatable action - unlock player after completion
-			_unlock_player()
-		InteractableData.InteractAction.LOAD_AREA:
-			var area_name = action_data.get("load_area")
-			var state_name = DataStateModule.get_chapter_state_name()
-			var playable_char = DataStateModule.game_data.PlayerCharacter
-			AreaModule.load_area(area_name, state_name, playable_char)
-			# Non-repeatable action - area change will handle player state
-		InteractableData.InteractAction.READ_DIALOGUE:
-			var dialogue_data = action_data.get("read_dialogue")
-			await DialogueModule.read_dialogue(dialogue_data)
-			# Repeatable action - unlock player after completion
-			_unlock_player()
-		_:
-			_unlock_player()
-"""
 
 func _input(event: InputEvent) -> void: ## Handles input confirmation for on_interact types.
 	if event.is_action_pressed("interact") and is_within_range and self == closest_interactable:

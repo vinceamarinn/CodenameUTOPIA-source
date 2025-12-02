@@ -146,7 +146,6 @@ shape = SubResource("ConcavePolygonShape3D_xpuui")
 [node name="base part-col" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.183093, 1.502, -13.295)
 mesh = SubResource("BoxMesh_kvvoo")
-script = ExtResource("5_1pv0l")
 
 [node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_hxjik")

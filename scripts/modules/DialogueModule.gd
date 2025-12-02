@@ -19,6 +19,7 @@ var line_in_process:bool = false ## Tracks whether a dialogue line is being proc
 var dialogue_logs:Array = [
 	
 ] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
+var dialogue_log_limit:int = 50
 
 signal continue_dialogue_signal ## Fires whenever I want to continue the dialogue.
 
@@ -96,6 +97,13 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	
 	# PREAMBLE DONE! just add the name and text to the dialogue logs...
 	dialogue_logs.append(name_text.text + ": " + line_text.text)
+	
+	# if the log amount goes over the limit, delete the oldest line
+	if len(dialogue_logs) > dialogue_log_limit:
+		print("logs went over limit!")
+		dialogue_logs.remove_at(0)
+	
+	print(dialogue_logs)
 	
 	# LOGGING DONE! TIME TO PROCESS LINE
 	# sfx & voices

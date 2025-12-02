@@ -1,8 +1,7 @@
 >IMPORTANT!!!!
-- update area holder resource to use an on load event instead of an on load dialogue
 - update dialogue module to support the new event calling functionality (alongside processing whether there's an [!event] flag in the line)
 
-- actually make the events work LOLLLL
+- maybe create more straightforward way for the event module to process events, so that events can have their own unique function call and can be called independently without an event data resource if needed
 
 
 >GENERAL STUFF I SHOULD PROBS DO
@@ -58,5 +57,6 @@ LIST OF OPTIONS TO ADD:
 - texture quality filter
 - shadow quality
 - keybinds
+- dialogue module logs limit (10, 50, 100, 250, 500, 750, 1000)
 
 already added: audio volume for all, audio volume for voices/sfx/music, text scrolling speed, languages
