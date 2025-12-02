@@ -9,10 +9,13 @@ script = ExtResource("2_0h2mm")
 CurrentChapter = 0
 CurrentState = ""
 PlayerCharacter = 0
+StoryFlags = {
+"IsTrial": false,
+"KazuhitoRevealed": false
+}
 CurrentMap = ""
 CurrentMusic = ""
 RemovedCharacters = Dictionary[String, Array]({})
-KazuhitoRevealed = false
 ClueInventory = Array[ExtResource("1_ckldy")]([])
 metadata/_custom_type_script = "uid://b45k4twfhl6qu"
 

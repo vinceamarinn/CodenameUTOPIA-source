@@ -1,6 +1,14 @@
+>IMPORTANT!!!!
+- update area holder resource to use an on load event instead of an on load dialogue
+- update dialogue module to support the new event calling functionality (alongside processing whether there's an [!event] flag in the line)
+
+- actually make the events work LOLLLL
+
+
 >GENERAL STUFF I SHOULD PROBS DO
 - probably organize the assets folder a little better lmfao
 - probably generalize the player overworld thing sprite loading or whatever to also work for everyone
+- standardize kazuhito revealed into a story flags table! because individual flag variables are MORONIC (DONE)
 
 >MUSIC
 - add a new layer of chords to the final chorus of the investigation theme to make it truly feel final
@@ -9,6 +17,7 @@
 - probably work on danger theme some more
 
 >UI
+- actually develop the add/removal systems
 - pause menu with all the good stuff in it
 - more ui elements like currently playing music
 
@@ -22,7 +31,7 @@
 >CLUES SYSTEM
 - add obtainable clues
 - develop clue system to include photo, clue type and stuff like that
-- add clue inventory system
+- finish clue inventory system
 
 >CAMERA SYSTEM
 - import & adapt camera functionality from old trial system
@@ -30,9 +39,24 @@
 
 >DIALOGUE SYSTEM
 - flashback system
-- dialogue logs
-- auto scroll option
+- dialogue logs (BASIC FUNCTIONALITY DONE, NEEDS CAP ADDED)
+- auto scroll option HIGH PRIORITY
+- port dialogue box handling to the UI module HIGH PRIORITY
 
->EVENTS SYSTEM
+>EVENTS SYSTEM (DONE)
 - add a system to add events to interactables or dialogue (maybe even its own module maybe?), so that we can do things like show an image, start a flashback, etc
 would probably work similarly to the interactable system, maybe the interactable system functionality could straight up all just be ported there LOL
+
+LIST OF OPTIONS TO ADD:
+- fps counter & caps
+- resolution changer
+- window mode
+- vsync on off
+- change languages
+- text autoscroll
+- gamma, brightness & contrast
+- texture quality filter
+- shadow quality
+- keybinds
+
+already added: audio volume for all, audio volume for voices/sfx/music, text scrolling speed, languages

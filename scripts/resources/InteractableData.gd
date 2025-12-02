@@ -1,19 +1,12 @@
 extends Resource
 class_name InteractableData
 
-enum InteractableType { ## List of possible interaction types.
-	ON_INTERACT, ## Triggers a pop-up when in range. The interaction is triggered if the player presses the interact key while the popup is visible.
-	ON_TOUCH, ## The interaction is triggered immediately upon entering the range of the interactable.
-}
-
-enum InteractAction {
-	PRINT_TEXT, ## Debug action. Simply prints the text on the interactable data.
-	LOAD_AREA, ## Calls the area module to load a new area.
-	READ_DIALOGUE ## Calls the dialogue module to iterate through a dialogue tree.
+enum InteractableType {
+	ON_TOUCH, ## The interactable triggers its event once its range is entered.
+	ON_INTERACT, ## The interactable triggers its event once its range is entered, and a prompt is triggered.
 }
 
 @export var interactable_type:InteractableType ## Type of interaction that triggers the interactable. being met.
-@export var interact_action:InteractAction ## Action executed upon meeting the interaction requirements.
-@export var action_data:Dictionary[String, Variant] ## Data to pass as arguments for the chosen action.
 @export var interaction_range:float = 0 ## Range of the interactable's collision detector. If left at 0 or negative, will not apply.
 @export var interactable_sfx:AudioStreamOggVorbis ## Sound effect that will play when the interactable is activated. If left blank, only the default sound will be played.
+@export var interact_event:EventData ## Event executed upon meeting the interaction requirements.

@@ -116,6 +116,9 @@ func get_character_ID(char_name:String) -> int: ## Returns the selected characte
 func get_character_known_name(char_info:Characters) -> String: ## Returns the selected character's known name.
 	return known_names_list[char_info]
 
+func get_enum_string(my_enum:Dictionary, enum_id:int) -> String:
+	return my_enum.keys()[enum_id]
+
 func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.
 	var property_array = [] # stores found properties
 	
@@ -127,12 +130,4 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 
 func _ready() -> void:
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically
-	
-	# update kazuhito's name based on story flags
-	var kazuhito_names = known_names_list[Characters.KAZUHITO]
-	if game_data.KazuhitoRevealed:
-		known_names_list[Characters.KAZUHITO] = kazuhito_names[1]
-	else:
-		known_names_list[Characters.KAZUHITO] = kazuhito_names[0]
-	
 	#TranslationServer.set_locale("pt")

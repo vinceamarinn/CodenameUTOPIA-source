@@ -11,10 +11,6 @@ size = Vector3(2, 2, 2)
 [sub_resource type="Resource" id="Resource_42k1y"]
 script = ExtResource("6_o6xhn")
 interactable_type = 0
-interact_action = 1
-action_data = Dictionary[String, Variant]({
-"load_area": &"TestArea"
-})
 interaction_range = 0.0
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 

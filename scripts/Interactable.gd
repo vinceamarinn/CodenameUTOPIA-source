@@ -6,10 +6,10 @@ var player_within_range: PlayerOverworld = null  # Track the player currently in
 
 @export var interactable_data: InteractableData ## The data for the interactable to use.
 @onready var interactable_type = interactable_data.interactable_type
-@onready var interact_action = interactable_data.interact_action
-@onready var action_data = interactable_data.action_data
 @onready var interaction_range = interactable_data.interaction_range
 @onready var interaction_prompt: SpriteBase3D = $Prompt
+
+@onready var interact_event = interactable_data.interact_event
 
 # Static variables to track all interactables and closest one
 static var all_interactables: Array[Interactable] = []
@@ -52,13 +52,14 @@ func execute_action(): ## Executes the interactable action once all requirements
 	if player_within_range == null or not player_within_range.can_interact:
 		return
 	
-	# Lock player movement and interaction
-	player_within_range.can_move = false
-	player_within_range.can_interact = false
-	
+	# hide prompt
 	show_prompt(false)
 	
-	match interact_action:
+	# call event module to execute event
+	EventModule.process_event(interact_event)
+	
+	"""
+	match event_type:
 		InteractableData.InteractAction.PRINT_TEXT:
 			var print_text = action_data.get("print_text")
 			print(print_text)
@@ -77,11 +78,7 @@ func execute_action(): ## Executes the interactable action once all requirements
 			_unlock_player()
 		_:
 			_unlock_player()
-
-func _unlock_player(): ## Unlocks the player after an interaction completes.
-	if player_within_range != null:
-		player_within_range.can_move = true
-		player_within_range.can_interact = true
+"""
 
 func _input(event: InputEvent) -> void: ## Handles input confirmation for on_interact types.
 	if event.is_action_pressed("interact") and is_within_range and self == closest_interactable:

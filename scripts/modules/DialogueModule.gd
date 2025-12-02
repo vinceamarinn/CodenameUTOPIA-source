@@ -16,13 +16,16 @@ var current_camera_tween:Tween = null
 # functionality
 var reading_in_progress:bool = false ## Tracks whenever dialogue processing is already in progress. This prevents two calls from overlapping.
 var line_in_process:bool = false ## Tracks whether a dialogue line is being processed.
+var dialogue_logs:Array = [
+	
+] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
 
 signal continue_dialogue_signal ## Fires whenever I want to continue the dialogue.
 
 func _input(event:InputEvent) -> void: ## Input stuff.
 	if not reading_in_progress: return
 	
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("ui_confirm"):
 		if current_scroll_tween != null and line_in_process: # if a tween is in progress, pressing enter will skip it.
 			current_scroll_tween.emit_signal("finished")
 			current_scroll_tween.kill()
@@ -91,7 +94,10 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	if line_text.modulate != line_info.TextColor: # change text color
 		line_text.modulate = line_info.TextColor
 	
-	# PREAMBLE DONE! TIME TO PROCESS LINE
+	# PREAMBLE DONE! just add the name and text to the dialogue logs...
+	dialogue_logs.append(name_text.text + ": " + line_text.text)
+	
+	# LOGGING DONE! TIME TO PROCESS LINE
 	# sfx & voices
 	if line_info.PlaySoundEffect:
 		GeneralModule.play_sfx(line_info.PlaySoundEffect)
@@ -158,8 +164,7 @@ func read_dialogue(dialogue_data):
 	
 	var player:PlayerOverworld = char_group.get_node_or_null("Player")
 	if player:
-		player.can_interact = false
-		player.can_move = false
+		player.update_locks(false)
 	
 	await load_dialogue_box("DialogueBox")
 	if dialogue_data is DialogueArray:
@@ -171,9 +176,10 @@ func read_dialogue(dialogue_data):
 	await unload_dialogue_box()
 	
 	if player != null:
-		player.can_interact = true
-		player.can_move = true
+		player.update_locks(true)
 		player = null
+	
+	print(dialogue_logs)
 
 func _ready() -> void:
 	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically

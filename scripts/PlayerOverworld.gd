@@ -12,6 +12,16 @@ signal can_interact_changed
 			can_interact = new_value
 			can_interact_changed.emit(new_value)
 
+func update_movement(value:bool) -> void: ## Updates the player's movement lock based on the value.
+	can_move = value
+
+func update_interact(value:bool) -> void:## Updates the player's interaction lock based on the value.
+	can_interact = value
+
+func update_locks(value:bool) -> void: ## Updates both the player's movement and interaction locks based on the value.
+	can_move = value
+	can_interact = value
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.wa
 	if not is_on_floor():

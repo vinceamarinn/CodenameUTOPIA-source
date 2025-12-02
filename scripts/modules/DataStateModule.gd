@@ -12,7 +12,7 @@ func get_chapter_state_name() -> String: ## Returns the chapter + state combo ba
 	# area/state example: CH69_sigma_fortnite_balls
 
 func check_if_trial() -> bool: ## Verifies if the chapter state starts with TRIAL (indicating we're in-trial).
-	return game_data.CurrentState.begins_with("TRIAL_")
+	return game_data.StoryFlags["IsTrial"] == true
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
@@ -71,10 +71,17 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 
 func _ready() -> void:
 	ServiceLocator.register_service("DataModule", self) # registers module in service locator automatically
-	
 	var err = load_data(game_data)
 	print("save data loaded successfully? ", err)
 	var err2 = load_data(option_data)
 	print("option data loaded successfully? ", err2)
 	
 	print("are we in a trial? ", check_if_trial())
+	
+	# update kazuhito's name based on story flags
+	var known_names_list = GeneralModule.known_names_list
+	var kazuhito_names = known_names_list[GeneralModule.Characters.KAZUHITO]
+	if game_data.StoryFlags["KazuhitoRevealed"] == true:
+		known_names_list[GeneralModule.Characters.KAZUHITO] = kazuhito_names[1]
+	else:
+		known_names_list[GeneralModule.Characters.KAZUHITO] = kazuhito_names[0]
