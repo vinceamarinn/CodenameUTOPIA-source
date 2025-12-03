@@ -13,63 +13,23 @@
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "i hate u brah"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
 CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 3.0
 EventTriggerCondition = null
-CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_qd0dc"]
 script = ExtResource("5_1pv0l")
-Speaker = 0
 Line = "idgaf"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
 CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 3.0
 EventTriggerCondition = null
-CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_t4as1"]
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "damn"
-Sprite = ""
-HideCharacterName = false
-TextColor = Color(1, 1, 1, 1)
-SkipScrolling = false
 CameraSubject = null
-CameraTime = 5.0
-OverrideTransition = false
-CameraType = "None"
-CameraDirection = ""
-CameraRotation = 0
-TweenRotation = false
-MuteMusic = false
-MutingSpeed = 3.0
 EventTriggerCondition = null
-CharacterLeaves = false
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_3ye7f"]
@@ -96,7 +56,6 @@ metadata/_custom_type_script = "uid://dpfovalhplvc6"
 script = ExtResource("3_qd0dc")
 Name = 3
 Position = Vector3(-7, 5, -10)
-Rotation = Vector3(0, 0, 0)
 Interaction = SubResource("Resource_p6gnr")
 metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
 

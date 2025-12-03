@@ -5,22 +5,26 @@ extends Node
 @onready var char_group = scenes_3D.get_node("Characters")
 
 # dialogue box component storage
-var dialogue_box:Control = null
-var box_actives:Control = null
-var box_textures:Control = null
+var dialogue_box:Control = null # holds the dialogue box reference
+var box_actives:Control = null # holds the folder node to the active components of the dialogue box
+var box_textures:Control = null # holds the folder node to the texture components of the dialogue box
 
-# current holders
+# current tween holders
 var current_scroll_tween:Tween = null
 var current_camera_tween:Tween = null
+var current_autoscroll_tween:Tween = null
 
-# functionality
+# functionality stuff
 var reading_in_progress:bool = false ## Tracks whenever dialogue processing is already in progress. This prevents two calls from overlapping.
 var line_in_process:bool = false ## Tracks whether a dialogue line is being processed.
-var dialogue_logs:Array = [
-	
-] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
-var dialogue_log_limit:int = 50
+var dialogue_logs:Array = [] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
 
+# variables
+var dialogue_log_limit:int = 50 ## Sets the size limit of the dialogue log array.
+var autoscroll_enabled:bool = false ## Determines whether the text scrolls automatically.
+var autoscroll_timer:float = 1.5 ## Determines how long the autoscroll timer waits until scrolling to the next line after the line has been processed.
+
+# signals
 signal continue_dialogue_signal ## Fires whenever I want to continue the dialogue.
 
 func _input(event:InputEvent) -> void: ## Input stuff.
@@ -32,6 +36,23 @@ func _input(event:InputEvent) -> void: ## Input stuff.
 			current_scroll_tween.kill()
 		elif not line_in_process:
 			continue_dialogue_signal.emit()
+
+func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
+	if not autoscroll_enabled: return # cancel if autoscrolling is disabled, just in case
+	
+	# cancel previous tween if it exists
+	if current_autoscroll_tween:
+		current_autoscroll_tween.kill()
+	
+	# create countdown tween
+	var autoscroll_tween = create_tween()
+	autoscroll_tween.tween_interval(autoscroll_timer)
+	current_autoscroll_tween = autoscroll_tween
+	
+	await autoscroll_tween.finished # wait for timer to finish
+	if not autoscroll_enabled: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
+	if not line_in_process:
+		continue_dialogue_signal.emit()
 
 func load_dialogue_box(box_name:String) -> void:
 	if dialogue_box != null: return
@@ -100,10 +121,7 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	
 	# if the log amount goes over the limit, delete the oldest line
 	if len(dialogue_logs) > dialogue_log_limit:
-		print("logs went over limit!")
 		dialogue_logs.remove_at(0)
-	
-	print(dialogue_logs)
 	
 	# LOGGING DONE! TIME TO PROCESS LINE
 	# sfx & voices
@@ -140,9 +158,16 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		current_scroll_tween = line_tween
 		await line_tween.finished
 	
+	# finish the line
 	line_text.visible_ratio = 1
 	line_in_process = false
 	continue_arrow.visible = true
+	
+	# turn on autoscroll timer
+	if autoscroll_enabled:
+		autoscroll()
+	
+	# wait for continuation signal
 	await continue_dialogue_signal
 	
 func read_dialogue_array(array_data:DialogueArray) -> void:
@@ -186,8 +211,6 @@ func read_dialogue(dialogue_data):
 	if player != null:
 		player.update_locks(true)
 		player = null
-	
-	print(dialogue_logs)
 
 func _ready() -> void:
 	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically
