@@ -34,6 +34,7 @@ func _input(event:InputEvent) -> void: ## Input stuff.
 		if current_scroll_tween != null and line_in_process: # if a tween is in progress, pressing enter will skip it.
 			current_scroll_tween.emit_signal("finished")
 			current_scroll_tween.kill()
+			
 		elif not line_in_process:
 			continue_dialogue_signal.emit()
 
@@ -49,7 +50,9 @@ func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
 	autoscroll_tween.tween_interval(autoscroll_timer)
 	current_autoscroll_tween = autoscroll_tween
 	
-	await autoscroll_tween.finished # wait for timer to finish
+	# wait for timer to finish
+	await autoscroll_tween.finished
+	
 	if not autoscroll_enabled: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
 	if not line_in_process:
 		continue_dialogue_signal.emit()
@@ -156,6 +159,7 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		line_tween.set_trans(Tween.TRANS_LINEAR)
 		line_tween.tween_property(line_text, "visible_ratio", 1, scroll_speed * line_length)
 		current_scroll_tween = line_tween
+		
 		await line_tween.finished
 	
 	# finish the line
@@ -206,6 +210,11 @@ func read_dialogue(dialogue_data):
 		await read_dialogue_tree(dialogue_data)
 	
 	reading_in_progress = false
+	
+	# cleanup tween refs
+	current_scroll_tween = null
+	current_autoscroll_tween = null
+	
 	await unload_dialogue_box()
 	
 	if player != null:

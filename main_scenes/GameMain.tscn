@@ -6,17 +6,6 @@
 
 [sub_resource type="Resource" id="Resource_0h2mm"]
 script = ExtResource("2_0h2mm")
-CurrentChapter = 0
-CurrentState = ""
-PlayerCharacter = 0
-StoryFlags = {
-"IsTrial": false,
-"KazuhitoRevealed": false
-}
-CurrentMap = ""
-CurrentMusic = ""
-RemovedCharacters = Dictionary[String, Array]({})
-ClueInventory = Array[ExtResource("1_ckldy")]([])
 metadata/_custom_type_script = "uid://b45k4twfhl6qu"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51ki2"]
