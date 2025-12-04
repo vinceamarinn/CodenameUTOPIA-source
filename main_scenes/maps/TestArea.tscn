@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene load_steps=23 format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
@@ -14,14 +14,20 @@ script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "i hate u brah"
 CameraSubject = null
-EventTriggerCondition = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_wq2lk"]
+script = ExtResource("6_0ui5h")
+event_data = Dictionary[String, Variant]({
+"text": "i was read on the flag!"
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 
 [sub_resource type="Resource" id="Resource_qd0dc"]
 script = ExtResource("5_1pv0l")
-Line = "idgaf"
+Line = "idgaf [!event0]brahhh you just hate me cause im [!event0]BEAUTIFUL brahhhhh"
 CameraSubject = null
-EventTriggerCondition = null
+EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_wq2lk")])
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_t4as1"]
@@ -29,7 +35,6 @@ script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "damn"
 CameraSubject = null
-EventTriggerCondition = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_3ye7f"]

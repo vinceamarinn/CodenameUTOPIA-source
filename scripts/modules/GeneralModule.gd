@@ -73,7 +73,7 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
 
-func stop_music(fade_time:int) -> void: ## Stops currently playing music.
+func stop_music(fade_time:float) -> void: ## Stops currently playing music.
 	if not music_player.playing: return # if music is not playing, dont do anything
 	
 	# create fade out effect

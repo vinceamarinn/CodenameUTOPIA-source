@@ -33,13 +33,13 @@
 - finish clue inventory system
 
 >CAMERA SYSTEM
-- import & adapt camera functionality from old trial system
+- import & adapt camera functionality from old trial systems
 - add new camera stuff like following the player in overworld segments
 
 >DIALOGUE SYSTEM
 - flashback system
-- dialogue logs (BASIC FUNCTIONALITY DONE, NEEDS CAP ADDED)
-- auto scroll option HIGH PRIORITY
+- dialogue logs (DONE)
+- auto scroll option HIGH PRIORITY (DONE)
 - port dialogue box handling to the UI module HIGH PRIORITY
 
 >EVENTS SYSTEM (DONE)

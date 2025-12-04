@@ -100,6 +100,53 @@ func unload_dialogue_box() -> void:
 	box_actives = null
 	box_textures = null
 
+func process_events(sorted_event_list:Dictionary, key:String) -> void:
+	var chosen_event_list = sorted_event_list[key]
+	
+	for event in chosen_event_list:
+		EventModule.process_event(event)
+
+func trigger_event_flag(time_pos:float, event_ID:int, trigger_time:float, event_list:Array[EventData], flag_list:Dictionary) -> void: ## Processes the list of event flags and triggers them as the dialogue progresses.
+	# wait until it's time to trigger the event flag
+	await get_tree().create_timer(trigger_time).timeout
+	
+	# check if the line is still being processed and that the ID is valid
+	if event_ID < event_list.size() and line_in_process:
+		# get the event and process it
+		var event = event_list[event_ID]
+		EventModule.process_event(event)
+		
+		# remove flag from flag list
+		flag_list.erase(time_pos)
+
+func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event flags from the dialogue line. Returns the cleaned up dialogue line, alongside the processed event flags in the format 'time position : ID'.
+	# create results
+	var flag_list := {}
+	var cleaned_line := raw_line
+	
+	# set up regex for flag detection
+	var flag_pattern := r"\[!event(\d+)\]"
+	var regex = RegEx.new()
+	regex.compile(flag_pattern)
+	
+	while true:
+		# get next flag in the text
+		var result := regex.search(cleaned_line)
+		if result == null: break
+		
+		# get flag's event ID
+		var event_ID := int(result.get_string(1))
+		
+		# get flag's time position in the dialogue line
+		var char_index := result.get_start() # get starting character of the flag
+		var time_pos := float(char_index) / float(cleaned_line.length()) # get time position of the flag (from 0 to 100%)
+		
+		# place flag info in the result list, and clear it from the string
+		flag_list[time_pos] = event_ID
+		cleaned_line = cleaned_line.substr(0, result.get_start()) + cleaned_line.substr(result.get_end(), cleaned_line.length() - result.get_end())
+	
+	return {"cleaned_line" = cleaned_line, "event_flags" = flag_list}
+
 func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the given dialogue line using its provided information.
 	var line_text = box_actives.get_node("Line")
 	var name_text = box_actives.get_node("Name")
@@ -107,24 +154,33 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	continue_arrow.visible = false
 	line_in_process = true
 	
+	# sort out event list for the main 3 conditions
+	var event_list = line_info.EventList
+	var auto_event_list = {
+		"On Start" : [],
+		"On End" : [],
+		"On Continue" : [],
+	}
+	
+	# put every event in the list
+	for events:EventData in event_list:
+		var key = events.EventTriggerCondition
+		if not key in auto_event_list: continue # ignore 'None' events
+		auto_event_list[key].append(events)
+	
+	# run on start events
+	process_events(auto_event_list, "On Start")
+	
 	# handle character name setting
 	if line_info.HideCharacterName:
 		name_text.text = "???"
 	else:
 		name_text.text = tr(GeneralModule.get_character_known_name(line_info.Speaker))
 	
-	# hide text and pre-set it
+	# hide text and change color
 	line_text.visible_ratio = 0
-	line_text.text = tr(line_info.Line)
 	if line_text.modulate != line_info.TextColor: # change text color
 		line_text.modulate = line_info.TextColor
-	
-	# PREAMBLE DONE! just add the name and text to the dialogue logs...
-	dialogue_logs.append(name_text.text + ": " + line_text.text)
-	
-	# if the log amount goes over the limit, delete the oldest line
-	if len(dialogue_logs) > dialogue_log_limit:
-		dialogue_logs.remove_at(0)
 	
 	# LOGGING DONE! TIME TO PROCESS LINE
 	# sfx & voices
@@ -147,25 +203,63 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	if line_info.CharacterLeaves: # tell character to leave the room
 		pass
 	
+	# process event flags and get the line without any flags
+	var raw_line = line_info.Line # extract raw line
+	# create holders
+	var dialogue_line:String
+	var event_flags:Dictionary
+	
+	# check dialogue line for event flags
+	var sweep_result = extract_event_flags(raw_line)
+	
+	# get line cleaned of flags, and the list of flags
+	dialogue_line = sweep_result["cleaned_line"]
+	event_flags = sweep_result["event_flags"]
+	
+	# set the text to the cleaned up dialogue line!
+	line_text.text = tr(dialogue_line)
+	
+	# just add the name and text to the dialogue logs rq...
+	dialogue_logs.append(name_text.text + ": " + dialogue_line)
+	# if the log amount goes over the limit, delete the oldest line
+	if len(dialogue_logs) > dialogue_log_limit:
+		dialogue_logs.remove_at(0)
+	
 	# show text tween, if skip scrolling isn't on (because that just means skip the text scroll)
 	if not line_info.SkipScrolling:
-		var line_length = line_info.Line.length()
+		var line_length = dialogue_line.length()
 		var scroll_speed = .025 - (.01 * (DataStateModule.option_data.TextScrollSpeed - 3))
 		#baseline is 0.025 per character, increasing scroll speed adds +0.01 per increase, decreasing subtracts -0.01
 		#meaning:
 		#1 - 0.045, 2 - 0.035, 3 - 0.025, 4 - 0.015, 5 - 0.005
+		var line_duration = scroll_speed * line_length
 	
 		var line_tween = create_tween().set_parallel(true)
 		line_tween.set_trans(Tween.TRANS_LINEAR)
-		line_tween.tween_property(line_text, "visible_ratio", 1, scroll_speed * line_length)
+		line_tween.tween_property(line_text, "visible_ratio", 1, line_duration)
 		current_scroll_tween = line_tween
 		
+		for time_pos in event_flags.keys():
+			var event_ID = event_flags[time_pos]
+			var trigger_time = time_pos * line_duration
+			
+			trigger_event_flag(time_pos, event_ID, trigger_time, line_info.EventList, event_flags)
+		
 		await line_tween.finished
+		# trigger any untriggered flags if dialogue was skipped
+		for time_pos in event_flags.keys():
+			var event_id = event_flags[time_pos]
+			if event_id < line_info.EventList.size():
+				var event = line_info.EventList[event_id]
+				EventModule.process_event(event)
 	
 	# finish the line
 	line_text.visible_ratio = 1
 	line_in_process = false
 	continue_arrow.visible = true
+	
+	# if event is at the end, process it now
+	process_events(auto_event_list, "On End")
 	
 	# turn on autoscroll timer
 	if autoscroll_enabled:
@@ -173,6 +267,9 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	
 	# wait for continuation signal
 	await continue_dialogue_signal
+	
+	# if event is after continuing, process it now
+	process_events(auto_event_list, "On Continue")
 	
 func read_dialogue_array(array_data:DialogueArray) -> void:
 	var dialogue_array = array_data.dialogue_array

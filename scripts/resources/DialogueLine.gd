@@ -43,14 +43,7 @@ class_name DialogueLine
 @export var PlayVoiceline:AudioStreamOggVorbis ## Play the chosen voiceline.
 
 @export_group("Event Settings")
-@export var Event:EventData ## Event to trigger during this dialogue. If left blank, nothing in this category is considered.
-## Determines when the event will trigger.
-##[br][br]
-##[b]On Start:[/b] The event triggers before the dialogue line is processed.
-##[br][br][b]On End:[/b] The event triggers immediately after the dialogue is processed.
-##[br][br][b]On Continue:[/b] The event triggers after the dialogue is processed, and after the player confirms to move to the next line. 
-##[br][br][b]On Flag:[/b] The event triggers mid-way through the dialogue processing, once an [!event] flag is reached.
-@export_enum("On Start", "On End", "On Continue", "On Flag") var EventTriggerCondition
+@export var EventList:Array[EventData] ## List of events to trigger during this dialogue.
 
 @export_group("Misc. Settings")
 @export var CharacterLeaves:bool = false ## If true, the character will leave the scene upon speaking their line.
