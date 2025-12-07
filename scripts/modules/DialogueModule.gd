@@ -54,10 +54,10 @@ func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
 	await autoscroll_tween.finished
 	
 	if not autoscroll_enabled: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
-	if not line_in_process:
+	if not line_in_process: # actually continue the dialogue automatically
 		continue_dialogue_signal.emit()
 
-func load_dialogue_box(box_name:String) -> void:
+func load_dialogue_box(box_name:String) -> void: ## Provisory temp function to load the default testing dialogue box.
 	if dialogue_box != null: return
 	dialogue_box = load("res://sub_scenes/UI/" + box_name + ".tscn").instantiate()
 	UI.add_child(dialogue_box)
@@ -80,7 +80,7 @@ func load_dialogue_box(box_name:String) -> void:
 	position_tween.tween_property(dialogue_box, "position", Vector2(0, 0), .5)
 	await position_tween.finished
 
-func unload_dialogue_box() -> void:
+func unload_dialogue_box() -> void: ## Provisory temp function to unload the default testing dialogue box.
 	if dialogue_box == null: return
 	
 	var line_text = box_actives.get_node("Line")
@@ -100,9 +100,10 @@ func unload_dialogue_box() -> void:
 	box_actives = null
 	box_textures = null
 
-func process_events(sorted_event_list:Dictionary, key:String) -> void:
-	var chosen_event_list = sorted_event_list[key]
+func process_events(sorted_event_list:Dictionary, key:String) -> void: ## Processes the triggering of automatic events.
+	var chosen_event_list = sorted_event_list[key] # gets the list of events to trigger at this point
 	
+	# triggers said events
 	for event in chosen_event_list:
 		EventModule.process_event(event)
 
@@ -132,7 +133,7 @@ func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event f
 	while true:
 		# get next flag in the text
 		var result := regex.search(cleaned_line)
-		if result == null: break
+		if result == null: break # if no flags, break and return
 		
 		# get flag's event ID
 		var event_ID := int(result.get_string(1))
@@ -148,13 +149,16 @@ func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event f
 	return {"cleaned_line" = cleaned_line, "event_flags" = flag_list}
 
 func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the given dialogue line using its provided information.
+	# first things first, get the global components of the dialogue box UI
 	var line_text = box_actives.get_node("Line")
 	var name_text = box_actives.get_node("Name")
 	var continue_arrow = box_actives.get_node("Arrow")
+	
+	# hide continue arrow and set processing flag to true
 	continue_arrow.visible = false
 	line_in_process = true
 	
-	# sort out event list for the main 3 conditions
+	# create event list for the main 3 trigger conditions
 	var event_list = line_info.EventList
 	var auto_event_list = {
 		"On Start" : [],
@@ -162,7 +166,7 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		"On Continue" : [],
 	}
 	
-	# put every event in the list
+	# put every automatic trigger event in the list
 	for events:EventData in event_list:
 		var key = events.EventTriggerCondition
 		if not key in auto_event_list: continue # ignore 'None' events
@@ -177,19 +181,19 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	else:
 		name_text.text = tr(GeneralModule.get_character_known_name(line_info.Speaker))
 	
-	# hide text and change color
+	# hide the text on the label and set text color
 	line_text.visible_ratio = 0
 	if line_text.modulate != line_info.TextColor: # change text color
 		line_text.modulate = line_info.TextColor
 	
-	# LOGGING DONE! TIME TO PROCESS LINE
-	# sfx & voices
+	# LOADING DONE! TIME TO PROCESS LINE
+	# play sfx & voices
 	if line_info.PlaySoundEffect:
 		GeneralModule.play_sfx(line_info.PlaySoundEffect)
 	if line_info.PlayVoiceline:
-		GeneralModule.play_sfx(line_info.PlayVoiceline)
+		GeneralModule.play_voiceline(line_info.PlayVoiceline)
 	
-	# music handling
+	# playing and stopping music
 	if line_info.MuteMusic and line_info.PlayMusic == null:
 		GeneralModule.stop_music(line_info.MutingSpeed)
 	elif line_info.PlayMusic and not line_info.MuteMusic:
@@ -200,16 +204,17 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 			GeneralModule.play_music(line_info.PlayMusic)
 		song_transition.call()
 	
-	if line_info.CharacterLeaves: # tell character to leave the room
+	# tell character to leave the room (to add later)
+	if line_info.CharacterLeaves:
 		pass
 	
 	# process event flags and get the line without any flags
 	var raw_line = line_info.Line # extract raw line
-	# create holders
+	# create holders in memory
 	var dialogue_line:String
 	var event_flags:Dictionary
 	
-	# check dialogue line for event flags
+	# check dialogue line for event flags & process them
 	var sweep_result = extract_event_flags(raw_line)
 	
 	# get line cleaned of flags, and the list of flags
@@ -227,18 +232,21 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	
 	# show text tween, if skip scrolling isn't on (because that just means skip the text scroll)
 	if not line_info.SkipScrolling:
+		# get the length, scroll speed & calculate total process time
 		var line_length = dialogue_line.length()
 		var scroll_speed = .025 - (.01 * (DataStateModule.option_data.TextScrollSpeed - 3))
 		#baseline is 0.025 per character, increasing scroll speed adds +0.01 per increase, decreasing subtracts -0.01
 		#meaning:
 		#1 - 0.045, 2 - 0.035, 3 - 0.025, 4 - 0.015, 5 - 0.005
 		var line_duration = scroll_speed * line_length
-	
+		
+		# create & run text scroll tween
 		var line_tween = create_tween().set_parallel(true)
 		line_tween.set_trans(Tween.TRANS_LINEAR)
 		line_tween.tween_property(line_text, "visible_ratio", 1, line_duration)
 		current_scroll_tween = line_tween
 		
+		# trigger event flag events on the correct time
 		for time_pos in event_flags.keys():
 			var event_ID = event_flags[time_pos]
 			var trigger_time = time_pos * line_duration
@@ -246,14 +254,15 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 			trigger_event_flag(time_pos, event_ID, trigger_time, line_info.EventList, event_flags)
 		
 		await line_tween.finished
-		# trigger any untriggered flags if dialogue was skipped
+		
+		# trigger any untriggered flags, if dialogue was skipped
 		for time_pos in event_flags.keys():
 			var event_id = event_flags[time_pos]
 			if event_id < line_info.EventList.size():
 				var event = line_info.EventList[event_id]
 				EventModule.process_event(event)
 	
-	# finish the line
+	# finish the line & set it to the end result
 	line_text.visible_ratio = 1
 	line_in_process = false
 	continue_arrow.visible = true
@@ -271,9 +280,9 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	# if event is after continuing, process it now
 	process_events(auto_event_list, "On Continue")
 	
-func read_dialogue_array(array_data:DialogueArray) -> void:
+func read_dialogue_array(array_data:DialogueArray) -> void: ## Iterates through a given dialogue array.
 	var dialogue_array = array_data.dialogue_array
-	for dialogue_line in dialogue_array: #iterate through every dialogue line in the dialogue array and process it
+	for dialogue_line in dialogue_array: # iterate through every dialogue line in the dialogue array and process it in order
 		await process_dialogue_line(dialogue_line)
 
 func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a given dialogue tree.
@@ -281,7 +290,7 @@ func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a g
 	var loop_tree = tree_data.loop_tree # get loop value
 	
 	var array_data = dialogue_tree[tree_data.array_tracker] # get selected dialogue array to iterate
-	await read_dialogue_array(array_data)
+	await read_dialogue_array(array_data) # read dialogue array
 	
 	#handle array tracker logic
 	#if the array tracker is not at the last array of the tree, increment it
@@ -292,28 +301,34 @@ func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a g
 		if loop_tree == true:
 			tree_data.array_tracker = 0
 
-func read_dialogue(dialogue_data):
+func read_dialogue(dialogue_data): ## Read through the provided dialogue. Handles both trees & arrays.
+	# prevent two dialogues from being read at once
 	if reading_in_progress: return
 	reading_in_progress = true
 	
+	# lock player interaction
 	var player:PlayerOverworld = char_group.get_node_or_null("Player")
 	if player:
 		player.update_locks(false)
 	
+	# load dialogue box (to do for later, provisory function)
 	await load_dialogue_box("DialogueBox")
+	
+	# detect the kind of dialogue to read & process it
 	if dialogue_data is DialogueArray:
 		await read_dialogue_array(dialogue_data)
 	elif dialogue_data is DialogueTree:
 		await read_dialogue_tree(dialogue_data)
-	
 	reading_in_progress = false
 	
 	# cleanup tween refs
 	current_scroll_tween = null
 	current_autoscroll_tween = null
 	
+	# unload dialogue box
 	await unload_dialogue_box()
 	
+	# unlock player
 	if player != null:
 		player.update_locks(true)
 		player = null

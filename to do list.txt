@@ -1,27 +1,24 @@
 >IMPORTANT!!!!
-- update dialogue module to support the new event calling functionality (alongside processing whether there's an [!event] flag in the line)
-
 - maybe create more straightforward way for the event module to process events, so that events can have their own unique function call and can be called independently without an event data resource if needed
 
 
 >GENERAL STUFF I SHOULD PROBS DO
 - probably organize the assets folder a little better lmfao
 - probably generalize the player overworld thing sprite loading or whatever to also work for everyone
-- standardize kazuhito revealed into a story flags table! because individual flag variables are MORONIC (DONE)
 
 >MUSIC
-- add a new layer of chords to the final chorus of the investigation theme to make it truly feel final
-- maybe some more ear candy in between chorus 1 and verse 2 with the panty & stocking riff part?
 - record wahwah guitar for thinking time
 - probably work on danger theme some more
+- make intro theme
+- make ending theme
 
 >UI
 - actually develop the add/removal systems
-- pause menu with all the good stuff in it
 - more ui elements like currently playing music
 
 >SYSTEMS
 - options menu
+- pause menu with all the good stuff in it
 - title screen on game boot with debug quickstart
 - loading screen minigames!!!
 - implement trial system!!! (maybe its own module??? though i dont think thatd be super necessary)
@@ -38,18 +35,12 @@
 
 >DIALOGUE SYSTEM
 - flashback system
-- dialogue logs (DONE)
-- auto scroll option HIGH PRIORITY (DONE)
 - port dialogue box handling to the UI module HIGH PRIORITY
 
->EVENTS SYSTEM (DONE)
-- add a system to add events to interactables or dialogue (maybe even its own module maybe?), so that we can do things like show an image, start a flashback, etc
-would probably work similarly to the interactable system, maybe the interactable system functionality could straight up all just be ported there LOL
-
-LIST OF OPTIONS TO ADD:
+LIST OF OPTIONS:
 - fps counter & caps
+- fullscreen or windowed brah
 - resolution changer
-- window mode
 - vsync on off
 - change languages
 - text autoscroll
@@ -58,5 +49,5 @@ LIST OF OPTIONS TO ADD:
 - shadow quality
 - keybinds
 - dialogue module logs limit (10, 50, 100, 250, 500, 750, 1000)
-
-already added: audio volume for all, audio volume for voices/sfx/music, text scrolling speed, languages
+- audio volume master & individual for voices, sfx and music
+- text scroll speed
