@@ -7,7 +7,7 @@ class_name SaveStateData
 @export var PlayerCharacter:GeneralModule.PlayableChars = GeneralModule.PlayableChars.YUUTO ## Tracks your currently selected playable character in overworld sections.
 
 #story flags
-@export var StoryFlags:Dictionary = {
+@export var StoryFlags:Dictionary = { ## Contains a dictionary of story-specific flags, to track whether certain things have been achieved.
 	"IsTrial" : false,
 	"KazuhitoRevealed" : false,
 }

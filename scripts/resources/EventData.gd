@@ -2,17 +2,27 @@ extends Resource
 class_name EventData
 
 enum EventType {
-	# general use
+	#region General category events
 	GENERAL_PRINT_TEXT, ## Debug action. Simply prints the text on the interactable data.
+	#endregion
 	
-	# area related
+	#region Area category events
 	AREA_LOAD_AREA, ## Calls the area module to load a new area.
+	#endregion
 	
-	# dialogue related
+	#region Dialogue category events
 	DIALOGUE_READ_DIALOGUE, ## Calls the dialogue module to iterate through a dialogue tree.
+	#endregion
+	
+	#region Audio category events
+	AUDIO_PLAY_MUSIC,
+	AUDIO_STOP_MUSIC,
+	AUDIO_PLAY_SFX,
+	AUDIO_PLAY_VOICELINE,
+	#endregion
 }
 
-@export var event_type:EventType ## Chooses which event to perform through the event module.
+@export var event_type:EventType = EventType.GENERAL_PRINT_TEXT ## Chooses which event to perform through the event module.
 @export var event_data:Dictionary[String, Variant] ## Data to pass as arguments for the chosen event.
 
 ## Determines when the event will trigger automatically. Only used during dialogue lines.

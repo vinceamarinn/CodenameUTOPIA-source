@@ -10,7 +10,7 @@ extends Node
 # It also stores global variables like the character list, for everyone's use.
 
 enum Characters { ## Very important list of all registered characters. Used in any resources that require you to select a character.
-	# Main Characters - the 16 participants of the game & the enforcer.
+	#region Main Characters - the 16 participants of the game & the enforcer.
 	YUUTO,
 	YUUKA,
 	LANCE,
@@ -28,13 +28,20 @@ enum Characters { ## Very important list of all registered characters. Used in a
 	IKUE,
 	SEBASTIAN,
 	MADAME,
+	#endregion
 	
-	# Alt. Characters - alternative versions of characters (something like Yuuto with pajamas on instead, for example).
+	#region Alt. Characters - alternative versions of characters (something like Yuuto with pajamas on instead, for example).
 	SHIZUKA,
+	#endregion
 	
-	# Secondary Characters - characters who appear in the story besides the main characters with a good amount of appearances.
+	#region Secondary Characters - characters who appear in the story besides the main characters with a good amount of appearances.
+	EDWIN,
+	SCHAEFFER,
+	#endregion
 	
-	# Tertiary Characters - characters who only appear in the story for a few specific scenes.
+	#region Tertiary Characters - characters who only appear in the story for a few specific scenes.
+	KAORU,
+	#endregion
 }
 
 enum PlayableChars { ## Enum list of characters you are able to play as.
@@ -43,7 +50,7 @@ enum PlayableChars { ## Enum list of characters you are able to play as.
 }
 
 var known_names_list:Dictionary = { ## Dictionary assigning every character to their known name.
-	# Main Characters
+	#region # Main Characters
 	Characters.YUUTO: tr("Yuuto Katashi"),
 	Characters.YUUKA: tr("Yuuka Katashi"),
 	Characters.LANCE: tr("Lance Katsunosuke"),
@@ -61,13 +68,20 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 	Characters.IKUE: tr("Ikue Fuyumi"),
 	Characters.SEBASTIAN: tr("Sebastian Kagaku"),
 	Characters.MADAME: tr("The Madame"),
+	#endregion
 	
-	# Alt. Characters
+	#region # Alt. Characters
 	Characters.SHIZUKA: tr("Shizuka Yukino"),
+	#endregion
 	
-	# Secondary Characters
+	#region # Secondary Characters
+	Characters.EDWIN: tr("Edwin Winfield"),
+	Characters.SCHAEFFER: tr("'Schaeffer'"),
+	#endregion
 	
-	# Tertiary Characters
+	#region # Tertiary Characters
+	Characters.KAORU: tr("Kaoru Nakajima"),
+	#endregion
 }
 
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
@@ -85,14 +99,12 @@ func stop_music(fade_time:float) -> void: ## Stops currently playing music.
 	music_player.stop()
 	music_player.volume_linear = 1
 	game_data.CurrentMusic = ""
-	
-	# wait a little more (this is only usually relevant if the function is being called from the music playing function)
-	await get_tree().create_timer(.5).timeout
 
 func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# stop and fade out the previous track if a track is already playing
 	if music_player.playing:
 		await stop_music(3)
+		await get_tree().create_timer(.5).timeout
 	
 	# play the music! and update it on the data module
 	music_player.stream = music

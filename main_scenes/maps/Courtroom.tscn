@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene load_steps=9 format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_f0jdl"]
+[ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="4_f0jdl"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://sub_scenes/templates/Interactable.tscn" id="5_ve6fs"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="6_o6xhn"]
 [ext_resource type="PackedScene" uid="uid://ivtu64oqjrag" path="res://models/Map Vincent.fbx" id="6_ve6fs"]
@@ -8,10 +9,19 @@
 [sub_resource type="BoxMesh" id="BoxMesh_nrhaa"]
 size = Vector3(2, 2, 2)
 
+[sub_resource type="Resource" id="Resource_ve6fs"]
+script = ExtResource("4_f0jdl")
+event_type = 1
+event_data = Dictionary[String, Variant]({
+"area": "TestArea"
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
+
 [sub_resource type="Resource" id="Resource_42k1y"]
 script = ExtResource("6_o6xhn")
-interactable_type = 0
-interaction_range = 0.0
+interactable_type = 1
+interaction_range = 5.0
+interact_event = SubResource("Resource_ve6fs")
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [node name="Courtroom" type="Node3D"]

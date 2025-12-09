@@ -1,6 +1,7 @@
 >IMPORTANT!!!!
-- maybe create more straightforward way for the event module to process events, so that events can have their own unique function call and can be called independently without an event data resource if needed
 
+
+=================================================
 
 >GENERAL STUFF I SHOULD PROBS DO
 - probably organize the assets folder a little better lmfao
@@ -8,7 +9,7 @@
 
 >MUSIC
 - record wahwah guitar for thinking time
-- probably work on danger theme some more
+- work on danger theme some more
 - make intro theme
 - make ending theme
 
@@ -51,3 +52,4 @@ LIST OF OPTIONS:
 - dialogue module logs limit (10, 50, 100, 250, 500, 750, 1000)
 - audio volume master & individual for voices, sfx and music
 - text scroll speed
+- text colors for thinking and highlighting and whatnot

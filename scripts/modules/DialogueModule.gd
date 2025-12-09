@@ -194,15 +194,11 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		GeneralModule.play_voiceline(line_info.PlayVoiceline)
 	
 	# playing and stopping music
-	if line_info.MuteMusic and line_info.PlayMusic == null:
+	if line_info.MuteMusic:
 		GeneralModule.stop_music(line_info.MutingSpeed)
-	elif line_info.PlayMusic and not line_info.MuteMusic:
+	else:
+		if line_info.PlayMusic == null: return
 		GeneralModule.play_music(line_info.PlayMusic)
-	elif line_info.PlayMusic and line_info.MuteMusic:
-		var song_transition = func():
-			await GeneralModule.stop_music(line_info.MutingSpeed)
-			GeneralModule.play_music(line_info.PlayMusic)
-		song_transition.call()
 	
 	# tell character to leave the room (to add later)
 	if line_info.CharacterLeaves:
