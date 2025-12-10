@@ -107,7 +107,7 @@ func process_events(sorted_event_list:Dictionary, key:String) -> void: ## Proces
 	for event in chosen_event_list:
 		EventModule.process_event(event)
 
-func trigger_event_flag(time_pos:float, event_ID:int, trigger_time:float, event_list:Array[EventData], flag_list:Dictionary) -> void: ## Processes the list of event flags and triggers them as the dialogue progresses.
+func trigger_event_flag(char_pos:int, event_ID:int, trigger_time:float, event_list:Array[EventData], flag_list:Dictionary) -> void: ## Processes the list of event flags and triggers them as the dialogue progresses.
 	# wait until it's time to trigger the event flag
 	await get_tree().create_timer(trigger_time).timeout
 	
@@ -118,9 +118,9 @@ func trigger_event_flag(time_pos:float, event_ID:int, trigger_time:float, event_
 		EventModule.process_event(event)
 		
 		# remove flag from flag list
-		flag_list.erase(time_pos)
+		flag_list.erase(char_pos)
 
-func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event flags from the dialogue line. Returns the cleaned up dialogue line, alongside the processed event flags in the format 'time position : ID'.
+func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event flags from the dialogue line. Returns the cleaned up dialogue line, alongside the processed event flags in the format 'character position : ID'.
 	# create results
 	var flag_list := {}
 	var cleaned_line := raw_line
@@ -138,14 +138,14 @@ func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event f
 		# get flag's event ID
 		var event_ID := int(result.get_string(1))
 		
-		# get flag's time position in the dialogue line
-		var char_index := result.get_start() # get starting character of the flag
-		var time_pos := float(char_index) / float(cleaned_line.length()) # get time position of the flag (from 0 to 100%)
+		# get flag's starting character position & store the flag into a list
+		var char_index := result.get_start()
+		flag_list[char_index] = event_ID
 		
-		# place flag info in the result list, and clear it from the string
-		flag_list[time_pos] = event_ID
+		# clean string of flag
 		cleaned_line = cleaned_line.substr(0, result.get_start()) + cleaned_line.substr(result.get_end(), cleaned_line.length() - result.get_end())
 	
+	# return the newly created flag
 	return {"cleaned_line" = cleaned_line, "event_flags" = flag_list}
 
 func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the given dialogue line using its provided information.
@@ -197,8 +197,8 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	if line_info.MuteMusic:
 		GeneralModule.stop_music(line_info.MutingSpeed)
 	else:
-		if line_info.PlayMusic == null: return
-		GeneralModule.play_music(line_info.PlayMusic)
+		if line_info.PlayMusic != null:
+			GeneralModule.play_music(line_info.PlayMusic)
 	
 	# tell character to leave the room (to add later)
 	if line_info.CharacterLeaves:
@@ -231,23 +231,26 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		# get the length, scroll speed & calculate total process time
 		var line_length = dialogue_line.length()
 		var scroll_speed = .025 - (.01 * (DataStateModule.option_data.TextScrollSpeed - 3))
-		#baseline is 0.025 per character, increasing scroll speed adds +0.01 per increase, decreasing subtracts -0.01
-		#meaning:
-		#1 - 0.045, 2 - 0.035, 3 - 0.025, 4 - 0.015, 5 - 0.005
+		# baseline is 0.025 per character, increasing scroll speed adds +0.01 per increase, decreasing subtracts -0.01
+		# meaning:
+		# 1 - 0.045, 2 - 0.035, 3 - 0.025, 4 - 0.015, 5 - 0.005
+		# the equation displayed was obtained through a graphical calculator to perfectly adjust to the correct speed
+		
+		# get total tween length
 		var line_duration = scroll_speed * line_length
 		
-		# create & run text scroll tween
+		# create text scroll tween and run it
 		var line_tween = create_tween().set_parallel(true)
+		current_scroll_tween = line_tween
 		line_tween.set_trans(Tween.TRANS_LINEAR)
 		line_tween.tween_property(line_text, "visible_ratio", 1, line_duration)
-		current_scroll_tween = line_tween
 		
 		# trigger event flag events on the correct time
-		for time_pos in event_flags.keys():
-			var event_ID = event_flags[time_pos]
-			var trigger_time = time_pos * line_duration
+		for char_pos in event_flags.keys():
+			var event_ID = event_flags[char_pos]
+			var trigger_time = char_pos * scroll_speed
 			
-			trigger_event_flag(time_pos, event_ID, trigger_time, line_info.EventList, event_flags)
+			trigger_event_flag(char_pos, event_ID, trigger_time, line_info.EventList, event_flags)
 		
 		await line_tween.finished
 		
