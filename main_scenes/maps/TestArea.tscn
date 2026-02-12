@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c1jf7anrrlq5p"]
+[gd_scene format=3 uid="uid://c1jf7anrrlq5p"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_i7cpd"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1pv0l"]
@@ -10,36 +10,25 @@
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0ui5h"]
 
 [sub_resource type="Resource" id="Resource_1pv0l"]
-script = ExtResource("5_1pv0l")
-Speaker = 3
-Line = "i hate u brah"
-CameraSubject = null
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_wq2lk"]
 script = ExtResource("6_0ui5h")
+event_type = 7
 event_data = Dictionary[String, Variant]({
-"text": "i was read on the flag!"
+"trial_ID": 0
 })
+EventTriggerCondition = "On Continue"
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 
 [sub_resource type="Resource" id="Resource_qd0dc"]
 script = ExtResource("5_1pv0l")
-Line = "idgaf [!event0]brahhh you just hate me cause im [!event0]BEAUTIFUL brahhhhh"
-CameraSubject = null
-EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_wq2lk")])
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_t4as1"]
-script = ExtResource("5_1pv0l")
 Speaker = 3
-Line = "damn"
+Line = "im trialing it up"
 CameraSubject = null
+EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_1pv0l")])
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_3ye7f"]
 script = ExtResource("4_hxjik")
-dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_1pv0l"), SubResource("Resource_qd0dc"), SubResource("Resource_t4as1")])
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_qd0dc")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
 [sub_resource type="Resource" id="Resource_0ui5h"]
@@ -93,25 +82,25 @@ interaction_range = 3.0
 interact_event = SubResource("Resource_q0rnr")
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
-[node name="TestArea" type="Node3D"]
+[node name="TestArea" type="Node3D" unique_id=1192874602]
 script = ExtResource("1_i7cpd")
 area_states = Dictionary[String, ExtResource("2_1pv0l")]({
 "CH0_sigmund": SubResource("Resource_h1kik")
 })
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=2467997]
 mesh = SubResource("BoxMesh_hxjik")
 
-[node name="Floor_col" type="StaticBody3D" parent="Floor"]
+[node name="Floor_col" type="StaticBody3D" parent="Floor" unique_id=1987203276]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor_col"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor_col" unique_id=1987247287]
 shape = SubResource("ConcavePolygonShape3D_xpuui")
 
-[node name="base part-col" type="MeshInstance3D" parent="."]
+[node name="base part-col" type="MeshInstance3D" parent="." unique_id=2083981525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.183093, 1.502, -13.295)
 mesh = SubResource("BoxMesh_kvvoo")
 
-[node name="Interactable" parent="base part-col" instance=ExtResource("4_i7cpd")]
+[node name="Interactable" parent="base part-col" unique_id=1703434222 instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_hxjik")
 
 [editable path="base part-col/Interactable"]

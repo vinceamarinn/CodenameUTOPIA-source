@@ -1,4 +1,7 @@
 extends Node
+
+#game tree goodies we need
+@onready var GameMain = get_node("/root/GameMain")
 @onready var audio_busses:Node = get_node("/root/GameMain/AudioBusses")
 @onready var music_player:AudioStreamPlayer = audio_busses.get_node("MusicPlayer")
 @onready var sfx_player:AudioStreamPlayer = audio_busses.get_node("SFXPlayer")
@@ -86,6 +89,23 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
+
+func load_script_into_node(script_path:String, node_parent:Node) -> Node: ## Attaches a chosen script to a new base node in order to load it. Returns said node, parented to the requested parent node. Used to load minigames & the like.
+	var new_path = "res://scripts/" + script_path # gets the script's name
+	
+	# creates the holder node & loads requested script
+	var new_node = Node.new()
+	var new_script = load(new_path)
+	
+	# names the node & attaches the script to it
+	new_node.name = get_file_name(new_script)
+	new_node.set_script(new_script)
+	
+	# parents the script holder node to the requested parent node
+	node_parent.add_child(new_node)
+	
+	# returns the script holder node
+	return new_node
 
 func stop_music(fade_time:float) -> void: ## Stops currently playing music.
 	if not music_player.playing: return # if music is not playing, dont do anything

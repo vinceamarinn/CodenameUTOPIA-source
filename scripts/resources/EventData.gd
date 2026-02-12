@@ -15,10 +15,14 @@ enum EventType {
 	#endregion
 	
 	#region Audio category events
-	AUDIO_PLAY_MUSIC,
-	AUDIO_STOP_MUSIC,
-	AUDIO_PLAY_SFX,
-	AUDIO_PLAY_VOICELINE,
+	AUDIO_PLAY_MUSIC, ## Plays the provided music track.
+	AUDIO_STOP_MUSIC, ## Stops the current music track.
+	AUDIO_PLAY_SFX, ## Plays the provided sound effect.
+	AUDIO_PLAY_VOICELINE, ## PLays the provided voiceline.
+	#endregion
+	
+	#region Trial events
+	TRIAL_START_TRIAL, ## Calls the Data/State module to begin a new trial.
 	#endregion
 }
 

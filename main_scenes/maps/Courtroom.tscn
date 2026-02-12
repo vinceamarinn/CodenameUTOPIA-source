@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlt3bkegpqyvm"]
+[gd_scene format=3 uid="uid://dlt3bkegpqyvm"]
 
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_f0jdl"]
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="4_f0jdl"]
@@ -24,10 +24,10 @@ interaction_range = 5.0
 interact_event = SubResource("Resource_ve6fs")
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
-[node name="Courtroom" type="Node3D"]
+[node name="Courtroom" type="Node3D" unique_id=585397178]
 script = ExtResource("1_f0jdl")
 
-[node name="Map Vincent" parent="." instance=ExtResource("6_ve6fs")]
+[node name="Map Vincent" parent="." unique_id=1488574010 instance=ExtResource("6_ve6fs")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
 
 [node name="ArmRests " parent="Map Vincent" index="0"]
@@ -93,11 +93,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 [node name="WoodenStand " parent="Map Vincent" index="20"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
-[node name="base part-col" type="MeshInstance3D" parent="."]
+[node name="base part-col" type="MeshInstance3D" parent="." unique_id=832725866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94183, 2.23454, -1.86873)
 mesh = SubResource("BoxMesh_nrhaa")
 
-[node name="Interactable" parent="base part-col" instance=ExtResource("5_ve6fs")]
+[node name="Interactable" parent="base part-col" unique_id=1739756957 instance=ExtResource("5_ve6fs")]
 interactable_data = SubResource("Resource_42k1y")
 
 [editable path="Map Vincent"]

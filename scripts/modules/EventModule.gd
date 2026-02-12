@@ -49,6 +49,14 @@ func play_voiceline(event_data:Dictionary) -> void: ## Plays the provided voicel
 
 #endregion
 
+#region Trial events
+
+func start_trial(event_data:Dictionary): ## Calls the Data/State Module to begin the provided trial. If the trial number is '0', it will automatically load the trial of the current chapter instead of a specific one.
+	var trial_ID = event_data.get("trial_ID")
+	DataStateModule.start_trial(trial_ID)
+
+#endregion
+
 func process_event(event:EventData): ## Processes the provided event.
 	# get event stuff
 	var event_id = event.event_type

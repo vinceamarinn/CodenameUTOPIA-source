@@ -1,5 +1,8 @@
 extends Node
 
+#game tree goodies we need
+@onready var GameMain = get_node("/root/GameMain")
+
 @export var game_data:SaveStateData = SaveStateData.new()
 @export var option_data:OptionData = OptionData.new()
 
@@ -11,8 +14,21 @@ func get_chapter_state_name() -> String: ## Returns the chapter + state combo ba
 	return "CH" + str(game_data.CurrentChapter) + "_" + game_data.CurrentState
 	# area/state example: CH69_sigma_fortnite_balls
 
-func check_if_trial() -> bool: ## Verifies if the chapter state starts with TRIAL (indicating we're in-trial).
+func check_if_trial() -> bool: ## Verifies if the game is currently in trial mode (indicating we're in-a courtroom trial).
 	return game_data.StoryFlags["IsTrial"] == true
+
+func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order to begin a new trial. If the number provided is '0', it will load the current chapter's trial.
+	print("attempting trial load, provided ID is", trial_ID)
+	var trial_handler = GeneralModule.load_script_into_node("trial/TrialHandler.gd", GameMain) # loads trial handler into new node at GameMain
+	
+	# if the trial ID is 0, the trial handler will load the trial of the current chapter
+	if trial_ID == 0:
+		print("trial ID is 0! getting current chapter ID")
+		trial_ID = game_data.CurrentChapter
+		print("current chapter ID is", game_data.CurrentChapter)
+	
+	print("telling trial handler to initialize trial number: ", trial_ID)
+	trial_handler.initialize_trial(trial_ID) # initializes the trial handler
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
 	if not property in data_file: return # don't execute if property is not found
