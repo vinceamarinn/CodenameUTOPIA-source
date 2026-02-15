@@ -39,9 +39,14 @@ func create_character(char_info) -> void: ## Creates a character from the base t
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
-func load_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
+func load_character_states(area_state) -> void: ## Loads the character states in the given area state.
+	for char_state in area_state:
+			create_character(char_state)
+
+func create_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
 	char_group.add_child(new_player)
+	new_player.name = "Player"
 	
 	var player_name = GeneralModule.get_character_name(player_char)
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
@@ -55,19 +60,29 @@ func unload_characters() -> void: ## Unloads any currently loaded characters.
 func unload_area(area:Node) -> void: ## Deletes the provided area. Also wipes any currently loaded characters.
 	area.queue_free() # deletes the current area
 
-func load_area(area_name:String, state:String, player:GeneralModule.PlayableChars) -> void: ## Handles the loading & processing of areas and the area's data based on the given state.
+func load_area(area_name:String, state:String, load_player:bool, load_characters:bool, skip_transition:bool) -> Node3D: ## Handles the loading & processing of areas and the area's data based on the given state.
 	#get the area's supposed path, end the code if the area doesn't exist
 	var area_path = "res://main_scenes/maps/" + area_name + ".tscn"
 	if not ResourceLoader.exists(area_path): return
 	
-	UIModule.trans("in", 0.85, Color.BLACK, false)
-	await UIModule.transition_ended
+	# activate player locks if there's a player
+	var existing_player:PlayerOverworld = char_group.get_node_or_null("Player")
+	if existing_player:
+		existing_player.update_locks(false)
+	
+	# fade screen out
+	if not skip_transition:
+		UIModule.trans("in", 0.85, Color.BLACK, false)
+		await UIModule.transition_ended
 	
 	#unload any already existing areas
 	for children in scenes_3D.get_children():
 		if children == char_group: continue
 		unload_area(children)
 	unload_characters()
+	
+	# wait to unload everything before starting to load things in
+	await get_tree().process_frame
 	
 	#load, clone & insert the new area
 	var new_area = load(area_path).instantiate()
@@ -84,24 +99,32 @@ func load_area(area_name:String, state:String, player:GeneralModule.PlayableChar
 		var area_state = state_dict[state].character_state_array
 		on_enter_event = state_dict[state].on_enter_event # stores the on enter event's reference for later
 		
-		for char_state in area_state:
-			create_character(char_state)
+		if load_characters:
+			load_character_states(area_state)
 	
 	#clear removed character dictionary, add tag for current area
 	game_data.RemovedCharacters.clear()
 	game_data.RemovedCharacters.set(area_name, [])
 	
 	#create the player
-	var new_player = load_player(player)
-	UIModule.trans("out", 1, Color.BLACK, false)
-	await UIModule.transition_ended
+	var new_player = null
+	if load_player:
+		new_player = create_player(DataStateModule.game_data.PlayerCharacter)
+	
+	# fade screen back in
+	if not skip_transition:
+		UIModule.trans("out", 1, Color.BLACK, false)
+		await UIModule.transition_ended
 	
 	#play on enter dialogue if it exists
 	if on_enter_event:
 		EventModule.process_event(on_enter_event)
 	
 	# let player move now
-	new_player.update_locks(true)
+	if new_player != null:
+		new_player.update_locks(true)
+	
+	return new_area
 
 func _ready() -> void:
 	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

@@ -36,6 +36,7 @@ DataStateModule="*res://scripts/modules/DataStateModule.gd"
 CameraModule="*res://scripts/modules/CameraModule.gd"
 EventModule="*res://scripts/modules/EventModule.gd"
 DialogueModule="*res://scripts/modules/DialogueModule.gd"
+InteractableHandler="*uid://bntn05tn3donr"
 
 [display]
 

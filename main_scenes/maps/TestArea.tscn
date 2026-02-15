@@ -78,8 +78,22 @@ metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 [sub_resource type="Resource" id="Resource_hxjik"]
 script = ExtResource("5_8pvs2")
 interactable_type = 1
-interaction_range = 3.0
+interaction_range = 5.0
 interact_event = SubResource("Resource_q0rnr")
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
+
+[sub_resource type="Resource" id="Resource_t4as1"]
+script = ExtResource("6_0ui5h")
+event_data = Dictionary[String, Variant]({
+"text": "sigma"
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
+
+[sub_resource type="Resource" id="Resource_u7d5k"]
+script = ExtResource("5_8pvs2")
+interactable_type = 1
+interaction_range = 5.0
+interact_event = SubResource("Resource_t4as1")
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [node name="TestArea" type="Node3D" unique_id=1192874602]
@@ -103,4 +117,12 @@ mesh = SubResource("BoxMesh_kvvoo")
 [node name="Interactable" parent="base part-col" unique_id=1703434222 instance=ExtResource("4_i7cpd")]
 interactable_data = SubResource("Resource_hxjik")
 
+[node name="base part-col2" type="MeshInstance3D" parent="." unique_id=908388995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0830288, 1.502, -13.295)
+mesh = SubResource("BoxMesh_kvvoo")
+
+[node name="Interactable" parent="base part-col2" unique_id=372533762 instance=ExtResource("4_i7cpd")]
+interactable_data = SubResource("Resource_u7d5k")
+
 [editable path="base part-col/Interactable"]
+[editable path="base part-col2/Interactable"]

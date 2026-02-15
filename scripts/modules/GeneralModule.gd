@@ -49,7 +49,8 @@ enum Characters { ## Very important list of all registered characters. Used in a
 
 enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUTO,
-	YUUKA
+	YUUKA,
+	NONE
 }
 
 var known_names_list:Dictionary = { ## Dictionary assigning every character to their known name.

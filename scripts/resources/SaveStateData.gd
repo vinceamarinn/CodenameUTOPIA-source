@@ -8,8 +8,9 @@ class_name SaveStateData
 
 #story flags
 @export var StoryFlags:Dictionary = { ## Contains a dictionary of story-specific flags, to track whether certain things have been achieved.
-	"IsTrial" : false,
-	"KazuhitoRevealed" : false,
+	"IsTrial" : false, ## Tracks whether you're in a trial or not.
+	"KazuhitoRevealed" : false, ## Tracks whether Kazuhito has had his real name revealed or not.
+	"DeathRegistry" : [], ## Tracks the deaths of characters who have died. You can edit back in your favorite characters lmaooooooo
 }
 
 @export_group("Game State Data")

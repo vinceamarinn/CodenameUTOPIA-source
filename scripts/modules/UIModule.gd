@@ -17,6 +17,11 @@ func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ##
 	#get end goal, set end goal color immediately
 	var end_goal = Color(color, goal_table.get(in_out, 0))
 	
+	# check if we're already at the endpoint, in which case just immediately return and say it finished
+	if transition.modulate.is_equal_approx(end_goal):
+		emit_signal("transition_ended")
+		return
+	
 	if tween_color == false: # set color immediately if tween is not required
 		transition.modulate = Color(color, goal_table["none"])
 	

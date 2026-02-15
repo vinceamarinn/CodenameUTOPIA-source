@@ -16,8 +16,7 @@ func print_text(event_data:Dictionary) -> void: ## Prints the provided text mess
 func load_area(event_data:Dictionary) -> void: ## Loads the provided area according to current state and character.
 	var area_name = event_data.get("area")
 	var state_name = DataStateModule.get_chapter_state_name()
-	var playable_char = DataStateModule.game_data.PlayerCharacter
-	AreaModule.load_area(area_name, state_name, playable_char)
+	AreaModule.load_area(area_name, state_name, true, true, false)
 
 #endregion
 
@@ -72,6 +71,8 @@ func process_event(event:EventData): ## Processes the provided event.
 	var func_name = event_type.to_lower()
 	if has_method(func_name):
 		call(func_name, event_data)
+	else:
+		push_error("[ERROR] Event function '", func_name, "' not found in event module!")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

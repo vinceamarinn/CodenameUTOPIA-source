@@ -18,16 +18,12 @@ func check_if_trial() -> bool: ## Verifies if the game is currently in trial mod
 	return game_data.StoryFlags["IsTrial"] == true
 
 func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order to begin a new trial. If the number provided is '0', it will load the current chapter's trial.
-	print("attempting trial load, provided ID is", trial_ID)
 	var trial_handler = GeneralModule.load_script_into_node("trial/TrialHandler.gd", GameMain) # loads trial handler into new node at GameMain
 	
 	# if the trial ID is 0, the trial handler will load the trial of the current chapter
 	if trial_ID == 0:
-		print("trial ID is 0! getting current chapter ID")
 		trial_ID = game_data.CurrentChapter
-		print("current chapter ID is", game_data.CurrentChapter)
 	
-	print("telling trial handler to initialize trial number: ", trial_ID)
 	trial_handler.initialize_trial(trial_ID) # initializes the trial handler
 
 func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
@@ -78,7 +74,7 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	
 	if data_file == game_data: # if we're loading the game, run basic initialization process
 		var state_name = get_chapter_state_name() # get current area/state
-		AreaModule.load_area(game_data.CurrentMap, state_name, game_data.PlayerCharacter) # load area from state
+		AreaModule.load_area(game_data.CurrentMap, state_name, true, true, false) # load area from state
 		
 		if game_data.CurrentMusic != "": # load current music and play it
 			GeneralModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music
