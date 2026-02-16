@@ -19,11 +19,6 @@ var reading_in_progress:bool = false ## Tracks whenever dialogue processing is a
 var line_in_process:bool = false ## Tracks whether a dialogue line is being processed.
 var dialogue_logs:Array = [] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
 
-# variables
-var dialogue_log_limit:int = 50 ## Sets the size limit of the dialogue log array.
-var autoscroll_enabled:bool = false ## Determines whether the text scrolls automatically.
-var autoscroll_timer:float = 1.5 ## Determines how long the autoscroll timer waits until scrolling to the next line after the line has been processed.
-
 # signals
 signal continue_dialogue_signal ## Fires whenever I want to continue the dialogue.
 
@@ -39,7 +34,7 @@ func _input(event:InputEvent) -> void: ## Input stuff.
 			continue_dialogue_signal.emit()
 
 func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
-	if not autoscroll_enabled: return # cancel if autoscrolling is disabled, just in case
+	if not DataStateModule.option_data.Autoscroll: return # cancel if autoscrolling is disabled, just in case
 	
 	# cancel previous tween if it exists
 	if current_autoscroll_tween:
@@ -47,13 +42,13 @@ func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
 	
 	# create countdown tween
 	var autoscroll_tween = create_tween()
-	autoscroll_tween.tween_interval(autoscroll_timer)
+	autoscroll_tween.tween_interval(DataStateModule.option_data.AutoscrollTimer)
 	current_autoscroll_tween = autoscroll_tween
 	
 	# wait for timer to finish
 	await autoscroll_tween.finished
 	
-	if not autoscroll_enabled: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
+	if not DataStateModule.option_data.Autoscroll: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
 	if not line_in_process: # actually continue the dialogue automatically
 		continue_dialogue_signal.emit()
 
@@ -223,8 +218,36 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	# just add the name and text to the dialogue logs rq...
 	dialogue_logs.append(name_text.text + ": " + dialogue_line)
 	# if the log amount goes over the limit, delete the oldest line
-	if len(dialogue_logs) > dialogue_log_limit:
+	if len(dialogue_logs) > DataStateModule.option_data.DialogueLogLimit:
 		dialogue_logs.remove_at(0)
+	
+	# HANDLE CAMERA STUFF
+	# get camera subject
+	var cam_subject = null
+	var subject_name = null
+	
+	# run basic camera subject determination
+	if line_info.CameraSubject:
+		subject_name = GeneralModule.get_character_name(line_info.CameraSubject)
+		print(subject_name)
+	else:
+		subject_name = GeneralModule.get_character_name(line_info.Speaker)
+		print(subject_name)
+	
+	cam_subject = char_group.get_node_or_null(subject_name)
+	
+	# check if the camera subject happens to be the player character, and reset the camera subject accordingly
+	print(DataStateModule.game_data.PlayerCharacter)
+	print(GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter))
+	if subject_name == GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter):
+		cam_subject = char_group.get_node_or_null("Player")
+	
+	if DataStateModule.game_data.StoryFlags.IsTrial:
+		var cam_movement_info = line_info.CameraMovement
+		CameraModule.trial_tween(cam_movement_info, cam_subject)
+		await CameraModule.transition_finished
+	else:
+		CameraModule.dialogue_tween(cam_subject)
 	
 	# show text tween, if skip scrolling isn't on (because that just means skip the text scroll)
 	if not line_info.SkipScrolling:
@@ -270,7 +293,7 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	process_events(auto_event_list, "On End")
 	
 	# turn on autoscroll timer
-	if autoscroll_enabled:
+	if DataStateModule.option_data.Autoscroll:
 		autoscroll()
 	
 	# wait for continuation signal
@@ -305,13 +328,19 @@ func read_dialogue(dialogue_data): ## Read through the provided dialogue. Handle
 	if reading_in_progress: return
 	reading_in_progress = true
 	
-	# lock player interaction
+	# lock player interaction if they exist
 	var player:PlayerOverworld = char_group.get_node_or_null("Player")
 	if player:
 		player.update_locks(false)
 	
 	# load dialogue box (to do for later, provisory function)
 	await load_dialogue_box("DialogueBox")
+	
+	# switch camera mode to the appropriate mode
+	if DataStateModule.game_data.StoryFlags.IsTrial:
+		CameraModule.set_mode(CameraModule.CameraModes.TRIAL)
+	else:
+		CameraModule.set_mode(CameraModule.CameraModes.DIALOGUE)
 	
 	# detect the kind of dialogue to read & process it
 	if dialogue_data is DialogueArray:
@@ -327,8 +356,9 @@ func read_dialogue(dialogue_data): ## Read through the provided dialogue. Handle
 	# unload dialogue box
 	await unload_dialogue_box()
 	
-	# unlock player
-	if player != null:
+	# unlock player & make camera follow them back again if they exist
+	if player != null and not DataStateModule.game_data.StoryFlags.IsTrial:
+		CameraModule.set_mode(CameraModule.CameraModes.FOLLOW_PLAYER)
 		player.update_locks(true)
 		player = null
 

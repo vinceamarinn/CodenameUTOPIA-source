@@ -12,21 +12,8 @@ class_name DialogueLine
 @export var SkipScrolling:bool = false ## If enabled, skips the text scrolling and immediately displays it.
 
 @export_group("Camera Settings")
-@export var CameraSubject:GeneralModule.Characters = Speaker ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
-@export var CameraTime:float = 5 ## Time it takes for the camera movement to conclude. Default is 5 seconds. Only works in Trials.
-@export var OverrideTransition:bool = false ## Overrides the default camera transition for the current camera mode and sets it to the other.[br][br]During regular gameplay, the camera transitions smoothly by default to the next speaker, but in trials, the camera snaps immediately. Turning this option off allows you to swap which transition is chosen.
-
-## Type of camera movement. Only works in Trials.
-##[br][br]
-##[b]None:[/b] the camera doesn't do anything. This is useful for when you want a character to continue speaking without running another camera movement.
-##[br][br][b]Pan:[/b] the camera pans in a certain direction to the character. Panning right means the camera starts at the left and pans right to frame the character into view.
-##[br][br][b]Zoom:[/b] the camera zooms in and out to or from the character. 
-##[br][br][b]Snap:[/b] the camera instantly snaps to the character.
-@export_enum("None", "Pan", "Zoom", "Snap") var CameraType:String = "None"
-@export_enum("Left", "Right", "Up", "Down", "In", "Out") var CameraDirection:String ## Direction of camera movement. Only works in Trials. Some camera directions are unique to specific camera movement types.
-@export_subgroup("Camera Rotation Settings")
-@export_range(-360, 360, 1) var CameraRotation = 0 ## Rotation of the camera during the camera movement. Only works in Trials. Works in degrees.
-@export var TweenRotation:bool = false ## If set to true, the camera rotation will tween from its symmetrical value to its chosen value instead of just being simply tilted.
+@export var CameraMovement:CameraMovementData ## Container for the data used in the Camera Movement for this line.
+@export var CameraSubject:GeneralModule.Characters ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
 
 @export_group("Audio Settings")
 @export_subgroup("Sound Settings")

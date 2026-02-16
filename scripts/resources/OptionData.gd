@@ -6,7 +6,7 @@ class_name OptionData
 @export_group("General Settings")
 
 @export_group("Text Settings")
-@export var DialogueLogLimit:int = 100 ## Determines how many lines of dialogue can be stored in the dialogue logs. Reduce this number to save memory.
+@export var DialogueLogLimit:int = 50 ## Determines how many lines of dialogue can be stored in the dialogue logs. Reduce this number to save memory.
 
 @export_subgroup("Text Scrolling Settings")
 @export_range(1, 5, 1) var TextScrollSpeed:int = 3 ## Controls how fast the text scrolls during dialogue.

@@ -7,12 +7,12 @@ extends Node
 @onready var char_group = scenes_3D.get_node("Characters")
 
 func initialize_trial(trial_ID:int) -> void: ## Initiates the provided trial.
-	print("trial handler loaded with no issues! trial handler received ID: ", trial_ID)
-	
-	# lock player
+	# lock player & reset camera
 	var player:PlayerOverworld = char_group.get_node_or_null("Player")
 	if player:
 		player.update_locks(false)
+	
+	CameraModule.reset_camera()
 	
 	# get required game state information
 	var story_flags = DataStateModule.game_data.StoryFlags

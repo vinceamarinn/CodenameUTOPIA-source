@@ -8,8 +8,45 @@
 [ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="5_1pv0l"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="5_8pvs2"]
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0ui5h"]
+[ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="7_1pv0l"]
 
 [sub_resource type="Resource" id="Resource_1pv0l"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "yo yuuka"
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_33k6n"]
+script = ExtResource("5_1pv0l")
+Speaker = 1
+Line = "what?"
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_8roqi"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "kys"
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_h7yec"]
+script = ExtResource("5_1pv0l")
+Speaker = 3
+Line = "heh... look at her shes pissed"
+CameraSubject = 1
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_uk4lw"]
+script = ExtResource("5_1pv0l")
+Speaker = 1
+Line = "kazuhito i will curse your name for generations"
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_qd0dc"]
+script = ExtResource("4_hxjik")
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_1pv0l"), SubResource("Resource_33k6n"), SubResource("Resource_8roqi"), SubResource("Resource_h7yec"), SubResource("Resource_uk4lw")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_3ye7f"]
 script = ExtResource("6_0ui5h")
 event_type = 7
 event_data = Dictionary[String, Variant]({
@@ -18,24 +55,28 @@ event_data = Dictionary[String, Variant]({
 EventTriggerCondition = "On Continue"
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 
-[sub_resource type="Resource" id="Resource_qd0dc"]
+[sub_resource type="Resource" id="Resource_2jahj"]
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "im trialing it up"
-CameraSubject = null
-EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_1pv0l")])
+EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_3ye7f")])
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_3ye7f"]
+[sub_resource type="Resource" id="Resource_8oshy"]
 script = ExtResource("4_hxjik")
-dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_qd0dc")])
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_2jahj")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_wq2lk"]
+script = ExtResource("7_1pv0l")
+dialogue_tree = Array[ExtResource("4_hxjik")]([SubResource("Resource_qd0dc"), SubResource("Resource_8oshy")])
+metadata/_custom_type_script = "uid://cry7q52aiw4rr"
 
 [sub_resource type="Resource" id="Resource_0ui5h"]
 script = ExtResource("6_0ui5h")
 event_type = 2
 event_data = Dictionary[String, Variant]({
-"dialogue": SubResource("Resource_3ye7f")
+"dialogue": SubResource("Resource_wq2lk")
 })
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 
