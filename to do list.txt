@@ -1,12 +1,15 @@
 >IMPORTANT!!!!
 
 > CAMERA MODULE
-- trial movement mode using the camera movement data! port functionality from the old dialogue module
-- add safe lock so dialogue tweens don't repeat if they're already focusing on the same character
+
+> DIALOGUE SYSTEM
+- add dialogue requisites (certain flags or conditions that NEED to be true for the dialogue line/tree/array to be read, otherwise it will be skipped over)
 
 > TRIAL MODULE
 - add proper trial seating to the courtroom and create the seating area state for the courtroom
 (need younes for this)
+- find a way to create a 'trial script', this being, the sequence of dialogues/minigames per trial organized by trial ID (chapter)
+(thinking of maybe making a literal physical node tree with this??? not sure)
 
 > MINIGAME SYSTEM
 - develop minigame system further
@@ -33,7 +36,7 @@
 - pause menu with all the good stuff in it
 - title screen on game boot with debug quickstart
 - loading screen minigames!!!
-- implement trial system!!! (ONGOING!!!)
+- actual minigames (trial AND off trial)
 - on-screen tutorial system
 
 >CLUES SYSTEM
