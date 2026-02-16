@@ -1,6 +1,8 @@
 extends Resource
 class_name DialogueLine
 
+@export_multiline var developer_note:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.
+
 @export_group("General Settings")
 @export var Speaker:GeneralModule.Characters ## Name of the character speaking. Borrows from the [b]General Module[/b]'s list of available names.
 @export_multiline var Line:String ## It's the dialogue line. Self-explanatory.
