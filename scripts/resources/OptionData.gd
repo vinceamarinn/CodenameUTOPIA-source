@@ -1,6 +1,8 @@
 extends Resource
 class_name OptionData
 
+@export var WARNING:String = "" ## String that contains a warning message. It gets applied during saving, so users have a disclaimer before attempting to edit their save file.
+
 @export_group("General Settings")
 
 @export_group("Text Settings")

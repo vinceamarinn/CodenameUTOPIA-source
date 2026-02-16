@@ -41,7 +41,7 @@ func create_character(char_info) -> void: ## Creates a character from the base t
 
 func load_character_states(area_state) -> void: ## Loads the character states in the given area state.
 	for char_state in area_state:
-			create_character(char_state)
+		create_character(char_state)
 
 func create_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
@@ -51,6 +51,8 @@ func create_player(player_char) -> PlayerOverworld: ## Loads the player characte
 	var player_name = GeneralModule.get_character_name(player_char)
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
 	new_player.get_node("Sprite").sprite_frames = char_sprites
+	
+	CameraModule.set_mode(CameraModule.CameraModes.FOLLOW_PLAYER)
 	return new_player
 
 func unload_characters() -> void: ## Unloads any currently loaded characters.
@@ -63,7 +65,9 @@ func unload_area(area:Node) -> void: ## Deletes the provided area. Also wipes an
 func load_area(area_name:String, state:String, load_player:bool, load_characters:bool, skip_transition:bool) -> Node3D: ## Handles the loading & processing of areas and the area's data based on the given state.
 	#get the area's supposed path, end the code if the area doesn't exist
 	var area_path = "res://main_scenes/maps/" + area_name + ".tscn"
-	if not ResourceLoader.exists(area_path): return
+	if not ResourceLoader.exists(area_path):
+		GeneralModule.debug_message("AreaModule - load_area()", "error", "Failed to load the " + area_name + " area!", "The area file doesn't exist!")
+		return
 	
 	# activate player locks if there's a player
 	var existing_player:PlayerOverworld = char_group.get_node_or_null("Player")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4euykki01y7t"]
+[gd_scene format=3 uid="uid://d4euykki01y7t"]
 
 [ext_resource type="Script" uid="uid://b0dhplj2vjijn" path="res://scripts/PlayerOverworld.gd" id="1_8a1cs"]
 [ext_resource type="SpriteFrames" uid="uid://1ou1203lcupv" path="res://sub_scenes/sprite_frames/yuutoPLAYER_sprites.tres" id="2_y40vr"]
@@ -6,14 +6,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_8a1cs"]
 size = Vector3(3.09723, 5.29565, 0.102295)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" unique_id=1065094138]
 script = ExtResource("1_8a1cs")
 
-[node name="Sprite" type="AnimatedSprite3D" parent="."]
+[node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1113391786]
 sprite_frames = ExtResource("2_y40vr")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1840358204]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035003, -0.0389409, -0.0240479)
 shape = SubResource("BoxShape3D_8a1cs")

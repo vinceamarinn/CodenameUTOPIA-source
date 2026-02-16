@@ -1,16 +1,11 @@
 extends CharacterBody3D
 class_name PlayerOverworld
 
-const SPEED = 7.5
 @onready var anim_player = $Sprite
-@export var can_move:bool = false
 
-signal can_interact_changed
-@export var can_interact:bool = false:
-	set(new_value):
-		if can_interact != new_value:
-			can_interact = new_value
-			can_interact_changed.emit(new_value)
+const SPEED = 7.5
+@export var can_move:bool = false
+@export var can_interact:bool = false
 
 func update_movement(value:bool) -> void: ## Updates the player's movement lock based on the value.
 	can_move = value

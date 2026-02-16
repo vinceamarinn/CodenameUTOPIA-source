@@ -49,8 +49,7 @@ enum Characters { ## Very important list of all registered characters. Used in a
 
 enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUTO,
-	YUUKA,
-	NONE
+	YUUKA
 }
 
 var known_names_list:Dictionary = { ## Dictionary assigning every character to their known name.
@@ -87,6 +86,17 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 	Characters.KAORU: tr("Kaoru Nakajima"),
 	#endregion
 }
+
+func debug_message(sender:String, type:String, reason:String, content:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
+	var msg = "[" + type.to_upper() + "] " + reason + " " + content + " (sent by " + sender + ")"
+	
+	match type.to_lower():
+		"error":
+			push_error(msg)
+		"warning":
+			push_warning(msg)
+		"info":
+			print(msg)
 
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()

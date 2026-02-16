@@ -1,6 +1,8 @@
 extends Resource
 class_name SaveStateData
 
+@export var WARNING:String = "" ## String that contains a warning message. It gets applied during saving, so users have a disclaimer before attempting to edit their save file.
+
 @export_group("Story Data")
 @export var CurrentChapter:int = 0 ## Tracks the current chapter of the game.
 @export var CurrentState:String = "" ## Tracks the current state name of the game.
@@ -9,7 +11,6 @@ class_name SaveStateData
 #story flags
 @export var StoryFlags:Dictionary = { ## Contains a dictionary of story-specific flags, to track whether certain things have been achieved.
 	"IsTrial" : false, ## Tracks whether you're in a trial or not.
-	"KazuhitoRevealed" : false, ## Tracks whether Kazuhito has had his real name revealed or not.
 	"DeathRegistry" : [], ## Tracks the deaths of characters who have died. You can edit back in your favorite characters lmaooooooo
 }
 
