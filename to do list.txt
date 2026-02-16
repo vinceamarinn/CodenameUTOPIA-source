@@ -1,5 +1,16 @@
 >IMPORTANT!!!!
 
+> CAMERA MODULE
+- trial movement mode using the camera movement data! port functionality from the old dialogue module
+- add safe lock so dialogue tweens don't repeat if they're already focusing on the same character
+
+> TRIAL MODULE
+- add proper trial seating to the courtroom and create the seating area state for the courtroom
+(need younes for this)
+
+> MINIGAME SYSTEM
+- develop minigame system further
+
 
 =================================================
 
@@ -22,7 +33,7 @@
 - pause menu with all the good stuff in it
 - title screen on game boot with debug quickstart
 - loading screen minigames!!!
-- implement trial system!!! (maybe its own module??? though i dont think thatd be super necessary)
+- implement trial system!!! (ONGOING!!!)
 - on-screen tutorial system
 
 >CLUES SYSTEM
@@ -31,12 +42,12 @@
 - finish clue inventory system
 
 >CAMERA SYSTEM
-- import & adapt camera functionality from old trial systems
-- add new camera stuff like following the player in overworld segments
+- import & adapt camera functionality from old trial systems (ONGOING)
+- add new camera stuff like following the player in overworld segments (DONE)
 
 >DIALOGUE SYSTEM
 - flashback system
-- port dialogue box handling to the UI module HIGH PRIORITY
+- port dialogue box handling to the UI module HIGH PRIORITY (done? forgot)
 
 LIST OF OPTIONS:
 - fps counter & caps
