@@ -24,7 +24,7 @@ func load_area(event_data:Dictionary) -> void: ## Loads the provided area accord
 
 func read_dialogue(event_data:Dictionary) -> void: ## Reads the provided dialogue array/tree.
 	var dialogue_data = event_data.get("dialogue")
-	DialogueModule.read_dialogue(dialogue_data)
+	DialogueModule.read_dialogue(dialogue_data, {})
 
 #endregion
 

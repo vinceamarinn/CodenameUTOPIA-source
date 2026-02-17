@@ -229,23 +229,21 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	# run basic camera subject determination
 	if line_info.CameraSubject:
 		subject_name = GeneralModule.get_character_name(line_info.CameraSubject)
-		print(subject_name)
 	else:
 		subject_name = GeneralModule.get_character_name(line_info.Speaker)
-		print(subject_name)
-	
 	cam_subject = char_group.get_node_or_null(subject_name)
 	
 	# check if the camera subject happens to be the player character, and reset the camera subject accordingly
-	print(DataStateModule.game_data.PlayerCharacter)
-	print(GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter))
 	if subject_name == GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter):
 		cam_subject = char_group.get_node_or_null("Player")
 	
+	# run the camera movement
 	if DataStateModule.game_data.StoryFlags.IsTrial:
 		var cam_movement_info = line_info.CameraMovement
-		CameraModule.trial_tween(cam_movement_info, cam_subject)
-		await CameraModule.transition_finished
+		
+		if cam_movement_info != null:
+			CameraModule.trial_tween(cam_movement_info, cam_subject)
+			await CameraModule.transition_finished
 	else:
 		CameraModule.dialogue_tween(cam_subject)
 	
@@ -301,18 +299,36 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	
 	# if event is after continuing, process it now
 	process_events(auto_event_list, "On Continue")
+
+func determine_line_start(start_point_dict:Dictionary[String, int]) -> int: ## Given a certain start point dictionary, returns whether the array should be read in full or from the start provided in the start point dictionary.
+	var start = 0
+	if start_point_dict.has("line"):
+		start = start_point_dict["line"]
 	
-func read_dialogue_array(array_data:DialogueArray) -> void: ## Iterates through a given dialogue array.
+	return start
+
+func read_dialogue_array(array_data:DialogueArray, line_start:int) -> void: ## Iterates through a given dialogue array.
 	var dialogue_array = array_data.dialogue_array
-	for dialogue_line in dialogue_array: # iterate through every dialogue line in the dialogue array and process it in order
+	
+	# iterate through every dialogue line in the dialogue array and process it in order
+	for i in range(line_start, dialogue_array.size(), 1):
+		var dialogue_line = dialogue_array[i]
 		await process_dialogue_line(dialogue_line)
 
-func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a given dialogue tree.
+func read_dialogue_tree(tree_data:DialogueTree, start_point_dict:Dictionary[String, int]) -> void: ## Iterates through a given dialogue tree.
 	var dialogue_tree = tree_data.dialogue_tree # get dialogue tree
 	var loop_tree = tree_data.loop_tree # get loop value
 	
-	var array_data = dialogue_tree[tree_data.array_tracker] # get selected dialogue array to iterate
-	await read_dialogue_array(array_data) # read dialogue array
+	# set array tracker to start point["array"]
+	if start_point_dict.has("array"):
+		tree_data.array_tracker = start_point_dict["array"]
+	
+	# get selected dialogue array to iterate
+	var array_data = dialogue_tree[tree_data.array_tracker]
+	
+	# determine start point
+	var line_start = determine_line_start(start_point_dict)
+	await read_dialogue_array(array_data, line_start) # read dialogue array
 	
 	#handle array tracker logic
 	#if the array tracker is not at the last array of the tree, increment it
@@ -323,7 +339,7 @@ func read_dialogue_tree(tree_data:DialogueTree) -> void: ## Iterates through a g
 		if loop_tree == true:
 			tree_data.array_tracker = 0
 
-func read_dialogue(dialogue_data): ## Read through the provided dialogue. Handles both trees & arrays.
+func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, int]): ## Read through the provided dialogue. Handles both trees & arrays.
 	# prevent two dialogues from being read at once
 	if reading_in_progress: return
 	reading_in_progress = true
@@ -344,9 +360,11 @@ func read_dialogue(dialogue_data): ## Read through the provided dialogue. Handle
 	
 	# detect the kind of dialogue to read & process it
 	if dialogue_data is DialogueArray:
-		await read_dialogue_array(dialogue_data)
+		# determine start point
+		var line_start = determine_line_start(start_point_dict)
+		await read_dialogue_array(dialogue_data, line_start)
 	elif dialogue_data is DialogueTree:
-		await read_dialogue_tree(dialogue_data)
+		await read_dialogue_tree(dialogue_data, start_point_dict)
 	reading_in_progress = false
 	
 	# cleanup tween refs

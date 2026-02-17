@@ -24,13 +24,7 @@ func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order 
 	if trial_ID == 0:
 		trial_ID = game_data.CurrentChapter
 	
-	trial_handler.initialize_trial(trial_ID) # initializes the trial handler
-
-func set_property(data_file:Resource, property:String, new_value) -> void: ## Sets the new value of a data structure's property.
-	if not property in data_file: return # don't execute if property is not found
-	if data_file.get(property) == new_value: return # don't execute if the value is unchanged
-	
-	data_file.set(property, new_value)
+	trial_handler.initialize_trial(trial_ID, false) # initializes the trial handler
 
 func save_data(data_file:Resource) -> bool: ## Saves the game.
 	# define warning in the save data (for anyone who tries to edit it)
@@ -53,11 +47,13 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 		GeneralModule.debug_message("DataStateModule - load_data()", "error", "Failed to load the " + data_file.resource_name + " data resource!", "The file doesn't exist, there's no save to load.")
 		return false
 	
+	# attempt to load data from file
 	var loaded_data = ResourceLoader.load(data_path)
 	if loaded_data == null:
 		GeneralModule.debug_message("DataStateModule - save_data()", "error", "Failed to load the " + data_file.resource_name + " data resource!", "Something went wrong with the Resource Loader.")
 		return false
 	
+	# load the corresponding data into the module's existing data
 	if data_file == game_data:
 		game_data = loaded_data
 	elif data_file == option_data:
@@ -89,3 +85,5 @@ func _ready() -> void:
 	else:
 		known_names_list[GeneralModule.Characters.KAZUHITO] = kazuhito_names[0]
 		print("kazuhito is hidden")
+	
+	#TranslationServer.set_locale("pt")

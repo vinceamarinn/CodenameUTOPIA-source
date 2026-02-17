@@ -6,4 +6,5 @@ class_name DialogueTree
 @export var loop_tree:bool = false
 var array_tracker:int = 0 ## Tracks which array of dialogue should be played and read through. The loop_tree variable essentially changes the logic of this value.
 
+@export_group("Developer Extras")
 @export_multiline var developer_note:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.

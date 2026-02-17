@@ -6,7 +6,7 @@ extends Node
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
 @onready var char_group = scenes_3D.get_node("Characters")
 
-func initialize_trial(trial_ID:int) -> void: ## Initiates the provided trial.
+func initialize_trial(trial_ID:int, skip_intro:bool) -> void: ## Initiates the provided trial.
 	# lock player & reset camera
 	var player:PlayerOverworld = char_group.get_node_or_null("Player")
 	if player:
@@ -43,7 +43,30 @@ func initialize_trial(trial_ID:int) -> void: ## Initiates the provided trial.
 	
 	# setup is done!
 	# i believe here we can now load the preparations!
-	UIModule.trans("out", 3, Color.BLACK, false) # fade back in, finally
+	UIModule.trans("out", 0.01, Color.BLACK, false)
+	
+	if not skip_intro:
+		pass
+	
+	# fade back in, finally
+	
+	
+	# ok! let's cleanup the preparations & get straight into it
+	# load trial script
+	var trial_script = load("res://scripts/trial/TrialScript" + str(trial_ID) + ".tscn").instantiate()
+	add_child(trial_script)
+	
+	read_trial_script(trial_script.TrialScript, {})
+
+func read_trial_script(trial_script:Array[TrialStage], start_point:Dictionary[String, int]) -> void: ## Reads through the provided trial script. You are able to provide it with a specific array & line combo so it starts reading from there.
+	# determine where to start from
+	var stage_start = 0
+	if start_point.has("stage"):
+		stage_start = start_point["stage"]
+	
+	for i in range(stage_start, trial_script.size(), 1):
+		var trial_stage = trial_script[i]
+		await DialogueModule.read_dialogue(trial_stage.Dialogue, start_point)
 
 func end_trial() -> void:
 	queue_free()

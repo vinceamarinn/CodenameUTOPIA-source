@@ -2,12 +2,11 @@ extends Node
 
 #game tree goodies we need
 @onready var GameMain = get_node("/root/GameMain")
+
 @onready var audio_busses:Node = get_node("/root/GameMain/AudioBusses")
 @onready var music_player:AudioStreamPlayer = audio_busses.get_node("MusicPlayer")
 @onready var sfx_player:AudioStreamPlayer = audio_busses.get_node("SFXPlayer")
 @onready var voice_player:AudioStreamPlayer = audio_busses.get_node("VoicePlayer")
-
-@onready var game_data = DataStateModule.game_data
 
 # This module handles more generic things that do not need their own specified module, or things that don't fall into any specific module.
 # It also stores global variables like the character list, for everyone's use.
@@ -50,6 +49,17 @@ enum Characters { ## Very important list of all registered characters. Used in a
 enum PlayableChars { ## Enum list of characters you are able to play as.
 	YUUTO,
 	YUUKA
+}
+
+const DEATH_REGISTRY:Dictionary = { ## Acts as the game's internal death registry. Used for the funny pre-trial 4th wall breaking bit.
+	# it's read as: by trial <key>, these people have died: [names]
+	# so for example, by trial 2, naomi, shiro and ryuji have died
+	1: ["naomi"],
+	2: ["shiro", "ryuji"],
+	3: ["sukai", "ayana", "ren"],
+	4: ["reina", "daiya"],
+	5: ["lance", "kazuhito", "yuuto"],
+	6: ["sebastian"],
 }
 
 var known_names_list:Dictionary = { ## Dictionary assigning every character to their known name.
@@ -129,7 +139,7 @@ func stop_music(fade_time:float) -> void: ## Stops currently playing music.
 	# stop the music, update the music in the game data, revert the tween
 	music_player.stop()
 	music_player.volume_linear = 1
-	game_data.CurrentMusic = ""
+	DataStateModule.game_data.CurrentMusic = ""
 
 func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# stop and fade out the previous track if a track is already playing
@@ -140,7 +150,7 @@ func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# play the music! and update it on the data module
 	music_player.stream = music
 	music_player.play()
-	game_data.CurrentMusic = get_file_name(music)
+	DataStateModule.game_data.CurrentMusic = get_file_name(music)
 
 func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
 	sfx_player.stream = sfx
@@ -173,4 +183,3 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 
 func _ready() -> void:
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically
-	#TranslationServer.set_locale("pt")

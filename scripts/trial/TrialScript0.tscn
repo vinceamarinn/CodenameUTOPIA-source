@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://bt6flxmesb4mq"]
+
+[ext_resource type="Script" uid="uid://dpqcjxpapm2hl" path="res://scripts/resources/TrialScriptHolder.gd" id="1_hhkn6"]
+[ext_resource type="Script" uid="uid://b8l7cfrdc05e3" path="res://scripts/resources/TrialStage.gd" id="2_0vo3s"]
+[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="2_sxy2f"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="3_pysit"]
+[ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="4_g44i5"]
+[ext_resource type="Script" uid="uid://b3btqd6qf8imo" path="res://scripts/resources/CameraMovementData.gd" id="4_pysit"]
+
+[sub_resource type="Resource" id="Resource_kdh5t"]
+script = ExtResource("4_pysit")
+MovementType = "Pan"
+MovementDirection = "Right"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_0vo3s"]
+script = ExtResource("3_pysit")
+Line = "this is array 0, line 0"
+CameraMovement = SubResource("Resource_kdh5t")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_864yi"]
+script = ExtResource("4_pysit")
+MovementType = "Zoom"
+MovementDirection = "In"
+InitialTransition = true
+TransitionTime = 1.0
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_pysit"]
+script = ExtResource("3_pysit")
+Line = "this is array 0, line 1"
+CameraMovement = SubResource("Resource_864yi")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_g44i5"]
+script = ExtResource("2_sxy2f")
+dialogue_array = Array[ExtResource("3_pysit")]([SubResource("Resource_0vo3s"), SubResource("Resource_pysit")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_ue5ox"]
+script = ExtResource("2_0vo3s")
+Dialogue = SubResource("Resource_g44i5")
+metadata/_custom_type_script = "uid://b8l7cfrdc05e3"
+
+[sub_resource type="Resource" id="Resource_se383"]
+script = ExtResource("4_pysit")
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_yfbre"]
+script = ExtResource("3_pysit")
+Line = "this is array 1, line 0"
+CameraMovement = SubResource("Resource_se383")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_ttlar"]
+script = ExtResource("4_pysit")
+MovementType = "Pan"
+MovementDirection = "Down"
+BaseRotation = 10
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_vmqa7"]
+script = ExtResource("3_pysit")
+Line = "this is array 1, line 1"
+CameraMovement = SubResource("Resource_ttlar")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_eea0w"]
+script = ExtResource("4_pysit")
+CameraTime = 7.5
+MovementType = "Pan"
+MovementDirection = "Left"
+TweenRotation = true
+BaseRotation = -15
+FinalRotation = 5
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_yc0li"]
+script = ExtResource("3_pysit")
+Line = "this is array 1, line 2"
+CameraMovement = SubResource("Resource_eea0w")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_wyckv"]
+script = ExtResource("2_sxy2f")
+dialogue_array = Array[ExtResource("3_pysit")]([SubResource("Resource_yfbre"), SubResource("Resource_vmqa7"), SubResource("Resource_yc0li")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_gpl4e"]
+script = ExtResource("2_0vo3s")
+Dialogue = SubResource("Resource_wyckv")
+metadata/_custom_type_script = "uid://b8l7cfrdc05e3"
+
+[node name="TrialScript0" type="Node" unique_id=1138311645]
+script = ExtResource("1_hhkn6")
+TrialScript = Array[ExtResource("2_0vo3s")]([SubResource("Resource_ue5ox"), SubResource("Resource_gpl4e")])

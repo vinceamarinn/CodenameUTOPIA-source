@@ -174,6 +174,10 @@ func trial_tween(cam_info:CameraMovementData, cam_subject:Node3D) -> void: ## Ha
 		GeneralModule.debug_message("CameraModule - trial_tween()", "Warning", "Attempted to start a Trial tween.", "However, the correct Trial camera mode wasn't initialized!")
 		return
 	
+	# abort if there is no camera info to use
+	if not is_instance_valid(cam_info) or cam_info == null:
+		return
+	
 	# abort if the camera subject is invalid
 	if not is_instance_valid(cam_subject) or cam_subject == null:
 		GeneralModule.debug_message("CameraModule - trial_tween()", "Error", "Trial tween was cancelled.", "The camera subject was not found in the scene!")
@@ -190,7 +194,7 @@ func trial_tween(cam_info:CameraMovementData, cam_subject:Node3D) -> void: ## Ha
 		await initial_transition(cam_info)
 	
 	# signal that the transition is finished and the actual camera movement has begun
-	transition_finished.emit()
+	call_deferred("emit_signal", "transition_finished")
 	
 	# reset camera back to initial position and rotation at the end of the transition, just to make sure everything's setup
 	# alternatively, it puts the camera there in the first place if there was no transition

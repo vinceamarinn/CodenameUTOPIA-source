@@ -1,8 +1,6 @@
 extends Resource
 class_name DialogueLine
 
-@export_multiline var developer_note:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.
-
 @export_group("General Settings")
 @export var Speaker:GeneralModule.Characters ## Name of the character speaking. Borrows from the [b]General Module[/b]'s list of available names.
 @export_multiline var Line:String ## It's the dialogue line. Self-explanatory.
@@ -15,7 +13,7 @@ class_name DialogueLine
 
 @export_group("Camera Settings")
 @export var CameraMovement:CameraMovementData ## Container for the data used in the Camera Movement for this line.
-@export var CameraSubject:GeneralModule.Characters ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
+@export var CameraSubject:GeneralModule.Characters = Speaker ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
 
 @export_group("Audio Settings")
 @export_subgroup("Sound Settings")
@@ -36,4 +34,8 @@ class_name DialogueLine
 
 @export_group("Misc. Settings")
 @export var CharacterLeaves:bool = false ## If true, the character will leave the scene upon speaking their line.
-#initiate sequence (flashback, nonstop debate...)
+
+
+
+@export_group("Developer Extras")
+@export_multiline var developer_note:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.

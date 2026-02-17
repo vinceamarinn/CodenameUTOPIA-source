@@ -47,29 +47,19 @@ dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_1pv0l"), S
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
 [sub_resource type="Resource" id="Resource_3ye7f"]
-script = ExtResource("6_0ui5h")
-event_type = 7
-event_data = Dictionary[String, Variant]({
-"trial_ID": 0
-})
-EventTriggerCondition = "On Continue"
-metadata/_custom_type_script = "uid://c5jo114vdi6ni"
-
-[sub_resource type="Resource" id="Resource_2jahj"]
 script = ExtResource("5_1pv0l")
 Speaker = 3
-Line = "im trialing it up"
-EventList = Array[ExtResource("6_0ui5h")]([SubResource("Resource_3ye7f")])
+Line = "...im out of dialgoue bruh"
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_8oshy"]
+[sub_resource type="Resource" id="Resource_2jahj"]
 script = ExtResource("4_hxjik")
-dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_2jahj")])
+dialogue_array = Array[ExtResource("5_1pv0l")]([SubResource("Resource_3ye7f")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
 [sub_resource type="Resource" id="Resource_wq2lk"]
 script = ExtResource("7_1pv0l")
-dialogue_tree = Array[ExtResource("4_hxjik")]([SubResource("Resource_qd0dc"), SubResource("Resource_8oshy")])
+dialogue_tree = Array[ExtResource("4_hxjik")]([SubResource("Resource_qd0dc"), SubResource("Resource_2jahj")])
 metadata/_custom_type_script = "uid://cry7q52aiw4rr"
 
 [sub_resource type="Resource" id="Resource_0ui5h"]
@@ -125,8 +115,9 @@ metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [sub_resource type="Resource" id="Resource_t4as1"]
 script = ExtResource("6_0ui5h")
+event_type = 7
 event_data = Dictionary[String, Variant]({
-"text": "sigma"
+"trial_ID": 0
 })
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
 

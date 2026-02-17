@@ -9,17 +9,14 @@ extends Node
 @onready var char_group = get_node("/root/GameMain/3DScenes/Characters")
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 
-#just so i dont have to keep writing it
-@onready var game_data = DataStateModule.game_data
-
 #templates
 @onready var char_template = load("res://sub_scenes/templates/Character.tscn")
 @onready var player_template = load("res://sub_scenes/templates/Player.tscn")
 
 func create_character(char_info) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	var char_name = GeneralModule.get_character_name(char_info.Name)
-	if game_data.RemovedCharacters.get(game_data.CurrentMap):
-		if char_name in game_data.RemovedCharacters[game_data.CurrentMap]: return
+	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentMap):
+		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentMap]: return
 	
 	var char_sprites = load("res://sub_scenes/sprite_frames/" + char_name + "_sprites.tres")
 	var new_char = char_template.instantiate()
@@ -92,7 +89,6 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	var new_area = load(area_path).instantiate()
 	scenes_3D.add_child(new_area)
 	new_area.position.y -= 5
-	game_data.CurrentMap = area_name
 	
 	# load area state
 	var state_dict = new_area.area_states
@@ -107,8 +103,8 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 			load_character_states(area_state)
 	
 	#clear removed character dictionary, add tag for current area
-	game_data.RemovedCharacters.clear()
-	game_data.RemovedCharacters.set(area_name, [])
+	DataStateModule.game_data.RemovedCharacters.clear()
+	DataStateModule.game_data.RemovedCharacters.set(area_name, [])
 	
 	#create the player
 	var new_player = null
@@ -120,7 +116,10 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 		UIModule.trans("out", 1, Color.BLACK, false)
 		await UIModule.transition_ended
 	
-	#play on enter dialogue if it exists
+	# change current area in the game state
+	DataStateModule.game_data.CurrentMap = area_name
+	
+	# play on enter event if it exists
 	if on_enter_event:
 		EventModule.process_event(on_enter_event)
 	
@@ -128,6 +127,7 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	if new_player != null:
 		new_player.update_locks(true)
 	
+	print(DataStateModule.game_data.CurrentMap)
 	return new_area
 
 func _ready() -> void:

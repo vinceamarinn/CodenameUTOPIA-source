@@ -1,15 +1,12 @@
 >IMPORTANT!!!!
 
-> CAMERA MODULE
-
 > DIALOGUE SYSTEM
 - add dialogue requisites (certain flags or conditions that NEED to be true for the dialogue line/tree/array to be read, otherwise it will be skipped over)
 
 > TRIAL MODULE
 - add proper trial seating to the courtroom and create the seating area state for the courtroom
 (need younes for this)
-- find a way to create a 'trial script', this being, the sequence of dialogues/minigames per trial organized by trial ID (chapter)
-(thinking of maybe making a literal physical node tree with this??? not sure)
+- do check between the internal death registry and the save data death registry for the pre trial sequence
 
 > MINIGAME SYSTEM
 - develop minigame system further
@@ -43,10 +40,6 @@
 - add obtainable clues
 - develop clue system to include photo, clue type and stuff like that
 - finish clue inventory system
-
->CAMERA SYSTEM
-- import & adapt camera functionality from old trial systems (ONGOING)
-- add new camera stuff like following the player in overworld segments (DONE)
 
 >DIALOGUE SYSTEM
 - flashback system

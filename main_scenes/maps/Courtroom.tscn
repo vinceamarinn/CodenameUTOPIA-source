@@ -10,6 +10,7 @@
 
 [sub_resource type="Resource" id="Resource_o6xhn"]
 script = ExtResource("3_nrhaa")
+Position = Vector3(0, 4, 0)
 metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
 
 [sub_resource type="Resource" id="Resource_0ext5"]
