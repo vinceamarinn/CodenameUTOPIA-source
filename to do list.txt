@@ -24,6 +24,8 @@
 - make intro theme
 - make ending theme
 
+- UPDATE MASTERS FOR EVERY SONG!!!! TO USE -1 DB THRESHOLD!!!!! GRAAAAH
+
 >UI
 - actually develop the add/removal systems
 - more ui elements like currently playing music

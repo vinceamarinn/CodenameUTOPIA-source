@@ -1,7 +1,7 @@
 @tool
 extends EditorScript
 
-@export var state_name:String = "CH0_sigmund"
+@export var state_name:String = "TRIAL"
 @export var overwrite_existing_characters:bool = true
 @export var cleanup_character_node:bool = true
 
@@ -69,16 +69,16 @@ func create_area_state() -> void: ## Creates an area state out of the current Ch
 				var state = existing_array[i]
 				if state.Name == character.Name: # if the names match, it means there's an existing character
 					found_existing = true
-					print(character.name, " is already in the state, overwrite: ", overwrite_existing_characters)
+					print(character.Name, " is already in the state, overwrite: ", overwrite_existing_characters)
 					if overwrite_existing_characters: # if overwriting is on, then overwrite data, otherwise do nothing
 						existing_array[i] = character
-						print(character.name, " successfully overwritten!")
+						print(character.Name, " successfully overwritten!")
 					break # we found a pre existing character, no need to keep running this
 			
 			if not found_existing: # there is no pre existing character, we can just add it in no problem
-				print(character.name, " not found in state.")
+				print(character.Name, " not found in state.")
 				existing_array.append(character)
-				print(character.name, " added to state!")
+				print(character.Name, " added to state!")
 		
 		print("State updated!")
 		

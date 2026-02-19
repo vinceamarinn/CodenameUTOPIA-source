@@ -233,8 +233,8 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		subject_name = GeneralModule.get_character_name(line_info.Speaker)
 	cam_subject = char_group.get_node_or_null(subject_name)
 	
-	# check if the camera subject happens to be the player character, and reset the camera subject accordingly
-	if subject_name == GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter):
+	# if not in a trial, check if the camera subject happens to be the player character, and reset the camera subject accordingly
+	if subject_name == GeneralModule.get_character_name(DataStateModule.game_data.PlayerCharacter) and not DataStateModule.game_data.StoryFlags.IsTrial:
 		cam_subject = char_group.get_node_or_null("Player")
 	
 	# run the camera movement

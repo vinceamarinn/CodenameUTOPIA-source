@@ -13,7 +13,7 @@ extends Node
 @onready var char_template = load("res://sub_scenes/templates/Character.tscn")
 @onready var player_template = load("res://sub_scenes/templates/Player.tscn")
 
-func create_character(char_info) -> void: ## Creates a character from the base template using the given information, and places them in the map.
+func create_character(char_info, global_offset:Vector3) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	var char_name = GeneralModule.get_character_name(char_info.Name)
 	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentMap):
 		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentMap]: return
@@ -26,7 +26,7 @@ func create_character(char_info) -> void: ## Creates a character from the base t
 		side.sprite_frames = char_sprites
 	
 	char_group.add_child(new_char)
-	new_char.position = char_info.Position
+	new_char.position = char_info.Position + global_offset
 	new_char.rotation_degrees = char_info.Rotation
 	new_char.position.y -= 5
 	
@@ -36,9 +36,9 @@ func create_character(char_info) -> void: ## Creates a character from the base t
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
-func load_character_states(area_state) -> void: ## Loads the character states in the given area state.
+func load_character_states(area_state, global_offset:Vector3) -> void: ## Loads the character states in the given area state.
 	for char_state in area_state:
-		create_character(char_state)
+		create_character(char_state, global_offset)
 
 func create_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
@@ -97,10 +97,11 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	if state_dict.get(state):
 		#create the characters from the state
 		var area_state = state_dict[state].character_state_array
+		var global_offset = state_dict[state].global_offset
 		on_enter_event = state_dict[state].on_enter_event # stores the on enter event's reference for later
 		
 		if load_characters:
-			load_character_states(area_state)
+			load_character_states(area_state, global_offset)
 	
 	#clear removed character dictionary, add tag for current area
 	DataStateModule.game_data.RemovedCharacters.clear()

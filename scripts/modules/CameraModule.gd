@@ -44,7 +44,7 @@ const FOLLOW_OFFSET:Vector3 = Vector3(0, 2, 8.5) ## Offset with which the camera
 const DIALOGUE_OFFSET:Vector3 = Vector3(0, 0, 6) ## Offset from the camera subject where the camera rests after its Dialogue tween.
 const DIALOGUE_TIME:float = 0.65 ## Default time the Dialogue tween takes.
 
-const TRIAL_BASE_OFFSET:Vector3 = Vector3(0, 2, 6) ## Offset with which the camera builds the Trial camera movement out of, using the other initial values.
+const TRIAL_BASE_OFFSET:Vector3 = Vector3(0, 2, 5.5) ## Offset with which the camera builds the Trial camera movement out of, using the other initial values.
 
 # signals
 signal transition_finished ## Signals when a camera initial transition finishes.
@@ -152,7 +152,7 @@ func dialogue_tween(cam_subject:Node3D) -> void: ## Handles tweening for regular
 
 func initial_transition(cam_info:CameraMovementData) -> void: ## Handles creating the initial transition from the current camera location to the initial position of the tween. Used for the Trial camera mode.
 	# create tween
-	var new_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN).set_parallel(true)
+	var new_tween = create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT).set_parallel(true)
 	curr_cam_tween = new_tween
 	
 	# get initial coordinate frame (pos + rot) based on movement type and initial rotation 
@@ -180,7 +180,8 @@ func trial_tween(cam_info:CameraMovementData, cam_subject:Node3D) -> void: ## Ha
 	
 	# abort if the camera subject is invalid
 	if not is_instance_valid(cam_subject) or cam_subject == null:
-		GeneralModule.debug_message("CameraModule - trial_tween()", "Error", "Trial tween was cancelled.", "The camera subject was not found in the scene!")
+		GeneralModule.debug_message("CameraModule - trial_tween()", "warning", "Trial tween was cancelled.", "The camera subject was not found in the scene!")
+		call_deferred("emit_signal", "transition_finished")
 		return
 	
 	# stop any ongoing tweens
@@ -189,7 +190,7 @@ func trial_tween(cam_info:CameraMovementData, cam_subject:Node3D) -> void: ## Ha
 	# set the camera subject (so other tweens don't have to do it themselves)
 	curr_cam_subject = cam_subject
 	
-	# perform initial transition if it was asked of us
+	# perform initial transition if it was asked of usdw
 	if cam_info.InitialTransition:
 		await initial_transition(cam_info)
 	

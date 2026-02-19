@@ -14,18 +14,21 @@
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "yo yuuka"
+CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_33k6n"]
 script = ExtResource("5_1pv0l")
 Speaker = 1
 Line = "what?"
+CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_8roqi"]
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "kys"
+CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_h7yec"]
@@ -39,6 +42,7 @@ metadata/_custom_type_script = "uid://7h4sds3ykomg"
 script = ExtResource("5_1pv0l")
 Speaker = 1
 Line = "kazuhito i will curse your name for generations"
+CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_qd0dc"]
@@ -50,6 +54,7 @@ metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 script = ExtResource("5_1pv0l")
 Speaker = 3
 Line = "...im out of dialgoue bruh"
+CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_2jahj"]

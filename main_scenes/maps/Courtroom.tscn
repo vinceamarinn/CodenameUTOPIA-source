@@ -10,12 +10,109 @@
 
 [sub_resource type="Resource" id="Resource_o6xhn"]
 script = ExtResource("3_nrhaa")
-Position = Vector3(0, 4, 0)
-metadata/_custom_type_script = "uid://dfurhh7fm8uvd"
+Position = Vector3(112.747986, 5.5, 2.547299)
+Rotation = Vector3(0, -101.29999, 0)
+
+[sub_resource type="Resource" id="Resource_nrhaa"]
+script = ExtResource("3_nrhaa")
+Name = 9
+Position = Vector3(87.252014, 5.5, -2.547299)
+Rotation = Vector3(0, 78.7, 0)
+
+[sub_resource type="Resource" id="Resource_awd21"]
+script = ExtResource("3_nrhaa")
+Name = 1
+Position = Vector3(112.75242, 5.5, -2.5250473)
+Rotation = Vector3(0, -78.79999, 0)
+
+[sub_resource type="Resource" id="Resource_x2eqw"]
+script = ExtResource("3_nrhaa")
+Name = 8
+Position = Vector3(87.24758, 5.5, 2.5250473)
+Rotation = Vector3(0, 101.2, 0)
+
+[sub_resource type="Resource" id="Resource_ydxup"]
+script = ExtResource("3_nrhaa")
+Name = 15
+Position = Vector3(110.81541, 5.5, -7.2129803)
+Rotation = Vector3(0, -56.299988, 0)
+
+[sub_resource type="Resource" id="Resource_q3ldr"]
+script = ExtResource("3_nrhaa")
+Name = 7
+Position = Vector3(89.18459, 5.5, 7.2129803)
+Rotation = Vector3(0, 123.700005, 0)
+
+[sub_resource type="Resource" id="Resource_3un72"]
+script = ExtResource("3_nrhaa")
+Name = 14
+Position = Vector3(107.23184, 5.5, -10.802802)
+Rotation = Vector3(0, -33.799984, 0)
+
+[sub_resource type="Resource" id="Resource_d1i3v"]
+script = ExtResource("3_nrhaa")
+Name = 6
+Position = Vector3(92.76816, 5.5, 10.802802)
+Rotation = Vector3(0, 146.2, 0)
+
+[sub_resource type="Resource" id="Resource_jk3wk"]
+script = ExtResource("3_nrhaa")
+Name = 13
+Position = Vector3(102.5473, 5.5, -12.747993)
+Rotation = Vector3(0, -11.299987, 0)
+
+[sub_resource type="Resource" id="Resource_x62d6"]
+script = ExtResource("3_nrhaa")
+Name = 5
+Position = Vector3(97.4527, 5.5, 12.747993)
+Rotation = Vector3(0, 168.7, 0)
+
+[sub_resource type="Resource" id="Resource_up0ec"]
+script = ExtResource("3_nrhaa")
+Name = 12
+Position = Vector3(97.47495, 5.5, -12.752418)
+Rotation = Vector3(0, 11.200015, 0)
+
+[sub_resource type="Resource" id="Resource_52a52"]
+script = ExtResource("3_nrhaa")
+Name = 4
+Position = Vector3(102.52505, 5.5, 12.752418)
+Rotation = Vector3(0, -168.79997, 0)
+
+[sub_resource type="Resource" id="Resource_3hdv8"]
+script = ExtResource("3_nrhaa")
+Name = 11
+Position = Vector3(92.78702, 5.5, -10.815404)
+Rotation = Vector3(0, 33.70002, 0)
+
+[sub_resource type="Resource" id="Resource_3oe7v"]
+script = ExtResource("3_nrhaa")
+Name = 3
+Position = Vector3(107.21298, 5.5, 10.815404)
+Rotation = Vector3(0, -146.29999, 0)
+
+[sub_resource type="Resource" id="Resource_vxfbm"]
+script = ExtResource("3_nrhaa")
+Name = 10
+Position = Vector3(89.197205, 5.5, -7.2318425)
+Rotation = Vector3(0, 56.20002, 0)
+
+[sub_resource type="Resource" id="Resource_k4tw2"]
+script = ExtResource("3_nrhaa")
+Name = 2
+Position = Vector3(110.802795, 5.5, 7.2318425)
+Rotation = Vector3(0, -123.79999, 0)
+
+[sub_resource type="Resource" id="Resource_rh863"]
+script = ExtResource("3_nrhaa")
+Name = 16
+Position = Vector3(62.175453, 4.5381002, 0)
+Rotation = Vector3(0, 90, 0)
 
 [sub_resource type="Resource" id="Resource_0ext5"]
 script = ExtResource("2_o6xhn")
-character_state_array = Array[ExtResource("3_nrhaa")]([SubResource("Resource_o6xhn")])
+character_state_array = Array[ExtResource("3_nrhaa")]([SubResource("Resource_o6xhn"), SubResource("Resource_nrhaa"), SubResource("Resource_awd21"), SubResource("Resource_x2eqw"), SubResource("Resource_ydxup"), SubResource("Resource_q3ldr"), SubResource("Resource_3un72"), SubResource("Resource_d1i3v"), SubResource("Resource_jk3wk"), SubResource("Resource_x62d6"), SubResource("Resource_up0ec"), SubResource("Resource_52a52"), SubResource("Resource_3hdv8"), SubResource("Resource_3oe7v"), SubResource("Resource_vxfbm"), SubResource("Resource_k4tw2"), SubResource("Resource_rh863")])
+global_offset = null
 metadata/_custom_type_script = "uid://cdydvk1xdccnp"
 
 [sub_resource type="BoxMesh" id="BoxMesh_nrhaa"]
@@ -36,6 +133,29 @@ interaction_range = 5.0
 interact_event = SubResource("Resource_ve6fs")
 metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
+[sub_resource type="BoxMesh" id="BoxMesh_42k1y"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0ext5"]
+data = PackedVector3Array(-52.5, 0.5, 52.5, 52.5, 0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, -52.5, 52.5, -0.5, -52.5, -52.5, 0.5, -52.5, -52.5, -0.5, -52.5, 52.5, -0.5, -52.5, 52.5, 0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, -52.5, 52.5, -0.5, 52.5, -52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, 0.5, 52.5, -52.5, 0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, 0.5, -52.5, 52.5, 0.5, -52.5, -52.5, -0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, -0.5, 52.5, 52.5, -0.5, -52.5, -52.5, -0.5, -52.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_42k1y"]
+albedo_color = Color(1, 0.51, 0.51, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_awd21"]
+material = SubResource("StandardMaterial3D_42k1y")
+top_radius = 16.0
+bottom_radius = 16.0
+height = 0.9
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ext5"]
+albedo_color = Color(0.63, 0.52416, 0.4788, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ext5"]
+material = SubResource("StandardMaterial3D_0ext5")
+size = Vector3(0.5, 4, 4)
+
 [node name="Courtroom" type="Node3D" unique_id=585397178]
 script = ExtResource("1_f0jdl")
 area_states = Dictionary[String, ExtResource("2_o6xhn")]({
@@ -43,7 +163,7 @@ area_states = Dictionary[String, ExtResource("2_o6xhn")]({
 })
 
 [node name="Map Vincent" parent="." unique_id=1488574010 instance=ExtResource("6_ve6fs")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 0, 0)
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 2.6157923, 0, 0)
 
 [node name="ArmRests " parent="Map Vincent" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -112,11 +232,111 @@ transform = Transform3D(1, 0, 0, 0, -4.3711395e-08, 1, 0, -1, -4.3711395e-08, 0,
 transform = Transform3D(1, 0, 0, 0, 1, -3.5527137e-15, 0, 3.5527137e-15, 1, 0, 0, 0)
 
 [node name="base part-col" type="MeshInstance3D" parent="." unique_id=832725866]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.94183, 2.23454, -1.86873)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19498205, 2.23454, -1.86873)
 mesh = SubResource("BoxMesh_nrhaa")
 
 [node name="Interactable" parent="base part-col" unique_id=1739756957 instance=ExtResource("5_ve6fs")]
 interactable_data = SubResource("Resource_42k1y")
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=111411209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0)
+mesh = SubResource("BoxMesh_42k1y")
+
+[node name="Floor_col" type="StaticBody3D" parent="Floor" unique_id=382460169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor_col" unique_id=1774982540]
+shape = SubResource("ConcavePolygonShape3D_0ext5")
+
+[node name="carpet" type="MeshInstance3D" parent="." unique_id=1822713706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0.963, 0)
+mesh = SubResource("CylinderMesh_awd21")
+
+[node name="stand temp" type="Node3D" parent="." unique_id=1293338108]
+
+[node name="stand placeholder" type="MeshInstance3D" parent="stand temp" unique_id=1855432355]
+transform = Transform3D(0.98061466, 0, -0.19594614, 0, 1, 0, 0.19594614, 0, 0.98061466, 89.21324, 3.392, -1.931407)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="judge chair" type="MeshInstance3D" parent="stand temp" unique_id=532073756]
+transform = Transform3D(9.028752, 0, 0, 0, 0.6, 0, 0, 0, 2.228989, 65.82755, 1.6302791, -0.16145134)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder2" type="MeshInstance3D" parent="stand temp" unique_id=1964744075]
+transform = Transform3D(-0.98061466, 0, 0.19594605, 0, 1, 0, -0.19594605, 0, -0.98061466, 110.78676, 3.392, 2.379407)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder3" type="MeshInstance3D" parent="stand temp" unique_id=1819114335]
+transform = Transform3D(0.9809551, 0, 0.19423437, 0, 1, 0, -0.19423437, 0, 0.9809551, 89.209496, 3.392, 2.3605776)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder4" type="MeshInstance3D" parent="stand temp" unique_id=809103830]
+transform = Transform3D(-0.98095524, 0, -0.19423455, 0, 1, 0, 0.19423455, 0, -0.98095524, 110.790504, 3.392, -1.9125776)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder5" type="MeshInstance3D" parent="stand temp" unique_id=2041393085]
+transform = Transform3D(0.83195406, 0, 0.5548445, 0, 1, 0, -0.5548445, 0, 0.83195406, 90.8485, 3.392, 6.3272896)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder6" type="MeshInstance3D" parent="stand temp" unique_id=1576233406]
+transform = Transform3D(-0.83195406, 0, -0.5548446, 0, 1, 0, 0.5548446, 0, -0.83195406, 109.1515, 3.392, -5.8792896)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder7" type="MeshInstance3D" parent="stand temp" unique_id=181834052]
+transform = Transform3D(0.5562955, 0, 0.83098453, 0, 1, 0, -0.83098453, 0, 0.5562955, 93.880745, 3.392, 9.364828)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder8" type="MeshInstance3D" parent="stand temp" unique_id=1229144922]
+transform = Transform3D(-0.5562954, 0, -0.8309846, 0, 1, 0, 0.8309846, 0, -0.5562954, 106.119255, 3.392, -8.916828)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder9" type="MeshInstance3D" parent="stand temp" unique_id=143240299]
+transform = Transform3D(0.195946, 0, 0.98061466, 0, 1, 0, -0.98061466, 0, 0.195946, 97.84459, 3.392, 11.010762)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder10" type="MeshInstance3D" parent="stand temp" unique_id=414211849]
+transform = Transform3D(-0.19594586, 0, -0.9806147, 0, 1, 0, 0.9806147, 0, -0.19594586, 102.15541, 3.392, -10.562762)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder11" type="MeshInstance3D" parent="stand temp" unique_id=1282596077]
+transform = Transform3D(-0.19423454, 0, 0.9809551, 0, 1, 0, -0.9809551, 0, -0.19423454, 102.13658, 3.392, 11.014506)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder12" type="MeshInstance3D" parent="stand temp" unique_id=1631735565]
+transform = Transform3D(0.19423465, 0, -0.9809551, 0, 1, 0, 0.9809551, 0, 0.19423465, 97.86342, 3.392, -10.566506)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder13" type="MeshInstance3D" parent="stand temp" unique_id=1228429901]
+transform = Transform3D(-0.55484474, 0, 0.831954, 0, 1, 0, -0.831954, 0, -0.55484474, 106.10329, 3.392, 9.375495)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder14" type="MeshInstance3D" parent="stand temp" unique_id=1147011781]
+transform = Transform3D(0.55484474, 0, -0.8319539, 0, 1, 0, 0.8319539, 0, 0.55484474, 93.89671, 3.392, -8.927495)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder15" type="MeshInstance3D" parent="stand temp" unique_id=1005914948]
+transform = Transform3D(-0.8309847, 0, 0.5562953, 0, 1, 0, -0.5562953, 0, -0.8309847, 109.14083, 3.392, 6.34325)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
+
+[node name="stand placeholder16" type="MeshInstance3D" parent="stand temp" unique_id=1514991720]
+transform = Transform3D(0.8309848, 0, -0.55629534, 0, 1, 0, 0.55629534, 0, 0.8309848, 90.85917, 3.392, -5.89525)
+mesh = SubResource("BoxMesh_0ext5")
+skeleton = NodePath("../..")
 
 [editable path="Map Vincent"]
 [editable path="base part-col/Interactable"]

@@ -18,13 +18,13 @@ func check_if_trial() -> bool: ## Verifies if the game is currently in trial mod
 	return game_data.StoryFlags["IsTrial"] == true
 
 func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order to begin a new trial. If the number provided is '0', it will load the current chapter's trial.
-	var trial_handler = GeneralModule.load_script_into_node("trial/TrialHandler.gd", GameMain) # loads trial handler into new node at GameMain
+	var trial_handler = GeneralModule.load_minigame("trial/TrialHandler.gd", GameMain) # loads trial handler into new node at GameMain
 	
 	# if the trial ID is 0, the trial handler will load the trial of the current chapter
 	if trial_ID == 0:
 		trial_ID = game_data.CurrentChapter
 	
-	trial_handler.initialize_trial(trial_ID, false) # initializes the trial handler
+	trial_handler.init({"trial_ID" = trial_ID, "skip_prep" = false}) # initializes the trial handler
 
 func save_data(data_file:Resource) -> bool: ## Saves the game.
 	# define warning in the save data (for anyone who tries to edit it)

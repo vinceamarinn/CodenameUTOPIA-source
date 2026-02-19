@@ -97,6 +97,8 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 	#endregion
 }
 
+var song_database:Dictionary = {} ## Stores song metadata from scripts/metadata/music.json. Gets filled in when the module boots.
+
 func debug_message(sender:String, type:String, reason:String, content:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
 	var msg = "[" + type.to_upper() + "] " + reason + " " + content + " (sent by " + sender + ")"
 	
@@ -107,12 +109,13 @@ func debug_message(sender:String, type:String, reason:String, content:String)  -
 			push_warning(msg)
 		"info":
 			print(msg)
+	print("shoulda done the message")
 
 func get_file_name(file) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
 
-func load_script_into_node(script_path:String, node_parent:Node) -> Node: ## Attaches a chosen script to a new base node in order to load it. Returns said node, parented to the requested parent node. Used to load minigames & the like.
-	var new_path = "res://scripts/" + script_path # gets the script's name
+func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches a chosen minigame handler script to a new base node in order to load it. Returns said node.
+	var new_path = "res://scripts/" + minigame_path # gets the script's name
 	
 	# creates the holder node & loads requested script
 	var new_node = Node.new()
@@ -150,7 +153,20 @@ func play_music(music:AudioStream) -> void: ## Plays the provided music track.
 	# play the music! and update it on the data module
 	music_player.stream = music
 	music_player.play()
-	DataStateModule.game_data.CurrentMusic = get_file_name(music)
+	
+	# get song name and update the current state's music
+	var song_name = get_file_name(music)
+	DataStateModule.game_data.CurrentMusic = song_name
+	
+	# display song metadata if available
+	if song_database.has(song_name):
+		# get song data
+		var song_data = song_database[song_name]
+		var title = song_data.get("title", "Unknown title...")
+		var artist = song_data.get("artist", "Unknown artist...")
+		
+		# print song data
+		print("♪ Now Playing: ", title, " by ", artist)
 
 func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
 	sfx_player.stream = sfx
@@ -181,5 +197,20 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 	
 	return property_array # returns simple list of every found property
 
+func load_song_database(): ## Loads the music.json metadata file into the song database.
+	var metadata = FileAccess.open("res://scripts/metadata/music.json", FileAccess.READ)
+	
+	if metadata:
+		var json = JSON.new()
+		var parse_result = json.parse(metadata.get_as_text())
+		
+		if parse_result == OK:
+			song_database = json.data
+		else:
+			debug_message("GeneralModule - load_song_database()", "error", "Failed to parse the song data JSON!", json.get_error_message())
+	else:
+		debug_message("GeneralModule - load_song_database()", "error", "Failed to load the song database!", "Could not find the music.json metadata file!")
+
 func _ready() -> void:
+	load_song_database()
 	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically
