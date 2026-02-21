@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dwskuvrhm6cxm"
+path="res://.godot/imported/Trial Preparations.ogg-c0e26de9c1e5db6de24e7b23de40c7cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Trial Preparations.ogg"
+dest_files=["res://.godot/imported/Trial Preparations.ogg-c0e26de9c1e5db6de24e7b23de40c7cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,307 @@
+[gd_scene format=3 uid="uid://bt6flxmesb4mq"]
+
+[ext_resource type="Script" uid="uid://dpqcjxpapm2hl" path="res://scripts/resources/TrialScriptHolder.gd" id="1_5855h"]
+[ext_resource type="Script" uid="uid://b8l7cfrdc05e3" path="res://scripts/resources/TrialStage.gd" id="2_f0l54"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="3_2w04d"]
+[ext_resource type="Script" uid="uid://b3btqd6qf8imo" path="res://scripts/resources/CameraMovementData.gd" id="4_kkayx"]
+[ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="5_5tvk4"]
+[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="6_0ydal"]
+
+[sub_resource type="Resource" id="Resource_7gm4x"]
+script = ExtResource("4_kkayx")
+CameraTime = 6.0
+MovementType = "Zoom"
+MovementDirection = "Out"
+InitialTransition = true
+TransitionTime = 1.0
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_0vo3s"]
+script = ExtResource("3_2w04d")
+Speaker = 16
+Line = "okay guys do whatever the hell you want i dont even care"
+CameraMovement = SubResource("Resource_7gm4x")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_j55pu"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Right"
+TweenRotation = true
+BaseRotation = -10
+FinalRotation = 5
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_pysit"]
+script = ExtResource("3_2w04d")
+Speaker = 3
+Line = "so..... nice weather huh"
+CameraMovement = SubResource("Resource_j55pu")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_vm5s1"]
+script = ExtResource("4_kkayx")
+CameraTime = 0.25
+MovementType = "Zoom"
+MovementDirection = "In"
+InitialTransition = true
+TransitionTime = 3.0
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_g44i5"]
+script = ExtResource("3_2w04d")
+Speaker = 1
+Line = "KILL YOURSELF"
+CameraMovement = SubResource("Resource_vm5s1")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_l7c44"]
+script = ExtResource("4_kkayx")
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_uvv6x"]
+script = ExtResource("3_2w04d")
+Speaker = 1
+Line = "you. yes YOU. with that stupid ass haircut i fucking hate yoiu bro"
+CameraMovement = SubResource("Resource_l7c44")
+CameraSubject = 3
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_cu6b2"]
+script = ExtResource("3_2w04d")
+Speaker = 3
+Line = "what did i even DO bruh :sobbbb:"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_4cnha"]
+script = ExtResource("4_kkayx")
+CameraTime = 0.5
+MovementType = "Zoom"
+MovementDirection = "Out"
+TweenRotation = true
+BaseRotation = 10
+FinalRotation = -5
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_ue5ox"]
+script = ExtResource("3_2w04d")
+Speaker = 5
+Line = "woah woah HEY CALM DOWN"
+CameraMovement = SubResource("Resource_4cnha")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_0wajr"]
+script = ExtResource("4_kkayx")
+MovementType = "Zoom"
+MovementDirection = "In"
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_yfbre"]
+script = ExtResource("3_2w04d")
+Speaker = 5
+Line = "guys... cmon... calm down lets not be like this"
+CameraMovement = SubResource("Resource_0wajr")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_g4xqx"]
+script = ExtResource("4_kkayx")
+CameraTime = 7.5
+MovementType = "Pan"
+MovementDirection = "Up"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_vmqa7"]
+script = ExtResource("3_2w04d")
+Speaker = 2
+Line = "friday night funking impersonation:"
+CameraMovement = SubResource("Resource_g4xqx")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_yc0li"]
+script = ExtResource("3_2w04d")
+Speaker = 2
+Line = "go pico yea yea go pico oh"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_uxh22"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Left"
+BaseRotation = 5
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_wyckv"]
+script = ExtResource("3_2w04d")
+Speaker = 13
+Line = "babe.... thats cringe..... stop it"
+CameraMovement = SubResource("Resource_uxh22")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_vpw52"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Right"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_gpl4e"]
+script = ExtResource("3_2w04d")
+Speaker = 4
+Line = "No alaaaaarms and nooooo surpriiiises,"
+CameraMovement = SubResource("Resource_vpw52")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_36gcp"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Right"
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_kdh5t"]
+script = ExtResource("3_2w04d")
+Speaker = 10
+Line = "dude that band sucks can i get you on some AJR"
+CameraMovement = SubResource("Resource_36gcp")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_5iy7q"]
+script = ExtResource("4_kkayx")
+CameraTime = 10.0
+MovementType = "Zoom"
+MovementDirection = "Out"
+TweenRotation = true
+BaseRotation = -359
+FinalRotation = 359
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_864yi"]
+script = ExtResource("3_2w04d")
+Speaker = 4
+Line = "Transport, motorways, and tramlines
+Starting and then stopping, taking off and landing
+The emptiest of feelings, disappointed people
+Clinging onto bottles
+When it comes, it's so, so disappointing
+Let down and hanging around
+Crushed like a bug in the ground
+Let down and hanging around
+Shell smashed, juices flowing, wings twitch
+Legs are going, don't get sentimental
+It always ends up drivel
+One day I am gonna grow wings
+A chemical reaction
+Hysterical and useless, hysterical and
+Let down and hanging around
+Crushed like a bug in the ground
+Let down and hanging around
+Let down and hang
+Let down and hang
+Let down and hang
+You know, you know where you are with
+You know where you are with
+Floor collapses, floating
+Bouncing back
+And one day I am gonna grow wings
+A chemical reaction (you know where you are)
+Hysterical and useless (you know where you are)
+Hysterical and (you know where you are)
+Let down, and hanging around
+Crushed like a bug in the ground
+Let down and hanging around"
+CameraMovement = SubResource("Resource_5iy7q")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_hxgpe"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Down"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_eea0w"]
+script = ExtResource("3_2w04d")
+Speaker = 9
+Line = "oh my god bruh... dawg look at my classmates we're gonna LOSE"
+CameraMovement = SubResource("Resource_hxgpe")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_jv126"]
+script = ExtResource("4_kkayx")
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_thf7h"]
+script = ExtResource("3_2w04d")
+Line = "[Doubt] I don't know who to suspect... but >Kazuhito<... he seems off to me."
+CameraMovement = SubResource("Resource_jv126")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_sm6g7"]
+script = ExtResource("4_kkayx")
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_c6xcr"]
+script = ExtResource("3_2w04d")
+Speaker = 8
+Line = "[EXAGGERATE] omgggggg saaaaame i agree so harddddddd"
+CameraMovement = SubResource("Resource_sm6g7")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_3o5nu"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Up"
+InitialTransition = true
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_hlttl"]
+script = ExtResource("3_2w04d")
+Speaker = 3
+Line = "[OBFUSCATE] hEh. you know what ELSE is hard"
+CameraMovement = SubResource("Resource_3o5nu")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_n6dkg"]
+script = ExtResource("4_kkayx")
+MovementType = "Pan"
+MovementDirection = "Down"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_b11l4"]
+script = ExtResource("3_2w04d")
+Speaker = 11
+Line = "[VOTE >Kazuhito<]...i dont think ANYONE wants to know bro"
+CameraMovement = SubResource("Resource_n6dkg")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_se383"]
+script = ExtResource("6_0ydal")
+dialogue_array = Array[ExtResource("3_2w04d")]([SubResource("Resource_0vo3s"), SubResource("Resource_pysit"), SubResource("Resource_g44i5"), SubResource("Resource_uvv6x"), SubResource("Resource_cu6b2"), SubResource("Resource_ue5ox"), SubResource("Resource_yfbre"), SubResource("Resource_vmqa7"), SubResource("Resource_yc0li"), SubResource("Resource_wyckv"), SubResource("Resource_gpl4e"), SubResource("Resource_kdh5t"), SubResource("Resource_864yi"), SubResource("Resource_eea0w"), SubResource("Resource_thf7h"), SubResource("Resource_c6xcr"), SubResource("Resource_hlttl"), SubResource("Resource_b11l4")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_ttlar"]
+script = ExtResource("2_f0l54")
+Dialogue = SubResource("Resource_se383")
+metadata/_custom_type_script = "uid://b8l7cfrdc05e3"
+
+[node name="TrialScript0" type="Node" unique_id=1138311645]
+script = ExtResource("1_5855h")
+TrialScript = Array[ExtResource("2_f0l54")]([SubResource("Resource_ttlar")])

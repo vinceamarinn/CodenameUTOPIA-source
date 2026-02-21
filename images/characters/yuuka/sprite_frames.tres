@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dfbj1ivswx0x1"]
+
+[ext_resource type="Texture2D" uid="uid://3xo5nrlvnwxp" path="res://images/characters/yuuka/sketch.png" id="1_ufks4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ufks4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

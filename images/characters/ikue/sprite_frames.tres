@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b08l4ipo76ubs"]
+
+[ext_resource type="Texture2D" uid="uid://wfcy5lj2wmi4" path="res://images/characters/ikue/default.png" id="1_fm2fe"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fm2fe")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

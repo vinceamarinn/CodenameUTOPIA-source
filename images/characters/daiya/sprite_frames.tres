@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dco4jou7tpg31"]
+
+[ext_resource type="Texture2D" uid="uid://dw7lnml3yv30i" path="res://images/characters/daiya/default.png" id="1_ggrwx"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ggrwx")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

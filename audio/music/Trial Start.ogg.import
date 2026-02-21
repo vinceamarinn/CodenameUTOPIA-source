@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://76agsa2s3156"
+path="res://.godot/imported/Trial Start.ogg-f86a934afc7ad640bb17f653b7ae674d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Trial Start.ogg"
+dest_files=["res://.godot/imported/Trial Start.ogg-f86a934afc7ad640bb17f653b7ae674d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

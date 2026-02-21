@@ -1,12 +1,17 @@
 {
-    "Beautiful1": {
+    "Beautiful VINCE": {
         "title": "",
         "artist": "amarinn"
     },
 
-    "Beautiful1Vocal": {
+    "Beautiful VINCE Vocal": {
         "title": " (Vocal ver.)",
         "artist": "amarinn"
+    },
+
+    "Beautiful NICKO": {
+        "title": "Beyond",
+        "artist": "prodnicko & amarinn"
     },
 
     "Investigation": {
@@ -14,22 +19,22 @@
         "artist": "amarinn"
     },
 
-    "Katashi1": {
+    "Katashi Twins": {
         "title": "",
         "artist": "amarinn"
     },
 
-    "Katashi2": {
+    "Pursuit": {
         "title": "",
         "artist": "amarinn"
     },
 
-    "Katashi3": {
+    "Pursuit CUT": {
         "title": "",
         "artist": "amarinn"
     },
 
-    "KatashiFinale": {
+    "Pursuit END": {
         "title": "",
         "artist": "amarinn"
     },
@@ -39,17 +44,22 @@
         "artist": "amarinn"
     },
 
-    "TrialStart": {
+    "Trial Start": {
         "title": "Opening Statements",
+        "artist": "amarinn"
+    },
+    
+    "Trial Preparations": {
+        "title": "",
         "artist": "amarinn"
     },
 
     "Danger": {
         "title": "DANGER!",
-        "artist": "amarinn & .epsilonhydra"
+        "artist": "amarinn & sudorae"
     },
 
-    "Watanabe": {
+    "Watanabe Twins": {
         "title": "",
         "artist": "amarinn"
     },

@@ -54,7 +54,7 @@ func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
 
 func load_dialogue_box(box_name:String) -> void: ## Provisory temp function to load the default testing dialogue box.
 	if dialogue_box != null: return
-	dialogue_box = load("res://sub_scenes/UI/" + box_name + ".tscn").instantiate()
+	dialogue_box = load("res://scenes/UI/" + box_name + ".tscn").instantiate()
 	UI.add_child(dialogue_box)
 	
 	# intro stuff

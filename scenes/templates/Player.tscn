@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4euykki01y7t"]
+
+[ext_resource type="Script" uid="uid://b0dhplj2vjijn" path="res://scripts/templates/PlayerOverworld.gd" id="1_ikhqa"]
+[ext_resource type="SpriteFrames" uid="uid://1ou1203lcupv" path="res://images/characters/yuuto/player/sprite_frames.tres" id="2_ikhqa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8a1cs"]
+size = Vector3(3.09723, 5.29565, 0.102295)
+
+[node name="Player" type="CharacterBody3D" unique_id=1065094138]
+script = ExtResource("1_ikhqa")
+
+[node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=1113391786]
+sprite_frames = ExtResource("2_ikhqa")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1840358204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035003, -0.0389409, -0.0240479)
+shape = SubResource("BoxShape3D_8a1cs")

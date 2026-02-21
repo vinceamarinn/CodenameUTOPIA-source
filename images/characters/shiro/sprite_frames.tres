@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://5eqew1tv4gq4"]
+
+[ext_resource type="Texture2D" uid="uid://bd0u3ansgr8fg" path="res://images/characters/shiro/default.png" id="1_6b2do"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6b2do")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

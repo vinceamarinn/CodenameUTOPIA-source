@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bouhv5lipniy7"
+path="res://.godot/imported/Beautiful NICKO.ogg-e267f4bf5d142125d3fb55ed795afc46.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Beautiful NICKO.ogg"
+dest_files=["res://.godot/imported/Beautiful NICKO.ogg-e267f4bf5d142125d3fb55ed795afc46.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://d03t7mxqa8cc5"]
+
+[ext_resource type="Texture2D" uid="uid://c0rqs646iyfoc" path="res://images/characters/willow/default.png" id="1_ka5xd"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ka5xd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

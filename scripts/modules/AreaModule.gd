@@ -10,15 +10,16 @@ extends Node
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 
 #templates
-@onready var char_template = load("res://sub_scenes/templates/Character.tscn")
-@onready var player_template = load("res://sub_scenes/templates/Player.tscn")
+@onready var char_template = load("res://scenes/templates/Character.tscn")
+@onready var player_template = load("res://scenes/templates/Player.tscn")
+@onready var interactable_template = load("res://scenes/templates/Interactable.tscn")
 
 func create_character(char_info, global_offset:Vector3) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	var char_name = GeneralModule.get_character_name(char_info.Name)
 	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentMap):
 		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentMap]: return
 	
-	var char_sprites = load("res://sub_scenes/sprite_frames/" + char_name + "_sprites.tres")
+	var char_sprites = load("res://images/characters/" + char_name + "/sprite_frames.tres")
 	var new_char = char_template.instantiate()
 	new_char.name = char_name
 	
@@ -32,7 +33,7 @@ func create_character(char_info, global_offset:Vector3) -> void: ## Creates a ch
 	
 	# create any attached interactables
 	if char_info.Interaction:
-		var new_interactable = load("res://sub_scenes/templates/Interactable.tscn").instantiate()
+		var new_interactable = interactable_template.instantiate()
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
@@ -46,7 +47,7 @@ func create_player(player_char) -> PlayerOverworld: ## Loads the player characte
 	new_player.name = "Player"
 	
 	var player_name = GeneralModule.get_character_name(player_char)
-	var char_sprites = load("res://sub_scenes/sprite_frames/" + player_name + "PLAYER_sprites.tres")
+	var char_sprites = load("res://images/characters/" + player_name + "/player/sprite_frames.tres")
 	new_player.get_node("Sprite").sprite_frames = char_sprites
 	
 	CameraModule.set_mode(CameraModule.CameraModes.FOLLOW_PLAYER)
@@ -61,7 +62,7 @@ func unload_area(area:Node) -> void: ## Deletes the provided area. Also wipes an
 
 func load_area(area_name:String, state:String, load_player:bool, load_characters:bool, skip_transition:bool) -> Node3D: ## Handles the loading & processing of areas and the area's data based on the given state.
 	#get the area's supposed path, end the code if the area doesn't exist
-	var area_path = "res://main_scenes/maps/" + area_name + ".tscn"
+	var area_path = "res://scenes/maps/" + area_name + ".tscn"
 	if not ResourceLoader.exists(area_path):
 		GeneralModule.debug_message("AreaModule - load_area()", "error", "Failed to load the " + area_name + " area!", "The area file doesn't exist!")
 		return

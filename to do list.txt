@@ -4,12 +4,11 @@
 - add dialogue requisites (certain flags or conditions that NEED to be true for the dialogue line/tree/array to be read, otherwise it will be skipped over)
 
 > TRIAL MODULE
-- add proper trial seating to the courtroom and create the seating area state for the courtroom
-(need younes for this)
 - do check between the internal death registry and the save data death registry for the pre trial sequence
 
 > MINIGAME SYSTEM
-- develop minigame system further
+create the loading screen minigame!
+make some test minigames to test the feature
 
 
 =================================================
@@ -19,8 +18,9 @@
 - probably generalize the player overworld thing sprite loading or whatever to also work for everyone
 
 >MUSIC
-- record wahwah guitar for thinking time
-- work on danger theme some more
+- finish thinking time
+- redo trial escalation so it can be used as an underground theme
+- work on danger theme some more (in progress, waiting on rachael)
 - make intro theme
 - make ending theme
 
@@ -34,8 +34,6 @@
 - options menu
 - pause menu with all the good stuff in it
 - title screen on game boot with debug quickstart
-- loading screen minigames!!!
-- actual minigames (trial AND off trial)
 - on-screen tutorial system
 
 >CLUES SYSTEM

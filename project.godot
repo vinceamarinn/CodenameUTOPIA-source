@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Codename: UTOPIA"
-run/main_scene="res://main_scenes/GameMain.tscn"
+run/main_scene="res://scenes/GameMain.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="CodenameUTOPIA"
 config/features=PackedStringArray("4.6", "Forward Plus")

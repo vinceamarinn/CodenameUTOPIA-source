@@ -40,8 +40,10 @@ func setup() -> bool: ## Initiates the provided trial.
 	# load courtroom
 	var courtroom = await AreaModule.load_area("Courtroom", "TRIAL", false, false, true)
 	
-	# load non dead characters
-	var trial_state = courtroom.area_states["TRIAL"].character_state_array # get trial seating arrangement
+	# get trial seating arrangement & load characters
+	var trial_state_holder = courtroom.area_states["TRIAL"] # get trial seating arrangement
+	var trial_state = trial_state_holder.character_state_array
+	var trial_global_offset = trial_state_holder.global_offset
 	
 	# go through every character, and only load them if they are not registered as dead
 	# !!!EDIT THIS LATER SO THAT FOR CHARACTERS WHO ARE DEAD IT SPAWNS A PORTRAIT INSTEAD!!!
@@ -49,7 +51,7 @@ func setup() -> bool: ## Initiates the provided trial.
 	for char_state in trial_state:
 		var char_name = GeneralModule.get_character_name(char_state.Name)
 		if char_name in story_flags.DeathRegistry: continue
-		AreaModule.create_character(char_state)
+		AreaModule.create_character(char_state, trial_global_offset)
 	
 	# load spectator portraits
 	
@@ -66,7 +68,7 @@ func setup() -> bool: ## Initiates the provided trial.
 	
 	# ok! let's cleanup the preparations & get straight into it
 	# load trial script
-	trial_script_node = load("res://scripts/trial/TrialScript" + str(trial_ID) + ".tscn").instantiate()
+	trial_script_node = load("res://scripts/trial/trial_scripts/TrialScript" + str(trial_ID) + ".tscn").instantiate()
 	add_child(trial_script_node)
 	
 	return true

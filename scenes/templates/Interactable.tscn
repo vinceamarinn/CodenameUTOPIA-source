@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b05iwyug8axbg"]
+
+[ext_resource type="Script" uid="uid://61gfabcf5cmr" path="res://scripts/templates/Interactable.gd" id="1_k7ad7"]
+[ext_resource type="Texture2D" uid="uid://ejyumcuy5y2p" path="res://images/UI/interact prompt.png" id="2_vss64"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ui5h"]
+
+[node name="Interactable" type="Area3D" unique_id=372533762]
+script = ExtResource("1_k7ad7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=853651546]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+shape = SubResource("SphereShape3D_0ui5h")
+
+[node name="Prompt" type="Sprite3D" parent="." unique_id=219570953]
+billboard = 1
+texture = ExtResource("2_vss64")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

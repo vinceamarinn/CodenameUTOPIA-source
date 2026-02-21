@@ -22,6 +22,10 @@ enum CameraModes { ## lists the different modes for the camera.
 
 var camera_mode:CameraModes = CameraModes.NONE ## Tracks the currently selected camera mode.
 
+# signals
+@warning_ignore("unused_signal")
+signal transition_finished ## Indicates an initial transition tween has finished.
+
 # table storing the initial positions for each different Trial camera option
 const POSITION_TABLE = {
 	"Pan" = {
@@ -45,9 +49,6 @@ const DIALOGUE_OFFSET:Vector3 = Vector3(0, 0, 6) ## Offset from the camera subje
 const DIALOGUE_TIME:float = 0.65 ## Default time the Dialogue tween takes.
 
 const TRIAL_BASE_OFFSET:Vector3 = Vector3(0, 2, 5.5) ## Offset with which the camera builds the Trial camera movement out of, using the other initial values.
-
-# signals
-signal transition_finished ## Signals when a camera initial transition finishes.
 
 func kill_current_tween() -> void: ## Kills any current ongoing tween.
 	if curr_cam_tween != null:

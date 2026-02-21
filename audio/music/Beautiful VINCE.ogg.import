@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dworjpjwubk1p"
+path="res://.godot/imported/Beautiful VINCE.ogg-dbd5e89242915d1b755a34f7e1569354.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/Beautiful VINCE.ogg"
+dest_files=["res://.godot/imported/Beautiful VINCE.ogg-dbd5e89242915d1b755a34f7e1569354.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

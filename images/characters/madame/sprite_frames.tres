@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dbbifjgyg8smi"]
+
+[ext_resource type="Texture2D" uid="uid://cevb0hl8y2lew" path="res://images/characters/madame/default.png" id="1_eq141"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_eq141")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]

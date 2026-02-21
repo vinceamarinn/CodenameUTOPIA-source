@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://gktglqkacvai"]
+
+[ext_resource type="Texture2D" uid="uid://cgb1qg3jpvy88" path="res://images/characters/yuuto/sketch.png" id="1_fhov6"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fhov6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
