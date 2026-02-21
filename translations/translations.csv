@@ -1,30 +1,93 @@
-key;en;pt;es
-;;;
-'Kazuhito';'Kazuhito';‘Chico’;
-(speaker's line);(speaker's line);(fala do personagem);
-(speaker's name);(speaker's name);(nome do personagem);
-???;???;???;
-Ayana Susume;Ayana Susume;Sierra Camões;
-Daiya Adelaide;Daiya Adelaide;Dália Adelaide;
-Gōki Yoshiaki;Gōki Yoshiaki;Ezequiel ‘Zeca’ Duarte;
-Ikue Fuyumi;Ikue Fuyumi;Inês Beiramar;
-Kazuhito Kobayashi;Kazuhito Kobayashi;Francisco Silva;
-Lance Katsunosuke;Lance Katsunosuke;Leonardo Salvador;
-Naomi Anttonen;Naomi Anttonen;Noélia Antunes;
-Reina Watanabe;Reina Watanabe;Valéria Traves;
-Ren Watanabe;Ren Watanabe;Vítor Traves;
-Ryuji Ryuichi;Ryuji Ryuichi;Rodrigo Rodrigues;
-Sebastian Kagaku;Sebastian Kagaku;Sebastião Reis;
-Shiro Sakamoto;Shiro Sakamoto;Bianca Monteiro;
-Shizuka Yukino;Shizuka Yukino;Serena Neves;
-Sukai Manato;Sukai Manato;Célio Valentim;
-The Madame;The Madame;A Madame;
-Willow Asher;Willow Asher;Laura Felícia;
-Yuuka Katashi;Yuuka Katashi;Ândria Vieira;
-Yuuto Katashi;Yuuto Katashi;André Vieira;
-;;;
-;;;
-damn;damn;damn;
-i hate u brah;i hate u brah;odeio te brah;
-idgaf;idgaf;não ligo um cu;
-save game;save game;guardar jogo;
+key;pt;es
+# res://scenes/GameMain.tscn;;
+save game;guardar jogo;
+;;
+# res://scenes/UI/DialogueBox.tscn;;
+(speaker's line);(fala do personagem);
+(speaker's name);(nome do personagem);
+;;
+# res://scenes/maps/TestArea.tscn;;
+...im out of dialgoue bruh;;
+heh... look at her shes pissed;;
+kazuhito i will curse your name for generations;;
+kys;;
+what?;;
+yo yuuka;;
+;;
+# res://scripts/modules/DialogueModule.gd;;
+;;
+???;???;???
+;;
+# res://scripts/modules/GeneralModule.gd;;
+'Kazuhito';‘Chico’;
+'Schaeffer';;
+Ayana Susume;Sierra Camões;
+Daiya Adelaide;Dália Adelaide;
+Edwin Winfield;;
+Gōki Yoshiaki;Ezequiel ‘Zeca’ Duarte;
+Ikue Fuyumi;Inês Beiramar;
+Kaoru Nakajima;;
+Kazuhito Kobayashi;Francisco Silva;
+Lance Katsunosuke;Leonardo Salvador;
+Naomi Anttonen;Noélia Antunes;
+Reina Watanabe;Valéria Traves;
+Ren Watanabe;Vítor Traves;
+Ryuji Ryuichi;Rodrigo Rodrigues;
+Sebastian Kagaku;Sebastião Reis;
+Shiro Sakamoto;Bianca Monteiro;
+Shizuka Yukino;Serena Neves;
+Sukai Manato;Célio Valentim;
+The Madame;A Madame;
+Willow Asher;Laura Felícia;
+Yuuka Katashi;Ândria Campos;
+Yuuto Katashi;André Campos;
+;;
+# res://scripts/trial/trial_scripts/TrialScript0.tscn;;
+KILL YOURSELF;;
+No alaaaaarms and nooooo surpriiiises,;;
+"Transport, motorways, and tramlines
+Starting and then stopping, taking off and landing
+The emptiest of feelings, disappointed people
+Clinging onto bottles
+When it comes, it's so, so disappointing
+Let down and hanging around
+Crushed like a bug in the ground
+Let down and hanging around
+Shell smashed, juices flowing, wings twitch
+Legs are going, don't get sentimental
+It always ends up drivel
+One day I am gonna grow wings
+A chemical reaction
+Hysterical and useless, hysterical and
+Let down and hanging around
+Crushed like a bug in the ground
+Let down and hanging around
+Let down and hang
+Let down and hang
+Let down and hang
+You know, you know where you are with
+You know where you are with
+Floor collapses, floating
+Bouncing back
+And one day I am gonna grow wings
+A chemical reaction (you know where you are)
+Hysterical and useless (you know where you are)
+Hysterical and (you know where you are)
+Let down, and hanging around
+Crushed like a bug in the ground
+Let down and hanging around";;
+[Doubt] I don't know who to suspect... but >Kazuhito<... he seems off to me.;;
+[EXAGGERATE] omgggggg saaaaame i agree so harddddddd;;
+[OBFUSCATE] hEh. you know what ELSE is hard;;
+[VOTE >Kazuhito<]...i dont think ANYONE wants to know bro;;
+babe.... thats cringe..... stop it;;
+dude that band sucks can i get you on some AJR;;
+friday night funking impersonation:;;
+go pico yea yea go pico oh;;
+guys... cmon... calm down lets not be like this;;
+oh my god bruh... dawg look at my classmates we're gonna LOSE;;
+okay guys do whatever the hell you want i dont even care;;
+so..... nice weather huh;;
+what did i even DO bruh :sobbbb:;;
+woah woah HEY CALM DOWN;;
+you. yes YOU. with that stupid ass haircut i fucking hate yoiu bro;;

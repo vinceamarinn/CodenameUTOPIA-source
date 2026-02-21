@@ -39,19 +39,25 @@ func _compile_pattern_string(string: String):
 	_patterns.append(pattern)
 
 
-func get_keys_in_files(files: Array) -> Array:
-	var keys:= []
+# Returns a Dictionary { file_path: [keys] } with keys sorted per file.
+func get_keys_in_files(files: Array) -> Dictionary:
+	var keys_by_file: Dictionary = {}
 	for f in files:
+		var file_keys: Array
 		if f.ends_with(".scn"): # binary scene
-			_append_array_to_array_unique(keys, _get_keys_in_binary_scn_or_res(f, "user://sk_temp.tscn"))
+			file_keys = _get_keys_in_binary_scn_or_res(f, "user://sk_temp.tscn")
 		elif f.ends_with(".res"): # binary resource
-			_append_array_to_array_unique(keys, _get_keys_in_binary_scn_or_res(f, "user://sk_temp.tres"))
+			file_keys = _get_keys_in_binary_scn_or_res(f, "user://sk_temp.tres")
 		elif f.ends_with(".vs"): # visual script (currently always binary)
-			_append_array_to_array_unique(keys, _get_keys_in_binary_visual_script(f))
+			file_keys = _get_keys_in_binary_visual_script(f)
 		else: # consider (hope) its a text file
-			_append_array_to_array_unique(keys, _get_keys_in_text_file(f))
-	keys.sort() # make alphabetical
-	return keys
+			file_keys = _get_keys_in_text_file(f)
+
+		if file_keys.size() > 0:
+			file_keys.sort()
+			keys_by_file[f] = file_keys
+
+	return keys_by_file
 
 
 func _get_keys_in_binary_scn_or_res(file_path: String, temp_path: String) -> Array:
@@ -141,15 +147,11 @@ func _get_keys_in_text(text: String) -> Array:
 			var key = text.substr(prefix_end, key_length)
 			if require_tag:
 				if key.find(tag_seperator) > -1:
-					found_keys.append(key)
+					if not found_keys.has(key):
+						found_keys.append(key)
 			else:
-				found_keys.append(key)
+				if not found_keys.has(key):
+					found_keys.append(key)
 		
 		keep_searching = not pattern_indices.is_empty()
 	return found_keys
-
-
-func _append_array_to_array_unique(original: Array, addition: Array):
-	for a in addition:
-		if not original.has(a):
-			original.append(a)

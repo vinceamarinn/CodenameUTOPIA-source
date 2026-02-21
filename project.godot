@@ -110,7 +110,7 @@ interact={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://translations/translations.en.translation", "res://translations/translations.pt.translation", "res://translations/translations.es.translation")
+locale/translations=PackedStringArray("res://translations/translations.pt.translation", "res://translations/translations.es.translation")
 locale/test="en"
 
 [rendering]
