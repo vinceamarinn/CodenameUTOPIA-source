@@ -53,6 +53,32 @@ func setup() -> bool: ## Initiates the provided trial.
 		if char_name in story_flags.DeathRegistry: continue
 		AreaModule.create_character(char_state, trial_global_offset)
 	
+	# now, check for any mismatches between the internal registry & the save data
+	var saved_registry = DataStateModule.game_data.StoryFlags.DeathRegistry
+	var internal_registry = []
+	
+	# get the internal registry
+	for chapter in GeneralModule.DEATH_REGISTRY:
+		# we've checked all the chapters thus far, so break the loop!
+		if trial_ID < chapter: break
+		
+		# add the 'meant to be dead' characters to the registry
+		internal_registry.append_array(GeneralModule.DEATH_REGISTRY[chapter])
+	
+	# sort the two lists
+	saved_registry.sort()
+	internal_registry.sort()
+	
+	# if the two are not equal, then find the missing characters from the saved registry, and log them into the minigame data
+	if saved_registry != internal_registry:
+		# filter the internal registry and return characters that are missing in saved registry
+		var revived_characters = internal_registry.filter(
+			func(chars): return chars in saved_registry
+		)
+		
+		# add them to the revived registry
+		minigame_data["revived_characters"] = revived_characters
+	
 	# load spectator portraits
 	
 	
@@ -63,9 +89,6 @@ func setup() -> bool: ## Initiates the provided trial.
 	if not skip_prep:
 		pass
 	
-	# fade back in, finally
-	
-	
 	# ok! let's cleanup the preparations & get straight into it
 	# load trial script
 	trial_script_node = load("res://scripts/trial/trial_scripts/TrialScript" + str(trial_ID) + ".tscn").instantiate()
@@ -74,6 +97,11 @@ func setup() -> bool: ## Initiates the provided trial.
 	return true
 
 func main() -> void: ## Reads through the provided trial script. You are able to provide it with a specific array & line combo so it starts reading from there.
+	# execute preset sequence for when the player tries to revive somebody!
+	
+	
+	
+	# ok lets actually run the trial now
 	var trial_script_data = trial_script_node.TrialScript
 	
 	# determine where to start from

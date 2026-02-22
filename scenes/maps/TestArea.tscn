@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ukupxemwq2p" path="res://scripts/resources/AreaStateHolder.gd" id="1_b24ix"]
 [ext_resource type="Script" uid="uid://cdydvk1xdccnp" path="res://scripts/resources/CharStateArray.gd" id="2_1l5t1"]
 [ext_resource type="Script" uid="uid://dfurhh7fm8uvd" path="res://scripts/resources/CharState.gd" id="3_o7mot"]
+[ext_resource type="Script" uid="uid://dlu7msbne4hpp" path="res://scripts/resources/DialogueDict.gd" id="4_1l5t1"]
 [ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="4_o8gfi"]
 [ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="5_2glyw"]
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0osks"]
@@ -10,61 +11,49 @@
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="8_he112"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://scenes/templates/Interactable.tscn" id="9_ru3c5"]
 
-[sub_resource type="Resource" id="Resource_1pv0l"]
+[sub_resource type="Resource" id="Resource_o7mot"]
 script = ExtResource("5_2glyw")
 Speaker = 3
-Line = "yo yuuka"
+Line = "lalalallaaaaaa"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_33k6n"]
+[sub_resource type="Resource" id="Resource_o8gfi"]
 script = ExtResource("5_2glyw")
 Speaker = 1
-Line = "what?"
+Line = "what"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_8roqi"]
+[sub_resource type="Resource" id="Resource_2glyw"]
 script = ExtResource("5_2glyw")
 Speaker = 3
-Line = "kys"
+Line = "im singing"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_h7yec"]
-script = ExtResource("5_2glyw")
-Speaker = 3
-Line = "heh... look at her shes pissed"
-CameraSubject = 1
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_uk4lw"]
+[sub_resource type="Resource" id="Resource_0osks"]
 script = ExtResource("5_2glyw")
 Speaker = 1
-Line = "kazuhito i will curse your name for generations"
+Line = "ok bro"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[sub_resource type="Resource" id="Resource_qd0dc"]
+[sub_resource type="Resource" id="Resource_hhnto"]
 script = ExtResource("4_o8gfi")
-dialogue_array = Array[ExtResource("5_2glyw")]([SubResource("Resource_1pv0l"), SubResource("Resource_33k6n"), SubResource("Resource_8roqi"), SubResource("Resource_h7yec"), SubResource("Resource_uk4lw")])
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_o7mot"), SubResource("Resource_o8gfi"), SubResource("Resource_2glyw"), SubResource("Resource_0osks")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
-[sub_resource type="Resource" id="Resource_3ye7f"]
-script = ExtResource("5_2glyw")
-Speaker = 3
-Line = "...im out of dialgoue bruh"
-CameraSubject = null
-metadata/_custom_type_script = "uid://7h4sds3ykomg"
-
-[sub_resource type="Resource" id="Resource_2jahj"]
-script = ExtResource("4_o8gfi")
-dialogue_array = Array[ExtResource("5_2glyw")]([SubResource("Resource_3ye7f")])
-metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+[sub_resource type="Resource" id="Resource_he112"]
+script = ExtResource("4_1l5t1")
+DictData = Dictionary[String, ExtResource("4_o8gfi")]({
+"": SubResource("Resource_hhnto")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
 
 [sub_resource type="Resource" id="Resource_wq2lk"]
 script = ExtResource("7_hhnto")
-dialogue_tree = Array[ExtResource("4_o8gfi")]([SubResource("Resource_qd0dc"), SubResource("Resource_2jahj")])
+TreeData = Array[ExtResource("4_1l5t1")]([SubResource("Resource_he112")])
 metadata/_custom_type_script = "uid://cry7q52aiw4rr"
 
 [sub_resource type="Resource" id="Resource_0ui5h"]

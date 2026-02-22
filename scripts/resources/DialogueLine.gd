@@ -1,7 +1,8 @@
 extends Resource
 class_name DialogueLine
 
-@export_group("General Settings")
+@export var Condition:DialogueCondition ## Details the condition required for this to be processed by the Dialogue Module.
+
 @export var Speaker:GeneralModule.Characters ## Name of the character speaking. Borrows from the [b]General Module[/b]'s list of available names.
 @export_multiline var Line:String ## It's the dialogue line. Self-explanatory.
 @export var Sprite:String ## Name of the sprite intended for the character.
@@ -16,10 +17,6 @@ class_name DialogueLine
 @export var CameraSubject:GeneralModule.Characters = Speaker ## Whoever the camera focuses on during a dialogue line. If left blank, the camera focuses on whoever's speaking.
 
 @export_group("Audio Settings")
-@export_subgroup("Sound Settings")
-#sfx
-#voices
-
 @export_subgroup("Music Settings")
 @export var MuteMusic:bool = false ## If enabled, the music fades out on this line.
 @export var MutingSpeed:float = 3 ## Determines the time it takes, in seconds, at which the music fades out, if muting is enabled.
@@ -32,10 +29,5 @@ class_name DialogueLine
 @export_group("Event Settings")
 @export var EventList:Array[EventData] ## List of events to trigger during this dialogue.
 
-@export_group("Misc. Settings")
-@export var CharacterLeaves:bool = false ## If true, the character will leave the scene upon speaking their line.
-
-
-
 @export_group("Developer Extras")
-@export_multiline var developer_note:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.
+@export_multiline var DeveloperNote:String = "" ## Just a holder for any necessary developer notes. Does nothing in practice.

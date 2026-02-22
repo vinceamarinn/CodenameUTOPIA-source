@@ -195,10 +195,6 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 		if line_info.PlayMusic != null:
 			GeneralModule.play_music(line_info.PlayMusic)
 	
-	# tell character to leave the room (to add later)
-	if line_info.CharacterLeaves:
-		pass
-	
 	# process event flags and get the line without any flags
 	var raw_line = line_info.Line # extract raw line
 	# create holders in memory
@@ -300,46 +296,147 @@ func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the giv
 	# if event is after continuing, process it now
 	process_events(auto_event_list, "On Continue")
 
-func determine_line_start(start_point_dict:Dictionary[String, int]) -> int: ## Given a certain start point dictionary, returns whether the array should be read in full or from the start provided in the start point dictionary.
-	var start = 0
-	if start_point_dict.has("line"):
-		start = start_point_dict["line"]
+func determine_line_start(start_point_dict:Dictionary[String, Variant]) -> int: ## Given a certain start point dictionary, returns whether the array should be read in full or from the start provided in the start point dictionary.
+	return start_point_dict.get("line", 0)
+
+func check_condition(condition:DialogueCondition) -> String: ## Checks if the provided Dialogue Condition is valid. Returns the action to take after consideration.
+	# if there is no dialogue condition, then proceed as normal...
+	if condition == null: return "pass"
 	
-	return start
+	# get current game data & add a variable to see if the condition type checks passed
+	var game_data = DataStateModule.game_data
+	var passed = false
+	
+	# check conditions to see if they are verified
+	match condition.ConditionType:
+		DialogueCondition.ConditionTypes.FLAG:
+			# FLAG: get the story flag, check if the value matches the request
+			passed = game_data.StoryFlags.get(condition.FlagName, false) == condition.FlagValue
+		DialogueCondition.ConditionTypes.PLAYER_IS:
+			# PLAYER IS: get the current player, check if the player is the same as the request
+			passed = game_data.PlayerCharacter == condition.RequiredPlayer
+		DialogueCondition.ConditionTypes.HAS_CLUE:
+			# HAS CLUE: get the clue inventory, check if a clue with the requested name is in the inventory
+			passed = game_data.ClueInventory.has(condition.RequiredClueName)
+	
+	# if passed is true, then the condition works! please proceed
+	if passed: return "pass"
+	
+	# otherwise, match the fail action
+	match condition.FailAction:
+		DialogueCondition.FailActions.BREAK:
+			return "break"
+		DialogueCondition.FailActions.JUMP_TO:
+			return "jump"
+		DialogueCondition.FailActions.SKIP, _:
+			return "skip"
 
 func read_dialogue_array(array_data:DialogueArray, line_start:int) -> void: ## Iterates through a given dialogue array.
-	var dialogue_array = array_data.dialogue_array
+	var dialogue_array = array_data.ArrayData
 	
 	# iterate through every dialogue line in the dialogue array and process it in order
 	for i in range(line_start, dialogue_array.size(), 1):
+		# get dialogue line and its condition
 		var dialogue_line = dialogue_array[i]
-		await process_dialogue_line(dialogue_line)
+		var condition_result = check_condition(dialogue_line.Condition)
+		
+		# match this line's processing according to condition results
+		match condition_result:
+			"skip": continue # skip over the line
+			"break", "jump": break # break the reading
+			"pass", _: # just process as normal
+				await process_dialogue_line(dialogue_line)
 
-func read_dialogue_tree(tree_data:DialogueTree, start_point_dict:Dictionary[String, int]) -> void: ## Iterates through a given dialogue tree.
-	var dialogue_tree = tree_data.dialogue_tree # get dialogue tree
-	var loop_tree = tree_data.loop_tree # get loop value
+func read_dialogue_dict(dict_data:DialogueDict, start_point_dict:Dictionary[String, Variant]) -> void: ## Iterates through a given dialogue dictionary.
+	var dialogue_dict = dict_data.DictData
+	var dialogue_keys = dialogue_dict.keys()
 	
-	# set array tracker to start point["array"]
-	if start_point_dict.has("array"):
-		tree_data.array_tracker = start_point_dict["array"]
-	
-	# get selected dialogue array to iterate
-	var array_data = dialogue_tree[tree_data.array_tracker]
-	
-	# determine start point
+	# get starting points, key & line wise
+	var key_start:String = start_point_dict.get("key", dialogue_keys[0])
+	var reached_start = false
 	var line_start = determine_line_start(start_point_dict)
-	await read_dialogue_array(array_data, line_start) # read dialogue array
 	
-	#handle array tracker logic
-	#if the array tracker is not at the last array of the tree, increment it
-	#if the array tracker is at the last array of the tree, set it to 0 if looping is enabled, do nothing if looping is disabled
-	if tree_data.array_tracker < dialogue_tree.size() - 1:
-		tree_data.array_tracker += 1
+	# run while instead of for, so we can jump back in keys
+	var i = 0
+	while i < dialogue_keys.size():
+		# get current key!
+		var key = dialogue_keys[i]
+		
+		# skip until we find the key to start in, after which NO MORE skipping!!!!!
+		if key == key_start:
+			reached_start = true
+		if not reached_start: 
+			i += 1
+			continue
+		
+		# read array from start point
+		var array = dialogue_dict[key]
+		var condition_result = check_condition(array.Condition)
+		
+		# do things based on result
+		match condition_result:
+			"pass":
+				await read_dialogue_array(array, line_start)
+				# reset line start so subsequent arrays in the dict start from the top
+				line_start = 0
+			"skip":
+				# just reset line start, just in case
+				line_start = 0
+			"break":
+				break # break the loop
+			"jump":
+				# get key to jump to
+				var jump_key = array.Condition.JumpToKey
+				
+				# check if the key exists, and if yes, set the key start to it & reset the loop so we can go there
+				if dialogue_dict.has(jump_key):
+					key_start = jump_key
+					reached_start = false
+					line_start = 0
+					i = 0
+					continue
+		
+		i += 1
+
+func increase_dict_counter(tree_data:DialogueTree, tree_size:int, loop_tree:bool) -> void: ## Increases the dictionary timer of a dialogue tree.
+	#handle dict tracker logic
+	#if the dict tracker is not at the last dict of the tree, increment it
+	#if the dict tracker is at the last dict of the tree, set it to 0 if looping is enabled, do nothing if looping is disabled
+	if tree_data.dict_tracker < tree_size - 1:
+		tree_data.dict_tracker += 1
 	else:
 		if loop_tree == true:
-			tree_data.array_tracker = 0
+			tree_data.dict_tracker = 0
 
-func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, int]): ## Read through the provided dialogue. Handles both trees & arrays.
+func read_dialogue_tree(tree_data:DialogueTree, start_point_dict:Dictionary[String, Variant]) -> void: ## Iterates through a given dialogue tree.
+	var dialogue_tree = tree_data.TreeData # get dialogue tree
+	var loop_tree = tree_data.LoopTree # get loop value
+	
+	# set dict tracker to start point["dict"]
+	if start_point_dict.has("dict"):
+		tree_data.dict_tracker = start_point_dict["dict"]
+	
+	# get selected dialogue array to iterate
+	var dict_data = dialogue_tree[tree_data.dict_tracker]
+	var condition_result = check_condition(dict_data.Condition)
+	
+	# check if we can run it based on result
+	match condition_result:
+		"pass":
+			await read_dialogue_dict(dict_data, start_point_dict) # read dialogue dict
+		"break":
+			return # do not advance tracker, try to repeat the same dict next time
+		"skip":
+			# attempt to recursively re-read, skipping to the next one
+			increase_dict_counter(tree_data, dialogue_tree.size(), loop_tree)
+			await read_dialogue_tree(tree_data, {})
+			return # so it doesn't increment again at the bottom
+		_:
+			pass
+	
+	increase_dict_counter(tree_data, dialogue_tree.size(), loop_tree)
+
+func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, Variant]): ## Read through the provided dialogue. Handles both trees & arrays.
 	# prevent two dialogues from being read at once
 	if reading_in_progress: return
 	reading_in_progress = true
@@ -359,10 +456,8 @@ func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, in
 		CameraModule.set_mode(CameraModule.CameraModes.DIALOGUE)
 	
 	# detect the kind of dialogue to read & process it
-	if dialogue_data is DialogueArray:
-		# determine start point
-		var line_start = determine_line_start(start_point_dict)
-		await read_dialogue_array(dialogue_data, line_start)
+	if dialogue_data is DialogueDict:
+		await read_dialogue_dict(dialogue_data, start_point_dict)
 	elif dialogue_data is DialogueTree:
 		await read_dialogue_tree(dialogue_data, start_point_dict)
 	reading_in_progress = false

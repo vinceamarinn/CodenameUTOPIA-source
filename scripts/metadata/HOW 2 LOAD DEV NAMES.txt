@@ -1,0 +1,5 @@
+for every keyword in the json:
+ - get the information in it
+ - set the pseudonym to "pseudo" if it exists, otherwise use the key
+ - set the name to "first", otherwise just have it blank
+ - set the surname to "last", otherwise just have it blank

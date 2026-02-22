@@ -197,7 +197,7 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 	
 	return property_array # returns simple list of every found property
 
-func load_song_database(): ## Loads the music.json metadata file into the song database.
+func load_song_database(): ## Loads the music.json metadata file into the song database. Doesn't return it, as this information is used here - there's no need.
 	var metadata = FileAccess.open("res://scripts/metadata/music.json", FileAccess.READ)
 	
 	if metadata:
@@ -210,6 +210,23 @@ func load_song_database(): ## Loads the music.json metadata file into the song d
 			debug_message("GeneralModule - load_song_database()", "error", "Failed to parse the song data JSON!", json.get_error_message())
 	else:
 		debug_message("GeneralModule - load_song_database()", "error", "Failed to load the song database!", "Could not find the music.json metadata file!")
+
+func get_developer_credits() -> Dictionary: ## Loads the dev_credits.json metadata file, and returns it.
+	var dev_name_list = {}
+	var metadata = FileAccess.open("res://scripts/metadata/dev_credits.json", FileAccess.READ)
+	
+	if metadata:
+		var json = JSON.new()
+		var parse_result = json.parse(metadata.get_as_text())
+		
+		if parse_result == OK:
+			dev_name_list = json.data
+		else:
+			debug_message("GeneralModule - get_developer_credits()", "error", "Failed to parse the developer crediting list JSON!", json.get_error_message())
+	else:
+		debug_message("GeneralModule - get_developer_credits()", "error", "Failed to load the developer crediting list!", "Could not find the dev_credits.json metadata file!")
+	
+	return dev_name_list
 
 func _ready() -> void:
 	load_song_database()

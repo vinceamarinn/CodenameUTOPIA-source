@@ -1,66 +1,66 @@
 {
     "Beautiful VINCE": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Beautiful VINCE Vocal": {
         "title": " (Vocal ver.)",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Beautiful NICKO": {
         "title": "Beyond",
-        "artist": "prodnicko & amarinn"
+        "artist": ["prodnicko", "vince"]
     },
 
     "Investigation": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Katashi Twins": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Pursuit": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Pursuit CUT": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Pursuit END": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Sad": {
         "title": "it's a sad life out there",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Trial Start": {
         "title": "Opening Statements",
-        "artist": "amarinn"
+        "artist": "vince"
     },
     
     "Trial Preparations": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 
     "Danger": {
         "title": "DANGER!",
-        "artist": "amarinn & sudorae"
+        "artist": ["vince", "sudorae"]
     },
 
     "Watanabe Twins": {
         "title": "",
-        "artist": "amarinn"
+        "artist": "vince"
     },
 }

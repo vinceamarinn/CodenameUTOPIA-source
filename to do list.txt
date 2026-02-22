@@ -1,33 +1,28 @@
 >IMPORTANT!!!!
 
 > DIALOGUE SYSTEM
-- add dialogue requisites (certain flags or conditions that NEED to be true for the dialogue line/tree/array to be read, otherwise it will be skipped over)
+- TEST DIALOGUE CONDITIONS & THEIR FUNCTIONALITY WITH DIFFERENT DIALOGUE TYPES!!!
+- ALSO TEST THE NEW DIALOGUE SYSTEMS FURTHER TO MAKE SURE NOTHING BROKE
 
 > TRIAL MODULE
-- do check between the internal death registry and the save data death registry for the pre trial sequence
+- create a test minigame (multiple choice? idk) and add the required logic for such to the trial handler
 
 > MINIGAME SYSTEM
 create the loading screen minigame!
 make some test minigames to test the feature
 
-
 =================================================
 
 >GENERAL STUFF I SHOULD PROBS DO
-- probably organize the assets folder a little better lmfao
 - probably generalize the player overworld thing sprite loading or whatever to also work for everyone
 
 >MUSIC
 - finish thinking time
-- redo trial escalation so it can be used as an underground theme
-- work on danger theme some more (in progress, waiting on rachael)
 - make intro theme
 - make ending theme
 
-- UPDATE MASTERS FOR EVERY SONG!!!! TO USE -1 DB THRESHOLD!!!!! GRAAAAH
-
 >UI
-- actually develop the add/removal systems
+- actually develop the add/removal systems & port dialogue box loading here
 - more ui elements like currently playing music
 
 >SYSTEMS
@@ -42,8 +37,7 @@ make some test minigames to test the feature
 - finish clue inventory system
 
 >DIALOGUE SYSTEM
-- flashback system
-- port dialogue box handling to the UI module HIGH PRIORITY (done? forgot)
+- flashback system (maybe with recursion?) (HOPEFULLY THIS ISN'T NEEDED!!!)
 
 LIST OF OPTIONS:
 - fps counter & caps
