@@ -1,12 +1,6 @@
 [gd_scene format=3 uid="uid://b6p1y76q6kro1"]
 
-[ext_resource type="Script" uid="uid://rtec6w3dr678" path="res://scripts/resources/Clue.gd" id="1_ckldy"]
-[ext_resource type="Script" uid="uid://b45k4twfhl6qu" path="res://scripts/resources/SaveStateData.gd" id="2_0h2mm"]
 [ext_resource type="Script" uid="uid://bh8k8r6injjfe" path="res://scripts/fhdsabdasbjidas.gd" id="3_5aqgg"]
-
-[sub_resource type="Resource" id="Resource_0h2mm"]
-script = ExtResource("2_0h2mm")
-metadata/_custom_type_script = "uid://b45k4twfhl6qu"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51ki2"]
 bg_color = Color(1, 1, 1, 1)
@@ -28,7 +22,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="GameMain" type="Node" unique_id=272552437]
-metadata/sigmundfreud = SubResource("Resource_0h2mm")
+metadata/Sigmundfreud = "I'm in your walls."
 
 [node name="AudioBusses" type="Node" parent="." unique_id=1017235532]
 
@@ -41,8 +35,6 @@ bus = &"SFX"
 
 [node name="VoicePlayer" type="AudioStreamPlayer" parent="AudioBusses" unique_id=603148750]
 bus = &"Voices"
-
-[node name="2DScenes" type="Node2D" parent="." unique_id=1907314435]
 
 [node name="UI" type="Control" parent="." unique_id=86556231]
 layout_mode = 3
@@ -93,5 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.61796)
 [node name="3DScenes" type="Node" parent="." unique_id=2050614085]
 
 [node name="Characters" type="Node3D" parent="3DScenes" unique_id=138045317]
+
+[node name="2DScenes" type="Node" parent="." unique_id=625927701]
 
 [connection signal="pressed" from="UI/saveshit/save" to="UI/saveshit/save" method="_on_pressed"]

@@ -37,19 +37,19 @@ func read_dialogue(event_data:Dictionary) -> void: ## Reads the provided dialogu
 
 func play_music(event_data:Dictionary) -> void: ## Plays the provided song.
 	var music = event_data.get("music")
-	GeneralModule.play_music(music)
+	AudioModule.play_music(music)
 
 func stop_music(event_data:Dictionary) -> void: ## Stops the currently playing song.
 	var speed = event_data.get("speed")
-	GeneralModule.stop_music(speed)
+	AudioModule.stop_music(speed)
 
 func play_sfx(event_data:Dictionary) -> void: ## Plays the provided sound effect.
 	var sfx = event_data.get("sfx")
-	GeneralModule.play_sfx(sfx)
+	AudioModule.play_sfx(sfx)
 
 func play_voiceline(event_data:Dictionary) -> void: ## Plays the provided voiceline.
 	var voiceline = event_data.get("voiceline")
-	GeneralModule.play_sfx(voiceline)
+	AudioModule.play_voiceline(voiceline)
 
 #endregion
 

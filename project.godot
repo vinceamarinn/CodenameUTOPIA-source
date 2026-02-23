@@ -28,9 +28,9 @@ buses/default_bus_layout="uid://dmqs1dfi6h5cd"
 
 [autoload]
 
-ServiceLocator="*res://scripts/modules/ServiceLocator.gd"
 GeneralModule="*res://scripts/modules/GeneralModule.gd"
 UIModule="*res://scripts/modules/UIModule.gd"
+AudioModule="*uid://dljw1ep7etiuo"
 AreaModule="*res://scripts/modules/AreaModule.gd"
 DataStateModule="*res://scripts/modules/DataStateModule.gd"
 CameraModule="*res://scripts/modules/CameraModule.gd"

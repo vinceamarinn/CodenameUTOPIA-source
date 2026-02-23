@@ -22,7 +22,9 @@ Finally, just open the project. You'll have to wait a while for Godot to import 
 
 ---
 
-(...)
+## Other links
+
+- [Source code documentation]<https://docs.google.com/document/d/1jqBVh2cQtIF2j0JZCkqZiHzNS1N8OQgkB7eiT2fny8o/edit?usp=sharing>
 
 
 

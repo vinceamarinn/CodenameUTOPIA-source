@@ -97,7 +97,6 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 	#endregion
 }
 
-var song_database:Dictionary = {} ## Stores song metadata from scripts/metadata/music.json. Gets filled in when the module boots.
 
 func debug_message(sender:String, type:String, reason:String, content:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
 	# estabilish default message format
@@ -133,52 +132,6 @@ func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches 
 	# returns the script holder node
 	return new_node
 
-func stop_music(fade_time:float) -> void: ## Stops currently playing music.
-	# if music is not playing, dont do anything
-	if not music_player.playing: return
-	
-	# create fade out effect
-	var volume_tween = create_tween().set_parallel(true)
-	volume_tween.tween_property(music_player, "volume_linear", 0, fade_time)
-	await volume_tween.finished
-	
-	# stop the music, update the music in the game data, revert the tween
-	music_player.stop()
-	music_player.volume_linear = 1
-	DataStateModule.game_data.CurrentMusic = ""
-
-func play_music(music:AudioStream) -> void: ## Plays the provided music track.
-	# stop and fade out the previous track if a track is already playing
-	if music_player.playing:
-		await stop_music(3)
-		await get_tree().create_timer(.5).timeout
-	
-	# play the music! and update it on the data module
-	music_player.stream = music
-	music_player.play()
-	
-	# get song name and update the current state's music
-	var song_name = get_file_name(music)
-	DataStateModule.game_data.CurrentMusic = song_name
-	
-	# display song metadata if available
-	if song_database.has(song_name):
-		# get song data
-		var song_data = song_database[song_name]
-		var title = song_data.get("title", "Unknown title...")
-		var artist = song_data.get("artist", "Unknown artist...")
-		
-		# print song data
-		print("♪ Now Playing: ", title, " by ", artist)
-
-func play_sfx(sfx:AudioStream) -> void: ## Plays the provided sound effect.
-	sfx_player.stream = sfx
-	sfx_player.play()
-
-func play_voiceline(voiceline:AudioStream) -> void: ## Plays the provided voiceline.
-	voice_player.stream = voiceline
-	voice_player.play()
-
 func get_character_name(char_ID:int) -> String: ## Returns the selected character's name from their enum ID.
 	return Characters.keys()[char_ID].to_lower()
 
@@ -200,43 +153,21 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 	
 	return property_array # returns simple list of every found property
 
-func load_song_database(): ## Loads the music.json metadata file into the song database. Doesn't return it, as this information is used here - there's no need.
-	# load metadata file
-	var metadata = FileAccess.open("res://scripts/metadata/music.json", FileAccess.READ)
+func load_metadata_file(file_name) -> Dictionary: ## Loads the provided metadata .json file and returns its data as a dictionary. The dictionary will be empty if the data failed to load.
+	var loaded_data = {}
+	var metadata_file = FileAccess.open("res://scripts/metadata/" + file_name, FileAccess.READ)
 	
-	if metadata:
+	if metadata_file:
 		# create new json reader, and check for valid data
-		var json = JSON.new()
-		var parse_result = json.parse(metadata.get_as_text())
+		var json_reader = JSON.new()
+		var parse_result = json_reader.parse(metadata_file.get_as_text())
 		
 		# load json data
 		if parse_result == OK:
-			song_database = json.data
+			loaded_data = json_reader.data
 		else:
-			debug_message("GeneralModule - load_song_database()", "error", "Failed to parse the song data JSON!", json.get_error_message())
+			debug_message("GeneralModule - load_metadata_file()", "error", "Failed to parse the " + file_name + " metadata file!", json_reader.get_error_message())
 	else:
-		debug_message("GeneralModule - load_song_database()", "error", "Failed to load the song database!", "Could not find the music.json metadata file!")
-
-func get_developer_credits() -> Dictionary: ## Loads the dev_credits.json metadata file, and returns it.
-	# create result list and load metadata file
-	var dev_name_list = {}
-	var metadata = FileAccess.open("res://scripts/metadata/dev_credits.json", FileAccess.READ)
+		debug_message("GeneralModule - load_metadata_file()", "error", "Failed to load the " + file_name + " metadata file!", "Could not find/load the file.")
 	
-	if metadata:
-		# create new json reader, and check for valid data
-		var json = JSON.new()
-		var parse_result = json.parse(metadata.get_as_text())
-		
-		# load json data
-		if parse_result == OK:
-			dev_name_list = json.data
-		else:
-			debug_message("GeneralModule - get_developer_credits()", "error", "Failed to parse the developer crediting list JSON!", json.get_error_message())
-	else:
-		debug_message("GeneralModule - get_developer_credits()", "error", "Failed to load the developer crediting list!", "Could not find the dev_credits.json metadata file!")
-	
-	# return the dev name list
-	return dev_name_list
-
-func _ready() -> void:
-	load_song_database()
+	return loaded_data
