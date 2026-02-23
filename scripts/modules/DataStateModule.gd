@@ -1,8 +1,12 @@
 extends Node
 
-#game tree goodies we need
+##### DATA/STATE MODULE #####
+# Handles everything related to the current game state tracking, and saving/loading player data.
+
+# game tree goodies we need
 @onready var GameMain = get_node("/root/GameMain")
 
+# create the game state & option tracker resources
 @export var game_data:SaveStateData = SaveStateData.new()
 @export var option_data:OptionData = OptionData.new()
 
@@ -18,7 +22,8 @@ func check_if_trial() -> bool: ## Verifies if the game is currently in trial mod
 	return game_data.StoryFlags["IsTrial"] == true
 
 func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order to begin a new trial. If the number provided is '0', it will load the current chapter's trial.
-	var trial_handler = GeneralModule.load_minigame("trial/TrialHandler.gd", GameMain) # loads trial handler into new node at GameMain
+	# load trial handler into new node at GameMain
+	var trial_handler = GeneralModule.load_minigame("trial/TrialHandler.gd", GameMain) 
 	
 	# if the trial ID is 0, the trial handler will load the trial of the current chapter
 	if trial_ID == 0:
@@ -62,7 +67,6 @@ func load_data(data_file:Resource) -> bool: ## Loads selected save data file.
 	return true # if everything goes right then return true
 
 func _ready() -> void:
-	ServiceLocator.register_service("DataModule", self) # registers module in service locator automatically
 	var err = load_data(game_data)
 	print("save data loaded successfully? ", err)
 	var err2 = load_data(option_data)

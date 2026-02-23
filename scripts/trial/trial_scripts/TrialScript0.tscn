@@ -2,11 +2,27 @@
 
 [ext_resource type="Script" uid="uid://dpqcjxpapm2hl" path="res://scripts/resources/TrialScriptHolder.gd" id="1_5855h"]
 [ext_resource type="Script" uid="uid://b8l7cfrdc05e3" path="res://scripts/resources/TrialStage.gd" id="2_f0l54"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="3_2w04d"]
+[ext_resource type="Script" uid="uid://dlu7msbne4hpp" path="res://scripts/resources/DialogueDict.gd" id="4_mcl2q"]
+[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="6_0ydal"]
 
-[sub_resource type="Resource" id="Resource_ttlar"]
+[sub_resource type="Resource" id="Resource_ujrhy"]
+script = ExtResource("6_0ydal")
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_hiins"]
+script = ExtResource("4_mcl2q")
+DictData = Dictionary[String, ExtResource("6_0ydal")]({
+"": SubResource("Resource_ujrhy"),
+"Enter value...": null
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_mcl2q"]
 script = ExtResource("2_f0l54")
+Dialogue = SubResource("Resource_hiins")
 metadata/_custom_type_script = "uid://b8l7cfrdc05e3"
 
 [node name="TrialScript0" type="Node" unique_id=1138311645]
 script = ExtResource("1_5855h")
-TrialScript = Array[ExtResource("2_f0l54")]([SubResource("Resource_ttlar")])
+TrialScript = Array[ExtResource("2_f0l54")]([SubResource("Resource_mcl2q")])

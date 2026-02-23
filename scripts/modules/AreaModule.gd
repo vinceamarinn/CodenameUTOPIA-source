@@ -1,7 +1,7 @@
 extends Node
 
-# This module handles all the loading & unloading of areas and processing of its state data.
-# It is also used to load 2D scenes and create the characters that get placed in the environment.
+##### AREA MODULE #####
+# Handles everything related to loading 3D areas, from creating/deleting maps to creating and placing characters.
 
 #game tree goodies we need
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
@@ -14,11 +14,13 @@ extends Node
 @onready var player_template = load("res://scenes/templates/Player.tscn")
 @onready var interactable_template = load("res://scenes/templates/Interactable.tscn")
 
-func create_character(char_info, global_offset:Vector3) -> void: ## Creates a character from the base template using the given information, and places them in the map.
+func create_character(char_info:CharState, global_offset:Vector3) -> void: ## Creates a character from the base template using the given information, and places them in the map.
+	# get character name, don't spawn them if they were flagged to have been previously removed
 	var char_name = GeneralModule.get_character_name(char_info.Name)
 	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentMap):
 		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentMap]: return
 	
+	# load character & their sprites
 	var char_sprites = load("res://images/characters/" + char_name + "/sprite_frames.tres")
 	var new_char = char_template.instantiate()
 	new_char.name = char_name
@@ -26,6 +28,7 @@ func create_character(char_info, global_offset:Vector3) -> void: ## Creates a ch
 	for side in new_char.get_children():
 		side.sprite_frames = char_sprites
 	
+	# create the character physically in the area
 	char_group.add_child(new_char)
 	new_char.position = char_info.Position + global_offset
 	new_char.rotation_degrees = char_info.Rotation
@@ -37,11 +40,12 @@ func create_character(char_info, global_offset:Vector3) -> void: ## Creates a ch
 		new_interactable.interactable_data = char_info.Interaction
 		new_char.add_child(new_interactable)
 
-func load_character_states(area_state, global_offset:Vector3) -> void: ## Loads the character states in the given area state.
+func load_character_states(area_state:Array[CharState], global_offset:Vector3) -> void: ## Loads the character states in the given area state.
+	# iterate through every character state & create the character based on it
 	for char_state in area_state:
 		create_character(char_state, global_offset)
 
-func create_player(player_char) -> PlayerOverworld: ## Loads the player character during overworld sections.
+func create_player(player_char:GeneralModule.PlayableChars) -> PlayerOverworld: ## Loads the player character during overworld sections.
 	var new_player = player_template.instantiate()
 	char_group.add_child(new_player)
 	new_player.name = "Player"
@@ -54,6 +58,7 @@ func create_player(player_char) -> PlayerOverworld: ## Loads the player characte
 	return new_player
 
 func unload_characters() -> void: ## Unloads any currently loaded characters.
+	# get all characters in the character group & delete them
 	for chars in char_group.get_children():
 		chars.queue_free()
 
@@ -131,6 +136,3 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	
 	print(DataStateModule.game_data.CurrentMap)
 	return new_area
-
-func _ready() -> void:
-	ServiceLocator.register_service("AreaModule", self) # registers module in service locator automatically

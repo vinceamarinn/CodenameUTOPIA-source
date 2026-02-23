@@ -7,7 +7,7 @@ extends Minigame
 
 # MINIGAME SPECIFIC VARIABLES
 var trial_script_node:Node = null ## References the trial script to read through.
-var start_point:Dictionary[String, int] = {} ## References which stage and line to start reading from.
+var start_point:Dictionary[String, Variant] = {} ## References which stage, key and line to start reading from.
 
 func setup() -> bool: ## Initiates the provided trial.
 	var valid_data = validate_required_keys(["trial_ID"])

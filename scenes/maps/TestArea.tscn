@@ -9,33 +9,34 @@
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0osks"]
 [ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="7_hhnto"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="8_he112"]
+[ext_resource type="Script" uid="uid://bjsaxob7yfqa7" path="res://scripts/resources/DialogueCondition.gd" id="8_o7mot"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://scenes/templates/Interactable.tscn" id="9_ru3c5"]
 
 [sub_resource type="Resource" id="Resource_o7mot"]
 script = ExtResource("5_2glyw")
 Speaker = 3
-Line = "lalalallaaaaaa"
+Line = "array 0, line 0"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_o8gfi"]
 script = ExtResource("5_2glyw")
 Speaker = 1
-Line = "what"
+Line = "array 0, line 1"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_2glyw"]
 script = ExtResource("5_2glyw")
 Speaker = 3
-Line = "im singing"
+Line = "array 0, line 2"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
 [sub_resource type="Resource" id="Resource_0osks"]
 script = ExtResource("5_2glyw")
-Speaker = 1
-Line = "ok bro"
+Speaker = 3
+Line = "array 0, line 3"
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
@@ -44,16 +45,146 @@ script = ExtResource("4_o8gfi")
 ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_o7mot"), SubResource("Resource_o8gfi"), SubResource("Resource_2glyw"), SubResource("Resource_0osks")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
+[sub_resource type="Resource" id="Resource_lmmi2"]
+script = ExtResource("5_2glyw")
+Speaker = 1
+Line = "i'm yuuka! i'm responding!"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_8vrtg"]
+script = ExtResource("8_o7mot")
+ConditionType = 1
+RequiredPlayer = 1
+metadata/_custom_type_script = "uid://bjsaxob7yfqa7"
+
+[sub_resource type="Resource" id="Resource_1l5t1"]
+script = ExtResource("4_o8gfi")
+Condition = SubResource("Resource_8vrtg")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_lmmi2")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_a3cu4"]
+script = ExtResource("5_2glyw")
+Line = "i'm yuuto! i'm responding..."
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_3mpnt"]
+script = ExtResource("8_o7mot")
+ConditionType = 1
+metadata/_custom_type_script = "uid://bjsaxob7yfqa7"
+
+[sub_resource type="Resource" id="Resource_ru3c5"]
+script = ExtResource("4_o8gfi")
+Condition = SubResource("Resource_3mpnt")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_a3cu4")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_ji582"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "post response line 0"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_aly0s"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "post response line 1"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_klpao"]
+script = ExtResource("4_o8gfi")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_ji582"), SubResource("Resource_aly0s")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_jlfno"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "im aaa test"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_hgpdl"]
+script = ExtResource("4_o8gfi")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_jlfno")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
 [sub_resource type="Resource" id="Resource_he112"]
 script = ExtResource("4_1l5t1")
 DictData = Dictionary[String, ExtResource("4_o8gfi")]({
-"": SubResource("Resource_hhnto")
+"00_intro": SubResource("Resource_hhnto"),
+"01_yuuka response": SubResource("Resource_1l5t1"),
+"01_yuuto response": SubResource("Resource_ru3c5"),
+"02_response": SubResource("Resource_klpao"),
+"03_aaa test": SubResource("Resource_hgpdl")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_ufme2"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "array 1, line 0"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_mqkcm"]
+script = ExtResource("5_2glyw")
+Speaker = 1
+Line = "array 1, line 1"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_dowv5"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "array 1, line 2"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_usdy4"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "array 1, line 3"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_65mel"]
+script = ExtResource("4_o8gfi")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_ufme2"), SubResource("Resource_mqkcm"), SubResource("Resource_dowv5"), SubResource("Resource_usdy4")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_8kpif"]
+script = ExtResource("4_1l5t1")
+DictData = Dictionary[String, ExtResource("4_o8gfi")]({
+"": SubResource("Resource_65mel")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_8omch"]
+script = ExtResource("5_2glyw")
+Speaker = 3
+Line = "array 2, line 0"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_o1x5v"]
+script = ExtResource("4_o8gfi")
+ArrayData = Array[ExtResource("5_2glyw")]([SubResource("Resource_8omch")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_1pa3i"]
+script = ExtResource("4_1l5t1")
+DictData = Dictionary[String, ExtResource("4_o8gfi")]({
+"": SubResource("Resource_o1x5v")
 })
 metadata/_custom_type_script = "uid://dlu7msbne4hpp"
 
 [sub_resource type="Resource" id="Resource_wq2lk"]
 script = ExtResource("7_hhnto")
-TreeData = Array[ExtResource("4_1l5t1")]([SubResource("Resource_he112")])
+TreeData = Array[ExtResource("4_1l5t1")]([SubResource("Resource_he112"), SubResource("Resource_8kpif"), SubResource("Resource_1pa3i")])
 metadata/_custom_type_script = "uid://cry7q52aiw4rr"
 
 [sub_resource type="Resource" id="Resource_0ui5h"]

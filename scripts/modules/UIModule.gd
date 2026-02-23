@@ -1,9 +1,13 @@
 extends Node
 
+##### UI MODULE #####
+# Handles everything related to loading UI assets & 2D environments.
+
+# game tree goodies
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var transition = get_node("/root/GameMain/UI/Transition")
 
-signal transition_ended
+signal transition_ended ## Fires whenever a transition tween finishes.
 
 func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ## Basic transition tween. Supports fading in, fading out and even color changing.
 	if transition.visible == false: transition.visible = true # make transition visible if it's not visible already
@@ -44,4 +48,3 @@ func _ready() -> void:
 	# initialize transition UI
 	transition.visible = false
 	transition.modulate.a = 0
-	ServiceLocator.register_service("UIModule", self) # registers module in service locator automatically

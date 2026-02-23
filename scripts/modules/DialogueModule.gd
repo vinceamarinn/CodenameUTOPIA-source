@@ -1,40 +1,49 @@
 extends Node
+
+##### DIALOGUE MODULE #####
+# Handles the game's entire dialogue processing system.
+
+# game tree goodies
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
 @onready var char_group = scenes_3D.get_node("Characters")
 
 # dialogue box component storage
-var dialogue_box:Control = null # holds the dialogue box reference
-var box_actives:Control = null # holds the folder node to the active components of the dialogue box
-var box_textures:Control = null # holds the folder node to the texture components of the dialogue box
+var dialogue_box:Control = null ## Holds the dialogue box reference.
+var box_actives:Control = null ## Holds the folder node to the active components of the dialogue box.
+var box_textures:Control = null ## Holds the folder node to the texture components of the dialogue box.
 
 # current tween holders
-var current_scroll_tween:Tween = null
-var current_camera_tween:Tween = null
-var current_autoscroll_tween:Tween = null
+var current_scroll_tween:Tween = null ## Holds the current scroll tween.
+var current_camera_tween:Tween = null ## Holds the current camera tween.
+var current_autoscroll_tween:Tween = null ## Holds the current autoscrolling timer.
 
 # functionality stuff
 var reading_in_progress:bool = false ## Tracks whenever dialogue processing is already in progress. This prevents two calls from overlapping.
 var line_in_process:bool = false ## Tracks whether a dialogue line is being processed.
-var dialogue_logs:Array = [] ## Stores the past 100 dialogue lines in speaker: text format. Gets displayed in its own UI.
+var dialogue_logs:Array = [] ## Stores past dialogue lines in "speaker: text" format. Gets displayed in its own UI.
 
 # signals
-signal continue_dialogue_signal ## Fires whenever I want to continue the dialogue.
+signal continue_dialogue_signal ## Fires whenever the player wants to continue the dialogue.
 
 func _input(event:InputEvent) -> void: ## Input stuff.
+	# do nothing if not currently loading a dialogue line
 	if not reading_in_progress: return
 	
+	# if we hit the confirm key...
 	if event.is_action_pressed("ui_confirm"):
-		if current_scroll_tween != null and line_in_process: # if a tween is in progress, pressing enter will skip it.
+		# if the line is being processed, skip to the end by artificially completing the tween
+		if current_scroll_tween != null and line_in_process:
 			current_scroll_tween.emit_signal("finished")
 			current_scroll_tween.kill()
-			
+		# if waiting for confirmation to continue, then fire the signal to progress dialogue
 		elif not line_in_process:
 			continue_dialogue_signal.emit()
 
 func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
-	if not DataStateModule.option_data.Autoscroll: return # cancel if autoscrolling is disabled, just in case
+	# cancel if autoscrolling is disabled, just in case
+	if not DataStateModule.option_data.Autoscroll: return
 	
 	# cancel previous tween if it exists
 	if current_autoscroll_tween:
@@ -48,8 +57,11 @@ func autoscroll() -> void: ## Handles autoscrolling, if autoscrolling is active.
 	# wait for timer to finish
 	await autoscroll_tween.finished
 	
-	if not DataStateModule.option_data.Autoscroll: return # cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
-	if not line_in_process: # actually continue the dialogue automatically
+	# cancel at the end if autoscrolling was disabled before the timer ran out if you're a moron and decided to switch it in the settings
+	if not DataStateModule.option_data.Autoscroll: return
+	
+	# continue the dialogue automatically
+	if not line_in_process:
 		continue_dialogue_signal.emit()
 
 func load_dialogue_box(box_name:String) -> void: ## Provisory temp function to load the default testing dialogue box.
@@ -96,7 +108,8 @@ func unload_dialogue_box() -> void: ## Provisory temp function to unload the def
 	box_textures = null
 
 func process_events(sorted_event_list:Dictionary, key:String) -> void: ## Processes the triggering of automatic events.
-	var chosen_event_list = sorted_event_list[key] # gets the list of events to trigger at this point
+	# gets the list of events to trigger at this point
+	var chosen_event_list = sorted_event_list[key]
 	
 	# triggers said events
 	for event in chosen_event_list:
@@ -120,7 +133,7 @@ func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event f
 	var flag_list := {}
 	var cleaned_line := raw_line
 	
-	# set up regex for flag detection
+	# set up regex for flag detection (pattern is [!event(ID)]
 	var flag_pattern := r"\[!event(\d+)\]"
 	var regex = RegEx.new()
 	regex.compile(flag_pattern)
@@ -144,7 +157,7 @@ func extract_event_flags(raw_line:String) -> Dictionary: ## Extracts any event f
 	return {"cleaned_line" = cleaned_line, "event_flags" = flag_list}
 
 func process_dialogue_line(line_info:DialogueLine) -> void: ## Processes the given dialogue line using its provided information.
-	# first things first, get the global components of the dialogue box UI
+	# first things first, get the global components of the dialogue box UI (text, speaker name & continue arrow)
 	var line_text = box_actives.get_node("Line")
 	var name_text = box_actives.get_node("Name")
 	var continue_arrow = box_actives.get_node("Arrow")
@@ -322,7 +335,7 @@ func check_condition(condition:DialogueCondition) -> String: ## Checks if the pr
 	# if passed is true, then the condition works! please proceed
 	if passed: return "pass"
 	
-	# otherwise, match the fail action
+	# otherwise, match the fail action and return what to do
 	match condition.FailAction:
 		DialogueCondition.FailActions.BREAK:
 			return "break"
@@ -434,6 +447,7 @@ func read_dialogue_tree(tree_data:DialogueTree, start_point_dict:Dictionary[Stri
 		_:
 			pass
 	
+	# at the end, increase the tree's counter
 	increase_dict_counter(tree_data, dialogue_tree.size(), loop_tree)
 
 func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, Variant]): ## Read through the provided dialogue. Handles both trees & arrays.
@@ -474,6 +488,3 @@ func read_dialogue(dialogue_data:Variant, start_point_dict:Dictionary[String, Va
 		CameraModule.set_mode(CameraModule.CameraModes.FOLLOW_PLAYER)
 		player.update_locks(true)
 		player = null
-
-func _ready() -> void:
-	ServiceLocator.register_service("DialogueModule", self) # registers module in service locator automatically

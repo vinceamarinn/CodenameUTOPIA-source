@@ -1,4 +1,9 @@
 extends Node
+
+##### EVENT MODULE #####
+# Receives, processes & executes events requested by dialogue, interactables, and much more, matching the requested action to the appropriate function.
+
+# game tree goodies
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
@@ -72,8 +77,4 @@ func process_event(event:EventData): ## Processes the provided event.
 	if has_method(func_name):
 		call(func_name, event_data)
 	else:
-		push_error("[ERROR] Event function '", func_name, "' not found in event module!")
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	ServiceLocator.register_service("EventModule", self) # registers module in service locator automatically
+		GeneralModule.debug_message("EventModule - process_event(" + event_type + ")", "error", "Event function '" + func_name + "' not found in the event module!", "")

@@ -1,9 +1,11 @@
 extends Area3D
 class_name Interactable
 
-var is_within_range: bool = false # Track whether there's a player within interaction range
-var player_within_range: PlayerOverworld = null  # Track the player currently in the area
+# important variables
+var is_within_range: bool = false ## Tracks whether there's a player within interaction range.
+var player_within_range: PlayerOverworld = null  ## Tracks the player currently in the area.
 
+# interactable information
 @export var interactable_data: InteractableData ## The data for the interactable to use.
 @onready var interactable_type = interactable_data.interactable_type
 @onready var interaction_range = interactable_data.interaction_range

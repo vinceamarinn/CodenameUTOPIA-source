@@ -1,5 +1,9 @@
 extends Node
 
+##### INTERACTABLE HANDLER #####
+# Not a real module, moreso a tracking & registry system - handles priority interactable tracking for multiple On Interact interactables.
+
+# important stuff
 var interactables_in_range: Array[Interactable] = [] ## Contains the registry for all currently active interactables that are in range of the player.
 var closest_interactable: Interactable = null ## Contains the closest Interact interactable
 var tracked_player: PlayerOverworld = null ## References the player character.
@@ -70,6 +74,3 @@ func _process(_delta: float) -> void: ## Fires every frame.
 	
 	# update interactable distance
 	update_closest_interactable()
-
-func _ready() -> void:
-	ServiceLocator.register_service("InteractableHandler", self)

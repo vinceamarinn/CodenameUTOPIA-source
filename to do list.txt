@@ -1,9 +1,5 @@
 >IMPORTANT!!!!
 
-> DIALOGUE SYSTEM
-- TEST DIALOGUE CONDITIONS & THEIR FUNCTIONALITY WITH DIFFERENT DIALOGUE TYPES!!!
-- ALSO TEST THE NEW DIALOGUE SYSTEMS FURTHER TO MAKE SURE NOTHING BROKE
-
 > TRIAL MODULE
 - create a test minigame (multiple choice? idk) and add the required logic for such to the trial handler
 
@@ -35,9 +31,6 @@ make some test minigames to test the feature
 - add obtainable clues
 - develop clue system to include photo, clue type and stuff like that
 - finish clue inventory system
-
->DIALOGUE SYSTEM
-- flashback system (maybe with recursion?) (HOPEFULLY THIS ISN'T NEEDED!!!)
 
 LIST OF OPTIONS:
 - fps counter & caps

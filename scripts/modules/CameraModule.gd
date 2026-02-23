@@ -1,5 +1,8 @@
 extends Node
 
+##### CAMERA MODULE #####
+# Handles everything related to the 3D camera with preset, selectable behaviors.
+
 #game tree goodies we need
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
 @onready var worldview = get_node("/root/GameMain/Worldview")
@@ -9,8 +12,8 @@ extends Node
 @onready var camera = worldview.get_node("Camera")
 
 # tween holders
-var curr_cam_tween:Tween = null
-var curr_cam_subject:Node3D = null
+var curr_cam_tween:Tween = null ## Holds the current camera tween.
+var curr_cam_subject:Node3D = null ## Holds the current camera subject.
 
 # camera mode stuff
 enum CameraModes { ## lists the different modes for the camera.
@@ -26,8 +29,7 @@ var camera_mode:CameraModes = CameraModes.NONE ## Tracks the currently selected 
 @warning_ignore("unused_signal")
 signal transition_finished ## Indicates an initial transition tween has finished.
 
-# table storing the initial positions for each different Trial camera option
-const POSITION_TABLE = {
+const POSITION_TABLE = { ## Stores the initial & final camera positions for each different Trial mode camera option.
 	"Pan" = {
 		"Left" = [Vector3(3, 0, 0), Vector3(-.25, 0, 0)],
 		"Right" = [Vector3(-3, 0, 0), Vector3(.25, 0, 0)],
@@ -51,6 +53,7 @@ const DIALOGUE_TIME:float = 0.65 ## Default time the Dialogue tween takes.
 const TRIAL_BASE_OFFSET:Vector3 = Vector3(0, 2, 5.5) ## Offset with which the camera builds the Trial camera movement out of, using the other initial values.
 
 func kill_current_tween() -> void: ## Kills any current ongoing tween.
+	# kill the current tween and clear the current reference
 	if curr_cam_tween != null:
 		curr_cam_tween.kill()
 		curr_cam_tween = null
@@ -232,6 +235,3 @@ func trial_tween(cam_info:CameraMovementData, cam_subject:Node3D) -> void: ## Ha
 			final_rot,
 			cam_info.CameraTime
 		).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
-
-func _ready() -> void:
-	ServiceLocator.register_service("CameraModule", self) # registers module in service locator automatically

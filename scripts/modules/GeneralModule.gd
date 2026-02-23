@@ -1,5 +1,8 @@
 extends Node
 
+##### GENERAL MODULE #####
+# Contains general-use functions that wouldn't warrant their own module, and also stores global game information such as the Character List.
+
 #game tree goodies we need
 @onready var GameMain = get_node("/root/GameMain")
 
@@ -7,9 +10,6 @@ extends Node
 @onready var music_player:AudioStreamPlayer = audio_busses.get_node("MusicPlayer")
 @onready var sfx_player:AudioStreamPlayer = audio_busses.get_node("SFXPlayer")
 @onready var voice_player:AudioStreamPlayer = audio_busses.get_node("VoicePlayer")
-
-# This module handles more generic things that do not need their own specified module, or things that don't fall into any specific module.
-# It also stores global variables like the character list, for everyone's use.
 
 enum Characters { ## Very important list of all registered characters. Used in any resources that require you to select a character.
 	#region Main Characters - the 16 participants of the game & the enforcer.
@@ -100,8 +100,10 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 var song_database:Dictionary = {} ## Stores song metadata from scripts/metadata/music.json. Gets filled in when the module boots.
 
 func debug_message(sender:String, type:String, reason:String, content:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
+	# estabilish default message format
 	var msg = "[" + type.to_upper() + "] " + reason + " " + content + " (sent by " + sender + ")"
 	
+	# match logging method based on type (non case sensitive!)
 	match type.to_lower():
 		"error":
 			push_error(msg)
@@ -109,13 +111,13 @@ func debug_message(sender:String, type:String, reason:String, content:String)  -
 			push_warning(msg)
 		"info":
 			print(msg)
-	print("shoulda done the message")
 
-func get_file_name(file) -> String: ## Gets the name of a file from its path.
+func get_file_name(file:Variant) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
 
 func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches a chosen minigame handler script to a new base node in order to load it. Returns said node.
-	var new_path = "res://scripts/" + minigame_path # gets the script's name
+	# gets the script's name
+	var new_path = "res://scripts/" + minigame_path
 	
 	# creates the holder node & loads requested script
 	var new_node = Node.new()
@@ -132,7 +134,8 @@ func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches 
 	return new_node
 
 func stop_music(fade_time:float) -> void: ## Stops currently playing music.
-	if not music_player.playing: return # if music is not playing, dont do anything
+	# if music is not playing, dont do anything
+	if not music_player.playing: return
 	
 	# create fade out effect
 	var volume_tween = create_tween().set_parallel(true)
@@ -185,7 +188,7 @@ func get_character_ID(char_name:String) -> int: ## Returns the selected characte
 func get_character_known_name(char_info:Characters) -> String: ## Returns the selected character's known name.
 	return known_names_list[char_info]
 
-func get_enum_string(my_enum:Dictionary, enum_id:int) -> String:
+func get_enum_string(my_enum:Dictionary, enum_id:int) -> String: ## Returns the string name of an enum element.
 	return my_enum.keys()[enum_id]
 
 func get_resource_properties(resource:Resource): ## Returns the valid properties of a given resource.
@@ -198,12 +201,15 @@ func get_resource_properties(resource:Resource): ## Returns the valid properties
 	return property_array # returns simple list of every found property
 
 func load_song_database(): ## Loads the music.json metadata file into the song database. Doesn't return it, as this information is used here - there's no need.
+	# load metadata file
 	var metadata = FileAccess.open("res://scripts/metadata/music.json", FileAccess.READ)
 	
 	if metadata:
+		# create new json reader, and check for valid data
 		var json = JSON.new()
 		var parse_result = json.parse(metadata.get_as_text())
 		
+		# load json data
 		if parse_result == OK:
 			song_database = json.data
 		else:
@@ -212,13 +218,16 @@ func load_song_database(): ## Loads the music.json metadata file into the song d
 		debug_message("GeneralModule - load_song_database()", "error", "Failed to load the song database!", "Could not find the music.json metadata file!")
 
 func get_developer_credits() -> Dictionary: ## Loads the dev_credits.json metadata file, and returns it.
+	# create result list and load metadata file
 	var dev_name_list = {}
 	var metadata = FileAccess.open("res://scripts/metadata/dev_credits.json", FileAccess.READ)
 	
 	if metadata:
+		# create new json reader, and check for valid data
 		var json = JSON.new()
 		var parse_result = json.parse(metadata.get_as_text())
 		
+		# load json data
 		if parse_result == OK:
 			dev_name_list = json.data
 		else:
@@ -226,8 +235,8 @@ func get_developer_credits() -> Dictionary: ## Loads the dev_credits.json metada
 	else:
 		debug_message("GeneralModule - get_developer_credits()", "error", "Failed to load the developer crediting list!", "Could not find the dev_credits.json metadata file!")
 	
+	# return the dev name list
 	return dev_name_list
 
 func _ready() -> void:
 	load_song_database()
-	ServiceLocator.register_service("GeneralModule", self) # registers module in service locator automatically

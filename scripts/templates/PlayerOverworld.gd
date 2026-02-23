@@ -1,11 +1,13 @@
 extends CharacterBody3D
 class_name PlayerOverworld
 
-@onready var anim_player = $Sprite
+# assets
+@onready var anim_player = $Sprite ## The animation player of the player character.
 
-const SPEED = 7.5
-@export var can_move:bool = false
-@export var can_interact:bool = false
+# important variables
+const SPEED = 7.5 ## The movement speed of the player.
+@export var can_move:bool = false ## Safety lock. If disabled, the player will not be allowed to move.
+@export var can_interact:bool = false ## Safety lock. If disabled, the player cannot interact with Interactables.
 
 func update_movement(value:bool) -> void: ## Updates the player's movement lock based on the value.
 	can_move = value
@@ -17,11 +19,11 @@ func update_locks(value:bool) -> void: ## Updates both the player's movement and
 	can_move = value
 	can_interact = value
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void: ## Fires every physics frame. Handles the player's movement. Most of this is from the default Godot template.
 	# Add the gravity.wa
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+	
 	if not can_move: 
 		anim_player.play("idle")
 		return

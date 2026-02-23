@@ -1,12 +1,11 @@
 extends Sprite2D
 
-var MoveFactor = 10
+const MOVE_FACTOR = 10 ## How many pixels the arrow moves up and down.
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	while true:
 		await get_tree().create_timer(.5).timeout
-		self.position.y -= MoveFactor
+		self.position.y -= MOVE_FACTOR
 		
 		await get_tree().create_timer(.5).timeout
-		self.position.y += MoveFactor
+		self.position.y += MOVE_FACTOR
