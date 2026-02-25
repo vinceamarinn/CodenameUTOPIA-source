@@ -1,0 +1,313 @@
+[gd_scene format=3 uid="uid://1k451pjtmx7m"]
+
+[ext_resource type="PackedScene" uid="uid://ca1krhe3erxo8" path="res://scenes/templates/Character.tscn" id="1_cb1g3"]
+[ext_resource type="SpriteFrames" uid="uid://gktglqkacvai" path="res://images/characters/yuuto/sprite_frames.tres" id="2_m3hmg"]
+[ext_resource type="SpriteFrames" uid="uid://4u0qldydd6s6" path="res://images/characters/ren/sprite_frames.tres" id="3_nba3e"]
+[ext_resource type="SpriteFrames" uid="uid://dfbj1ivswx0x1" path="res://images/characters/yuuka/sprite_frames.tres" id="4_we1y3"]
+[ext_resource type="SpriteFrames" uid="uid://b1mejdxuqa47l" path="res://images/characters/reina/sprite_frames.tres" id="5_ml064"]
+[ext_resource type="SpriteFrames" uid="uid://rc8j14giyqvc" path="res://images/characters/sebastian/sprite_frames.tres" id="6_fnfur"]
+[ext_resource type="SpriteFrames" uid="uid://b2f36upkn36qb" path="res://images/characters/ayana/sprite_frames.tres" id="7_w018c"]
+[ext_resource type="SpriteFrames" uid="uid://b08l4ipo76ubs" path="res://images/characters/ikue/sprite_frames.tres" id="8_ulufd"]
+[ext_resource type="SpriteFrames" uid="uid://5eqew1tv4gq4" path="res://images/characters/shiro/sprite_frames.tres" id="9_m6yqu"]
+[ext_resource type="SpriteFrames" uid="uid://d03t7mxqa8cc5" path="res://images/characters/willow/sprite_frames.tres" id="10_lc0sa"]
+[ext_resource type="SpriteFrames" uid="uid://dombdmr8nda2d" path="res://images/characters/ryuji/sprite_frames.tres" id="11_ef46f"]
+[ext_resource type="SpriteFrames" uid="uid://1sjqa3dywrgd" path="res://images/characters/naomi/sprite_frames.tres" id="12_jqalo"]
+[ext_resource type="SpriteFrames" uid="uid://blufpfu8uh1a5" path="res://images/characters/sukai/sprite_frames.tres" id="13_y7bx0"]
+[ext_resource type="SpriteFrames" uid="uid://dco4jou7tpg31" path="res://images/characters/daiya/sprite_frames.tres" id="14_x8hrb"]
+[ext_resource type="SpriteFrames" uid="uid://ctsl1ewxfsuvy" path="res://images/characters/kazuhito/sprite_frames.tres" id="15_lj70g"]
+[ext_resource type="SpriteFrames" uid="uid://x0iae13wosm" path="res://images/characters/goki/sprite_frames.tres" id="16_pq436"]
+[ext_resource type="SpriteFrames" uid="uid://b4tf52v8samix" path="res://images/characters/lance/sprite_frames.tres" id="17_kfnxp"]
+[ext_resource type="SpriteFrames" uid="uid://dbbifjgyg8smi" path="res://images/characters/madame/sprite_frames.tres" id="18_mm7cg"]
+
+[node name="AreaState" type="Node3D" unique_id=1984147220]
+
+[node name="Characters" type="Node3D" parent="." unique_id=1339850287]
+
+[node name="yuuto" parent="Characters" unique_id=623308796 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.19594598, 0, -0.98061466, 0, 1, 0, 0.98061466, 0, -0.19594598, 112.747986, 5.5, 2.547299)
+
+[node name="@AnimatedSprite3D@89040" type="AnimatedSprite3D" parent="Characters/yuuto" unique_id=57016659]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("2_m3hmg")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89041" type="AnimatedSprite3D" parent="Characters/yuuto" unique_id=814732737]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("2_m3hmg")
+autoplay = "default"
+
+[node name="ren" parent="Characters" unique_id=300165609 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.19594625, 0, 0.98061466, 0, 1, 0, -0.98061466, 0, 0.19594625, 87.252014, 5.5, -2.547299)
+
+[node name="@AnimatedSprite3D@89042" type="AnimatedSprite3D" parent="Characters/ren" unique_id=1733311949]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("3_nba3e")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89043" type="AnimatedSprite3D" parent="Characters/ren" unique_id=1135817133]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("3_nba3e")
+autoplay = "default"
+
+[node name="yuuka" parent="Characters" unique_id=1075218081 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.19423455, 0, -0.9809551, 0, 1, 0, 0.9809551, 0, 0.19423455, 112.75242, 5.5, -2.5250473)
+
+[node name="@AnimatedSprite3D@89044" type="AnimatedSprite3D" parent="Characters/yuuka" unique_id=1194161352]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("4_we1y3")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89045" type="AnimatedSprite3D" parent="Characters/yuuka" unique_id=490411166]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("4_we1y3")
+autoplay = "default"
+
+[node name="reina" parent="Characters" unique_id=1296239576 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.1942343, 0, 0.9809552, 0, 1, 0, -0.9809552, 0, -0.1942343, 87.24758, 5.5, 2.5250473)
+
+[node name="@AnimatedSprite3D@89046" type="AnimatedSprite3D" parent="Characters/reina" unique_id=1717058636]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("5_ml064")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89047" type="AnimatedSprite3D" parent="Characters/reina" unique_id=1294047074]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("5_ml064")
+autoplay = "default"
+
+[node name="sebastian" parent="Characters" unique_id=1856389297 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.5548446, 0, -0.831954, 0, 1, 0, 0.831954, 0, 0.5548446, 110.81541, 5.5, -7.2129803)
+
+[node name="@AnimatedSprite3D@89048" type="AnimatedSprite3D" parent="Characters/sebastian" unique_id=296920144]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("6_fnfur")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89049" type="AnimatedSprite3D" parent="Characters/sebastian" unique_id=479054640]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("6_fnfur")
+autoplay = "default"
+
+[node name="ayana" parent="Characters" unique_id=1029650289 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.55484444, 0, 0.8319541, 0, 1, 0, -0.8319541, 0, -0.55484444, 89.18459, 5.5, 7.2129803)
+
+[node name="@AnimatedSprite3D@89050" type="AnimatedSprite3D" parent="Characters/ayana" unique_id=715708334]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("7_w018c")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89051" type="AnimatedSprite3D" parent="Characters/ayana" unique_id=1202124264]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("7_w018c")
+autoplay = "default"
+
+[node name="ikue" parent="Characters" unique_id=2057990521 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.83098465, 0, -0.5562954, 0, 1, 0, 0.5562954, 0, 0.83098465, 107.23184, 5.5, -10.802802)
+
+[node name="@AnimatedSprite3D@89052" type="AnimatedSprite3D" parent="Characters/ikue" unique_id=1174735108]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("8_ulufd")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89053" type="AnimatedSprite3D" parent="Characters/ikue" unique_id=924719885]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("8_ulufd")
+autoplay = "default"
+
+[node name="shiro" parent="Characters" unique_id=1028941074 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.8309844, 0, 0.5562957, 0, 1, 0, -0.5562957, 0, -0.8309844, 92.76816, 5.5, 10.802802)
+
+[node name="@AnimatedSprite3D@89054" type="AnimatedSprite3D" parent="Characters/shiro" unique_id=162222736]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("9_m6yqu")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89055" type="AnimatedSprite3D" parent="Characters/shiro" unique_id=512235192]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("9_m6yqu")
+autoplay = "default"
+
+[node name="willow" parent="Characters" unique_id=1434231083 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.9806147, 0, -0.19594592, 0, 1, 0, 0.19594592, 0, 0.9806147, 102.5473, 5.5, -12.747993)
+
+[node name="@AnimatedSprite3D@89056" type="AnimatedSprite3D" parent="Characters/willow" unique_id=549074559]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("10_lc0sa")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89057" type="AnimatedSprite3D" parent="Characters/willow" unique_id=2136146406]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("10_lc0sa")
+autoplay = "default"
+
+[node name="ryuji" parent="Characters" unique_id=2072295914 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.9806146, 0, 0.19594632, 0, 1, 0, -0.19594632, 0, -0.9806146, 97.4527, 5.5, 12.747993)
+
+[node name="@AnimatedSprite3D@89058" type="AnimatedSprite3D" parent="Characters/ryuji" unique_id=815657438]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("11_ef46f")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89059" type="AnimatedSprite3D" parent="Characters/ryuji" unique_id=203969880]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("11_ef46f")
+autoplay = "default"
+
+[node name="naomi" parent="Characters" unique_id=1736076488 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.9809551, 0, 0.19423461, 0, 1, 0, -0.19423461, 0, 0.9809551, 97.47495, 5.5, -12.752418)
+
+[node name="@AnimatedSprite3D@89060" type="AnimatedSprite3D" parent="Characters/naomi" unique_id=549782596]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("12_jqalo")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89061" type="AnimatedSprite3D" parent="Characters/naomi" unique_id=1679711767]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("12_jqalo")
+autoplay = "default"
+
+[node name="sukai" parent="Characters" unique_id=339679365 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.98095506, 0, -0.19423486, 0, 1, 0, 0.19423486, 0, -0.98095506, 102.52505, 5.5, 12.752418)
+
+[node name="@AnimatedSprite3D@89062" type="AnimatedSprite3D" parent="Characters/sukai" unique_id=1126731569]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("13_y7bx0")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89063" type="AnimatedSprite3D" parent="Characters/sukai" unique_id=1795613697]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("13_y7bx0")
+autoplay = "default"
+
+[node name="daiya" parent="Characters" unique_id=623947005 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.83195394, 0, 0.55484474, 0, 1, 0, -0.55484474, 0, 0.83195394, 92.78702, 5.5, -10.815404)
+
+[node name="@AnimatedSprite3D@89064" type="AnimatedSprite3D" parent="Characters/daiya" unique_id=1446291492]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("14_x8hrb")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89065" type="AnimatedSprite3D" parent="Characters/daiya" unique_id=454008428]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("14_x8hrb")
+autoplay = "default"
+
+[node name="kazuhito" parent="Characters" unique_id=1243091390 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.831954, 0, -0.5548446, 0, 1, 0, 0.5548446, 0, -0.831954, 107.21298, 5.5, 10.815404)
+
+[node name="@AnimatedSprite3D@89066" type="AnimatedSprite3D" parent="Characters/kazuhito" unique_id=1051129652]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("15_lj70g")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89067" type="AnimatedSprite3D" parent="Characters/kazuhito" unique_id=604914867]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("15_lj70g")
+autoplay = "default"
+
+[node name="goki" parent="Characters" unique_id=1800746704 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(0.55629534, 0, 0.83098465, 0, 1, 0, -0.83098465, 0, 0.55629534, 89.197205, 5.5, -7.2318425)
+
+[node name="@AnimatedSprite3D@89068" type="AnimatedSprite3D" parent="Characters/goki" unique_id=2130516292]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("16_pq436")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89069" type="AnimatedSprite3D" parent="Characters/goki" unique_id=1338860661]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("16_pq436")
+autoplay = "default"
+
+[node name="lance" parent="Characters" unique_id=866715662 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-0.5562955, 0, -0.83098453, 0, 1, 0, 0.83098453, 0, -0.5562955, 110.802795, 5.5, 7.2318425)
+
+[node name="@AnimatedSprite3D@89070" type="AnimatedSprite3D" parent="Characters/lance" unique_id=2144575343]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("17_kfnxp")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89071" type="AnimatedSprite3D" parent="Characters/lance" unique_id=1879746827]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("17_kfnxp")
+autoplay = "default"
+
+[node name="madame" parent="Characters" unique_id=2137645270 instance=ExtResource("1_cb1g3")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 62.175453, 4.5381002, 0)
+
+[node name="@AnimatedSprite3D@89072" type="AnimatedSprite3D" parent="Characters/madame" unique_id=373087995]
+transform = Transform3D(0.39, 0, -1.54972e-08, 0, 0.39, 0, 1.54972e-08, 0, 0.39, 0, 0, 0)
+double_sided = false
+sprite_frames = ExtResource("18_mm7cg")
+autoplay = "default"
+
+[node name="@AnimatedSprite3D@89073" type="AnimatedSprite3D" parent="Characters/madame" unique_id=2035840775]
+transform = Transform3D(-0.39, 0, -5.88884e-08, 0, 0.39, 0, 5.88884e-08, 0, -0.39, 0, 0, 0)
+flip_h = true
+modulate = Color(0, 0, 0, 1)
+double_sided = false
+sprite_frames = ExtResource("18_mm7cg")
+autoplay = "default"

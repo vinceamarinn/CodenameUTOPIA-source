@@ -3,6 +3,7 @@ extends Minigame
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var scenes_2D = get_node("/root/GameMain/2DScenes")
 @onready var scenes_3D = get_node("/root/GameMain/3DScenes")
+
 @onready var char_group = scenes_3D.get_node("Characters")
 
 # MINIGAME SPECIFIC VARIABLES
@@ -38,23 +39,18 @@ func setup() -> bool: ## Initiates the provided trial.
 	await UIModule.transition_ended
 	
 	# load courtroom
-	var courtroom = await AreaModule.load_area("Courtroom", "TRIAL", false, false, true)
+	var courtroom = await AreaModule.load_area("Courtroom", "TRIAL", false, true, true)
 	
-	# get trial seating arrangement & load characters
-	var trial_state_holder = courtroom.area_states["TRIAL"] # get trial seating arrangement
-	var trial_state = trial_state_holder.character_state_array
-	var trial_global_offset = trial_state_holder.global_offset
-	
-	# go through every character, and only load them if they are not registered as dead
+	# get the saved death registry, go through every character, and delete them if they are registered as dead
 	# !!!EDIT THIS LATER SO THAT FOR CHARACTERS WHO ARE DEAD IT SPAWNS A PORTRAIT INSTEAD!!!
+	var saved_registry = DataStateModule.game_data.StoryFlags.DeathRegistry
 	
-	for char_state in trial_state:
-		var char_name = GeneralModule.get_character_name(char_state.Name)
-		if char_name in story_flags.DeathRegistry: continue
-		AreaModule.create_character(char_state, trial_global_offset)
+	for characters in char_group.get_children():
+		var char_name = characters.name
+		if GeneralModule.get_character_ID(char_name) and saved_registry.has(char_name):
+			characters.queue_free()
 	
 	# now, check for any mismatches between the internal registry & the save data
-	var saved_registry = DataStateModule.game_data.StoryFlags.DeathRegistry
 	var internal_registry = []
 	
 	# get the internal registry
@@ -111,7 +107,8 @@ func main() -> void: ## Reads through the provided trial script. You are able to
 	
 	for i in range(stage_start, trial_script_data.size(), 1):
 		var trial_stage = trial_script_data[i]
-		await DialogueModule.read_dialogue(trial_stage.Dialogue, start_point)
+		var stage_dialogue = trial_stage.Dialogue
+		await DialogueModule.read_dialogue(stage_dialogue, start_point)
 
 func end() -> void:
 	# cleanup minigame specific assets and data

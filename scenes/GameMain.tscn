@@ -86,6 +86,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.61796)
 
 [node name="Characters" type="Node3D" parent="3DScenes" unique_id=138045317]
 
+[node name="Objects" type="Node3D" parent="3DScenes" unique_id=858283741]
+
+[node name="Actives" type="Node3D" parent="3DScenes" unique_id=491126752]
+
 [node name="2DScenes" type="Node" parent="." unique_id=625927701]
 
 [connection signal="pressed" from="UI/saveshit/save" to="UI/saveshit/save" method="_on_pressed"]

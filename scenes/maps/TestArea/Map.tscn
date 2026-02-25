@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c1jf7anrrlq5p"]
+
+[ext_resource type="PackedScene" uid="uid://dv023dj5hx1nd" path="res://scenes/maps/TestArea/area_states/CH0_sigmund.tscn" id="5_maxeh"]
+[ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0osks"]
+[ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="8_he112"]
+[ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://scenes/templates/Interactable.tscn" id="9_ru3c5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hxjik"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xpuui"]
+data = PackedVector3Array(-52.5, 0.5, 52.5, 52.5, 0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, -52.5, 52.5, -0.5, -52.5, -52.5, 0.5, -52.5, -52.5, -0.5, -52.5, 52.5, -0.5, -52.5, 52.5, 0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, 52.5, 52.5, 0.5, -52.5, 52.5, -0.5, -52.5, 52.5, -0.5, 52.5, -52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, -52.5, -52.5, 0.5, 52.5, -52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, 0.5, 52.5, -52.5, 0.5, 52.5, 52.5, 0.5, -52.5, -52.5, 0.5, 52.5, -52.5, 0.5, -52.5, 52.5, 0.5, -52.5, -52.5, -0.5, 52.5, 52.5, -0.5, 52.5, -52.5, -0.5, -52.5, 52.5, -0.5, 52.5, 52.5, -0.5, -52.5, -52.5, -0.5, -52.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kvvoo"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Resource" id="Resource_fh68x"]
+script = ExtResource("6_0osks")
+event_type = 1
+event_data = Dictionary[String, Variant]({
+"area_name": "Courtroom"
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
+
+[sub_resource type="Resource" id="Resource_hxjik"]
+script = ExtResource("8_he112")
+InteractableType = 1
+InteractionRange = 5.0
+InteractEvent = SubResource("Resource_fh68x")
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
+
+[sub_resource type="Resource" id="Resource_maxeh"]
+script = ExtResource("6_0osks")
+event_type = 7
+event_data = Dictionary[String, Variant]({
+"trial_ID": 0
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
+
+[sub_resource type="Resource" id="Resource_u7d5k"]
+script = ExtResource("8_he112")
+InteractableType = 1
+InteractionRange = 5.0
+InteractEvent = SubResource("Resource_maxeh")
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
+
+[node name="TestArea" type="Node3D" unique_id=1192874602]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=2467997]
+mesh = SubResource("BoxMesh_hxjik")
+
+[node name="Floor_col" type="StaticBody3D" parent="Floor" unique_id=1987203276]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor_col" unique_id=1987247287]
+shape = SubResource("ConcavePolygonShape3D_xpuui")
+
+[node name="go to courtroom" type="MeshInstance3D" parent="." unique_id=2083981525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.183093, 1.502, -13.295)
+mesh = SubResource("BoxMesh_kvvoo")
+
+[node name="Interactable" parent="go to courtroom" unique_id=1703434222 instance=ExtResource("9_ru3c5")]
+interactable_data = SubResource("Resource_hxjik")
+
+[node name="init trial" type="MeshInstance3D" parent="." unique_id=908388995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.614768, 1.502, -13.295)
+mesh = SubResource("BoxMesh_kvvoo")
+
+[node name="Interactable" parent="init trial" unique_id=372533762 instance=ExtResource("9_ru3c5")]
+interactable_data = SubResource("Resource_u7d5k")
+
+[node name="AreaState" parent="." unique_id=862104107 instance=ExtResource("5_maxeh")]
+
+[editable path="go to courtroom/Interactable"]
+[editable path="init trial/Interactable"]
+[editable path="AreaState"]
+[editable path="AreaState/Characters/kazuhito"]

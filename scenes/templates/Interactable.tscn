@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://b05iwyug8axbg"]
 
 [ext_resource type="Script" uid="uid://61gfabcf5cmr" path="res://scripts/templates/Interactable.gd" id="1_k7ad7"]
+[ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="2_v2001"]
 [ext_resource type="Texture2D" uid="uid://ejyumcuy5y2p" path="res://images/UI/interact prompt.png" id="2_vss64"]
+
+[sub_resource type="Resource" id="Resource_oqqev"]
+script = ExtResource("2_v2001")
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ui5h"]
 
 [node name="Interactable" type="Area3D" unique_id=372533762]
 script = ExtResource("1_k7ad7")
+interactable_data = SubResource("Resource_oqqev")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=853651546]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

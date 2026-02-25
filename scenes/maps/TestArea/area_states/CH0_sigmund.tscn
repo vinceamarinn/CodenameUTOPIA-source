@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dv023dj5hx1nd"]
+
+[ext_resource type="PackedScene" uid="uid://ca1krhe3erxo8" path="res://scenes/templates/Character.tscn" id="1_ly3ai"]
+[ext_resource type="SpriteFrames" uid="uid://ctsl1ewxfsuvy" path="res://images/characters/kazuhito/sprite_frames.tres" id="2_y5sta"]
+
+[node name="AreaState" type="Node3D" unique_id=560696754]
+
+[node name="Characters" type="Node3D" parent="." unique_id=781330420]
+
+[node name="kazuhito" parent="Characters" unique_id=2009446660 instance=ExtResource("1_ly3ai")]
+transform = Transform3D(0.9342356, 0, 0.35665646, 0, 1, 0, -0.35665646, 0, 0.9342356, -8.5, 5, -10)
+
+[node name="Sprite" parent="Characters/kazuhito" index="0"]
+sprite_frames = ExtResource("2_y5sta")
+
+[editable path="Characters/kazuhito"]

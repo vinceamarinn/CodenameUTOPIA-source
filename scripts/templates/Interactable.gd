@@ -7,11 +7,11 @@ var player_within_range: PlayerOverworld = null  ## Tracks the player currently 
 
 # interactable information
 @export var interactable_data: InteractableData ## The data for the interactable to use.
-@onready var interactable_type = interactable_data.interactable_type
-@onready var interaction_range = interactable_data.interaction_range
+@onready var interactable_type = interactable_data.InteractableType
+@onready var interaction_range = interactable_data.InteractionRange
 @onready var interaction_prompt: SpriteBase3D = $Prompt
 
-@onready var interact_event = interactable_data.interact_event
+@onready var interact_event = interactable_data.InteractEvent
 
 func _ready() -> void: ## Setup.
 	# if the range is not 0, set the range of the interaction area to the provided value
@@ -19,7 +19,7 @@ func _ready() -> void: ## Setup.
 		self.get_node("CollisionShape3D").scale = Vector3(interaction_range, interaction_range, interaction_range)
 	
 	# no more setup needed if it's an on touch interactable!
-	if interactable_type == InteractableData.InteractableType.ON_TOUCH: return
+	if interactable_type == InteractableData.InteractableTypes.ON_TOUCH: return
 	
 	# get the parent object
 	var interactable_parent = self.get_parent()
@@ -63,10 +63,10 @@ func _on_body_entered(body: Node3D) -> void: ## Handles what to do when the play
 	if not player_within_range.can_interact: return
 	
 	match interactable_type:
-		InteractableData.InteractableType.ON_TOUCH:
+		InteractableData.InteractableTypes.ON_TOUCH:
 			# touch types trigger immediately, no module involvement
 			execute_action()
-		InteractableData.InteractableType.ON_INTERACT:
+		InteractableData.InteractableTypes.ON_INTERACT:
 			# notify the module to handle priority tracking
 			is_within_range = true
 			InteractableHandler.add_to_registry(self, player_within_range)
@@ -80,7 +80,7 @@ func _on_body_exited(body: Node3D) -> void: ## Handles logic for when the player
 	player_within_range = null
 	
 	# lost interaction rights
-	if interactable_type == InteractableData.InteractableType.ON_INTERACT:
+	if interactable_type == InteractableData.InteractableTypes.ON_INTERACT:
 		is_within_range = false
 		show_prompt(false)
 		

@@ -19,7 +19,7 @@ func print_text(event_data:Dictionary) -> void: ## Prints the provided text mess
 #region Area category events
 
 func load_area(event_data:Dictionary) -> void: ## Loads the provided area according to current state and character.
-	var area_name = event_data.get("area")
+	var area_name = event_data.get("area_name")
 	var state_name = DataStateModule.get_chapter_state_name()
 	AreaModule.load_area(area_name, state_name, true, true, false)
 

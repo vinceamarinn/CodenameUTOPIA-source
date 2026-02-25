@@ -1,0 +1,56 @@
+organize these things by doing a 'step by step' guide on how to do certain things in the game
+
+2. tracking the game state
+- covers the savestatedata resource
+- covers the datastatemodule
+
+3. the 'event' system
+- covers the event system
+- covers the event module
+
+4. loading an area
+- covers how maps are setup in the 3dscenes group node
+- covers the area module's loading functionality & resources
+- covers the on enter event
+
+5. creating an area state
+- covers the area state system
+- covers the characters & the character loading
+- cover state specific groups & how to load/save them
+
+6. adding interactivity and livelihood to the area
+- covers the interactable system
+- covers the interactable handler
+- covers how to add an interactable to a static asset
+- covers how to add an interactable to a character or state specific asset
+
+7. creating dialogue
+- covers the dialogue system, module & resources
+- covers basic dialogue options
+
+8. advanced dialogue
+- covers event flags
+- covers dialogue conditions
+
+
+
+
+
+systems
+game state & the data/state module
+
+area state system
+interactable system
+event system
+dialogue system
+minigame system
+
+player character & npc characters
+
+
+(custom resources/objects...)
+
+
+(templates...)
+
+(modules)

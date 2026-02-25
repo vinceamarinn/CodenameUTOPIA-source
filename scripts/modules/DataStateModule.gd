@@ -78,7 +78,7 @@ func _ready() -> void:
 		AreaModule.load_area(game_data.CurrentMap, state_name, true, true, false) # load area from state
 		
 		if game_data.CurrentMusic != "": # load current music and play it
-			GeneralModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music
+			AudioModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music
 	
 	# update kazuhito's name based on story flags
 	var known_names_list = GeneralModule.known_names_list
