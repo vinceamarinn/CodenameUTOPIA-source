@@ -98,9 +98,9 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 }
 
 
-func debug_message(sender:String, type:String, reason:String, content:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
+func debug_message(sender:String, type:String, content:String, reason:String)  -> void: ## Creates a detailed log message in the output through a print. Includes the script that reported it, the type of the message, and its content. Types include - Warning, Error, and Info (not case sensitive).
 	# estabilish default message format
-	var msg = "[" + type.to_upper() + "] " + reason + " " + content + " (sent by " + sender + ")"
+	var msg = "[" + type.to_upper() + "] " + content + " " + reason + " (sent by " + sender + ")"
 	
 	# match logging method based on type (non case sensitive!)
 	match type.to_lower():
@@ -108,7 +108,7 @@ func debug_message(sender:String, type:String, reason:String, content:String)  -
 			push_error(msg)
 		"warning":
 			push_warning(msg)
-		"info":
+		"info", _:
 			print(msg)
 
 func get_file_name(file:Variant) -> String: ## Gets the name of a file from its path.

@@ -105,6 +105,9 @@ func main() -> void: ## Reads through the provided trial script. You are able to
 	if start_point.has("stage"):
 		stage_start = start_point["stage"]
 	
+	var current_area = DataStateModule.game_data.CurrentArea
+	print("Current Area: ", current_area)
+	
 	for i in range(stage_start, trial_script_data.size(), 1):
 		var trial_stage = trial_script_data[i]
 		var stage_dialogue = trial_stage.Dialogue

@@ -1,13 +1,5 @@
 organize these things by doing a 'step by step' guide on how to do certain things in the game
 
-2. tracking the game state
-- covers the savestatedata resource
-- covers the datastatemodule
-
-3. the 'event' system
-- covers the event system
-- covers the event module
-
 4. loading an area
 - covers how maps are setup in the 3dscenes group node
 - covers the area module's loading functionality & resources
@@ -32,7 +24,15 @@ organize these things by doing a 'step by step' guide on how to do certain thing
 - covers event flags
 - covers dialogue conditions
 
+9. minigames
+- covers adding minigames
+- creating a brand new one
+- programming it
 
+
+THINGS TO ADD
+- courtroom trials
+- investigations & tracking clues
 
 
 

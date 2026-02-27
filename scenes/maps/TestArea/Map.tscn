@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c1jf7anrrlq5p"]
 
-[ext_resource type="PackedScene" uid="uid://dv023dj5hx1nd" path="res://scenes/maps/TestArea/area_states/CH0_sigmund.tscn" id="5_maxeh"]
 [ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="6_0osks"]
 [ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="8_he112"]
 [ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://scenes/templates/Interactable.tscn" id="9_ru3c5"]
@@ -16,8 +15,8 @@ size = Vector3(2, 2, 2)
 
 [sub_resource type="Resource" id="Resource_fh68x"]
 script = ExtResource("6_0osks")
-event_type = 1
-event_data = Dictionary[String, Variant]({
+EventType = 1
+EventDataList = Dictionary[String, Variant]({
 "area_name": "Courtroom"
 })
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
@@ -31,8 +30,8 @@ metadata/_custom_type_script = "uid://dpfovalhplvc6"
 
 [sub_resource type="Resource" id="Resource_maxeh"]
 script = ExtResource("6_0osks")
-event_type = 7
-event_data = Dictionary[String, Variant]({
+EventType = 7
+EventDataList = Dictionary[String, Variant]({
 "trial_ID": 0
 })
 metadata/_custom_type_script = "uid://c5jo114vdi6ni"
@@ -68,9 +67,5 @@ mesh = SubResource("BoxMesh_kvvoo")
 [node name="Interactable" parent="init trial" unique_id=372533762 instance=ExtResource("9_ru3c5")]
 interactable_data = SubResource("Resource_u7d5k")
 
-[node name="AreaState" parent="." unique_id=862104107 instance=ExtResource("5_maxeh")]
-
 [editable path="go to courtroom/Interactable"]
 [editable path="init trial/Interactable"]
-[editable path="AreaState"]
-[editable path="AreaState/Characters/kazuhito"]

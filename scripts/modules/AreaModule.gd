@@ -26,8 +26,8 @@ func create_character(char_name:String, char_position:Vector3, char_rotation:Vec
 	if not GeneralModule.get_character_ID(char_name): return
 	
 	# don't spawn them if they were flagged to have been previously removed
-	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentMap):
-		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentMap]: return
+	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentArea):
+		if char_name in DataStateModule.game_data.RemovedCharacters[DataStateModule.game_data.CurrentArea]: return
 	
 	# load character & their sprites
 	var char_sprites = load("res://images/characters/" + char_name + "/sprite_frames.tres")
@@ -131,18 +131,13 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	new_area.name = area_name
 	
 	# load area state
-	# verify if area state file exists & setup on enter event reference
+	# verify if area state file exists
 	var state_path = get_area_state_path(area_name, state)
-	var on_enter_event:EventData = null
 	
 	# if the file exists (path was obtained), then load area state
 	if state_path != "":
 		var area_state = load(state_path).instantiate()
 		
-		# check for any on enter events
-		var state_event = area_state.get_node_or_null("OnEnterEvent")
-		if state_event:
-			on_enter_event = state_event.Event
 		
 		# simply copypaste the Objects group into 3DScenes/Objects and set the global offset
 		var state_objects = area_state.get_node_or_null("Objects")
@@ -191,15 +186,11 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 		await UIModule.transition_ended
 	
 	# change current area in the game state
-	DataStateModule.game_data.CurrentMap = area_name
-	
-	# play on enter event if it exists
-	if on_enter_event:
-		EventModule.process_event(on_enter_event)
+	DataStateModule.game_data.CurrentArea = area_name
 	
 	# let player move now
 	if new_player != null:
 		new_player.update_locks(true)
 	
-	print(DataStateModule.game_data.CurrentMap)
+	print(DataStateModule.game_data.CurrentArea)
 	return new_area

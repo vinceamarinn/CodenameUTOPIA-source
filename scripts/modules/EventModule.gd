@@ -10,9 +10,9 @@ extends Node
 
 #region General category events
 
-func print_text(event_data:Dictionary) -> void: ## Prints the provided text message in the console.
-	var message = event_data.get("text")
-	print(message)
+func print_msg(event_data:Dictionary) -> void: ## Prints the provided text message in the console through the General Module's debug message method.
+	var content = event_data.get("content")
+	GeneralModule.debug_message("EventModule - print_msg()", "info", content, "Sent through an Event.")
 
 #endregion
 
@@ -63,11 +63,11 @@ func start_trial(event_data:Dictionary): ## Calls the Data/State Module to begin
 
 func process_event(event:EventData): ## Processes the provided event.
 	# get event stuff
-	var event_id = event.event_type
-	var event_data = event.event_data
+	var event_id = event.EventType
+	var event_data = event.EventDataList
 	
 	# remove category prefix
-	var event_type:String = GeneralModule.get_enum_string(EventData.EventType, event_id)
+	var event_type:String = GeneralModule.get_enum_string(EventData.EventTypes, event_id)
 	var underscore_index := event_type.find("_")
 	if underscore_index != -1:
 		event_type = event_type.substr(underscore_index + 1)

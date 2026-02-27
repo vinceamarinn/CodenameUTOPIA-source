@@ -75,7 +75,7 @@ func _ready() -> void:
 	print("are we in a trial? ", check_if_trial())
 	if err:
 		var state_name = get_chapter_state_name() # get current area/state
-		AreaModule.load_area(game_data.CurrentMap, state_name, true, true, false) # load area from state
+		AreaModule.load_area(game_data.CurrentArea, state_name, true, true, false) # load area from state
 		
 		if game_data.CurrentMusic != "": # load current music and play it
 			AudioModule.play_music(load("res://audio/music/" + game_data.CurrentMusic + ".ogg")) # play last saved music

@@ -1,33 +1,33 @@
 extends Resource
 class_name EventData
 
-enum EventType {
+enum EventTypes {
 	#region General category events
-	GENERAL_PRINT_TEXT, ## Debug action. Simply prints the text on the interactable data.
+	GENERAL_PRINT_MSG, ## Debug action. Simply prints the message through the General Module 
 	#endregion
 	
 	#region Area category events
-	AREA_LOAD_AREA, ## Calls the area module to load a new area.
+	AREA_LOAD_AREA, ## Calls the Area Module to load a new area.
 	#endregion
 	
 	#region Dialogue category events
-	DIALOGUE_READ_DIALOGUE, ## Calls the dialogue module to iterate through a dialogue tree.
+	DIALOGUE_READ_DIALOGUE, ## Calls the Dialogue Module to iterate through a dialogue tree.
 	#endregion
 	
 	#region Audio category events
-	AUDIO_PLAY_MUSIC, ## Plays the provided music track.
-	AUDIO_STOP_MUSIC, ## Stops the current music track.
-	AUDIO_PLAY_SFX, ## Plays the provided sound effect.
-	AUDIO_PLAY_VOICELINE, ## PLays the provided voiceline.
+	AUDIO_PLAY_MUSIC, ## Calls the Audio Module to play the provided music track.
+	AUDIO_STOP_MUSIC, ## Calls the Audio Module to stop the current music track.
+	AUDIO_PLAY_SFX, ## Calls the Audio Module to play the provided sound effect.
+	AUDIO_PLAY_VOICELINE, ## Calls the Audio Module to play the provided voiceline.
 	#endregion
 	
 	#region Trial events
-	TRIAL_START_TRIAL, ## Calls the Data/State module to begin a new trial.
+	TRIAL_START_TRIAL, ## Calls the Data/State Module to begin a new Courtroom Trial.
 	#endregion
 }
 
-@export var event_type:EventType = EventType.GENERAL_PRINT_TEXT ## Chooses which event to perform through the event module.
-@export var event_data:Dictionary[String, Variant] ## Data to pass as arguments for the chosen event.
+@export var EventType:EventTypes = EventTypes.GENERAL_PRINT_MSG ## Chooses which event to perform through the event module.
+@export var EventDataList:Dictionary[String, Variant] ## Data to pass as arguments for the chosen event.
 
 ## Determines when the event will trigger automatically. Only used during dialogue lines.
 ##[br][br]
