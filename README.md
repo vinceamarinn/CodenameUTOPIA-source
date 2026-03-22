@@ -21,10 +21,3 @@ Regardless, you should now open Godot (make sure that it is at minimum the same 
 Finally, just open the project. You'll have to wait a while for Godot to import in all the assets and load the environment and whatnot, but once that's done, congrats! You now have access to the **Codename: UTOPIA** source code! Have fun digging.
 
 ---
-
-## Other links
-
-- [Source code documentation]<https://docs.google.com/document/d/1jqBVh2cQtIF2j0JZCkqZiHzNS1N8OQgkB7eiT2fny8o/edit?usp=sharing>
-
-
-

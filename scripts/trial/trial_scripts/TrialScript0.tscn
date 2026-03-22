@@ -24,9 +24,22 @@ CameraMovement = SubResource("Resource_kkayx")
 CameraSubject = null
 metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
+[sub_resource type="Resource" id="Resource_5tvk4"]
+script = ExtResource("5_f0l54")
+MovementType = "Pan"
+MovementDirection = "Right"
+metadata/_custom_type_script = "uid://b3btqd6qf8imo"
+
+[sub_resource type="Resource" id="Resource_0ydal"]
+script = ExtResource("3_2w04d")
+Line = "lowkey not cool bruh"
+CameraMovement = SubResource("Resource_5tvk4")
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
 [sub_resource type="Resource" id="Resource_2w04d"]
 script = ExtResource("6_0ydal")
-ArrayData = Array[ExtResource("3_2w04d")]([SubResource("Resource_f0l54")])
+ArrayData = Array[ExtResource("3_2w04d")]([SubResource("Resource_f0l54"), SubResource("Resource_0ydal")])
 metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
 
 [sub_resource type="Resource" id="Resource_ujrhy"]

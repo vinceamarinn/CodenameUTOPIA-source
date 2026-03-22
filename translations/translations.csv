@@ -6,13 +6,18 @@ save game;guardar jogo;
 (speaker's line);(fala do personagem);
 (speaker's name);(nome do personagem);
 ;;
-# res://scenes/maps/TestArea.tscn;;
-...im out of dialgoue bruh;;
-heh... look at her shes pissed;;
-kazuhito i will curse your name for generations;;
-kys;;
-what?;;
-yo yuuka;;
+# res://scenes/maps/TestArea/area_states/CH0_sigmund.tscn;;
+(no use talking to him...);(não vale a pena falar com ele…);
+...im gonna kill this guy one day;...vou matar este gajo um dia;
+anyway leave me the fuck alone thank uuuuu;ok então deixa me em paz obrigadoooooo;
+bro what;bro oque;
+die NOWWWWW;morre AGORAAAA;
+dude... yuuka would HATE ts;puto… a yuuka ia ODIAR isto;
+exist;existir;
+fuck you bitch;vai te foder puta;
+hey kazu whats up;hey chico que se passa;
+so are u chill yet gang;então já desanuviaste?;
+what did i do;oqq eu fiz;
 ;;
 # res://scripts/modules/DialogueModule.gd;;
 ;;
@@ -43,51 +48,5 @@ Yuuka Katashi;Ândria Vieira;
 Yuuto Katashi;André Vieira;
 ;;
 # res://scripts/trial/trial_scripts/TrialScript0.tscn;;
-KILL YOURSELF;;
-No alaaaaarms and nooooo surpriiiises,;;
-"Transport, motorways, and tramlines
-Starting and then stopping, taking off and landing
-The emptiest of feelings, disappointed people
-Clinging onto bottles
-When it comes, it's so, so disappointing
-Let down and hanging around
-Crushed like a bug in the ground
-Let down and hanging around
-Shell smashed, juices flowing, wings twitch
-Legs are going, don't get sentimental
-It always ends up drivel
-One day I am gonna grow wings
-A chemical reaction
-Hysterical and useless, hysterical and
-Let down and hanging around
-Crushed like a bug in the ground
-Let down and hanging around
-Let down and hang
-Let down and hang
-Let down and hang
-You know, you know where you are with
-You know where you are with
-Floor collapses, floating
-Bouncing back
-And one day I am gonna grow wings
-A chemical reaction (you know where you are)
-Hysterical and useless (you know where you are)
-Hysterical and (you know where you are)
-Let down, and hanging around
-Crushed like a bug in the ground
-Let down and hanging around";;
-[Doubt] I don't know who to suspect... but >Kazuhito<... he seems off to me.;;
-[EXAGGERATE] omgggggg saaaaame i agree so harddddddd;;
-[OBFUSCATE] hEh. you know what ELSE is hard;;
-[VOTE >Kazuhito<]...i dont think ANYONE wants to know bro;;
-babe.... thats cringe..... stop it;;
-dude that band sucks can i get you on some AJR;;
-friday night funking impersonation:;;
-go pico yea yea go pico oh;;
-guys... cmon... calm down lets not be like this;;
-oh my god bruh... dawg look at my classmates we're gonna LOSE;;
-okay guys do whatever the hell you want i dont even care;;
-so..... nice weather huh;;
-what did i even DO bruh :sobbbb:;;
-woah woah HEY CALM DOWN;;
-you. yes YOU. with that stupid ass haircut i fucking hate yoiu bro;;
+kys all of u;matem se todos vocês;
+lowkey not cool bruh;lowkey nada fixe bro;

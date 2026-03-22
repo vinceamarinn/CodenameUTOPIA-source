@@ -90,4 +90,4 @@ func _ready() -> void:
 		known_names_list[GeneralModule.Characters.KAZUHITO] = kazuhito_names[0]
 		print("kazuhito is hidden")
 	
-	TranslationServer.set_locale("en")
+	TranslationServer.set_locale("pt")

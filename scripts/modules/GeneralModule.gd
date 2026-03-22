@@ -135,8 +135,12 @@ func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches 
 func get_character_name(char_ID:int) -> String: ## Returns the selected character's name from their enum ID.
 	return Characters.keys()[char_ID].to_lower()
 
-func get_character_ID(char_name:String) -> int: ## Returns the selected character's name from their enum ID.
-	return Characters.keys().find(char_name.to_upper())
+func get_character_ID(char_name:String) -> int: ## Returns the selected character's name from their enum ID. If it doesn't exist, it returns -1.
+	var keys:Array = Characters.keys()
+	if keys.has(char_name.to_upper()):
+		return keys.find(char_name.to_upper())
+	else:
+		return -1
 
 func get_character_known_name(char_info:Characters) -> String: ## Returns the selected character's known name.
 	return known_names_list[char_info]

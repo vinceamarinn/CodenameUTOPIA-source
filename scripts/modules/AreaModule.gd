@@ -23,7 +23,7 @@ const DEFAULT_AREA_PATH = "res://scenes/maps/" ## The default path for the map f
 
 func create_character(char_name:String, char_position:Vector3, char_rotation:Vector3, char_interactable:InteractableData) -> void: ## Creates a character from the base template using the given information, and places them in the map.
 	# if not a valid character, then DIE
-	if not GeneralModule.get_character_ID(char_name): return
+	if GeneralModule.get_character_ID(char_name) == -1: return
 	
 	# don't spawn them if they were flagged to have been previously removed
 	if DataStateModule.game_data.RemovedCharacters.get(DataStateModule.game_data.CurrentArea):
@@ -89,7 +89,7 @@ func get_area_state_path(area_name:String, state:String) -> String: ## Returns t
 	# check if the specific state exists
 	if ResourceLoader.exists(state_path):
 		return state_path
-	# otherwise, get fallback
+	# otherwise, get chapter fallback
 	if ResourceLoader.exists(chapter_path):
 		return chapter_path
 	

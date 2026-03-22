@@ -47,7 +47,7 @@ func setup() -> bool: ## Initiates the provided trial.
 	
 	for characters in char_group.get_children():
 		var char_name = characters.name
-		if GeneralModule.get_character_ID(char_name) and saved_registry.has(char_name):
+		if GeneralModule.get_character_ID(char_name) != -1 and saved_registry.has(char_name):
 			characters.queue_free()
 	
 	# now, check for any mismatches between the internal registry & the save data

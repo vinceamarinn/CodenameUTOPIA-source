@@ -2,15 +2,189 @@
 
 [ext_resource type="PackedScene" uid="uid://ca1krhe3erxo8" path="res://scenes/templates/Character.tscn" id="1_ly3ai"]
 [ext_resource type="SpriteFrames" uid="uid://ctsl1ewxfsuvy" path="res://images/characters/kazuhito/sprite_frames.tres" id="2_y5sta"]
+[ext_resource type="PackedScene" uid="uid://b05iwyug8axbg" path="res://scenes/templates/Interactable.tscn" id="3_efept"]
+[ext_resource type="Script" uid="uid://dlu7msbne4hpp" path="res://scripts/resources/DialogueDict.gd" id="4_0o0nf"]
+[ext_resource type="Script" uid="uid://cbltr5c7xr7s0" path="res://scripts/resources/DialogueArray.gd" id="5_0hjh8"]
+[ext_resource type="Script" uid="uid://7h4sds3ykomg" path="res://scripts/resources/DialogueLine.gd" id="6_c6w4w"]
+[ext_resource type="Script" uid="uid://c5jo114vdi6ni" path="res://scripts/resources/EventData.gd" id="7_hrjil"]
+[ext_resource type="Script" uid="uid://bjsaxob7yfqa7" path="res://scripts/resources/DialogueCondition.gd" id="8_37jt2"]
+[ext_resource type="Script" uid="uid://cry7q52aiw4rr" path="res://scripts/resources/DialogueTree.gd" id="9_dflbv"]
+[ext_resource type="Script" uid="uid://dpfovalhplvc6" path="res://scripts/resources/InteractableData.gd" id="10_82kj0"]
 
-[node name="AreaState" type="Node3D" unique_id=560696754]
+[sub_resource type="Resource" id="Resource_dloon"]
+script = ExtResource("6_c6w4w")
+Line = "hey kazu whats up"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[node name="Characters" type="Node3D" parent="." unique_id=781330420]
+[sub_resource type="Resource" id="Resource_8uoc3"]
+script = ExtResource("6_c6w4w")
+Speaker = 3
+Line = "fuck you bitch"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
 
-[node name="kazuhito" parent="Characters" unique_id=2009446660 instance=ExtResource("1_ly3ai")]
+[sub_resource type="Resource" id="Resource_ibayf"]
+script = ExtResource("6_c6w4w")
+Line = "bro what"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_lyqcx"]
+script = ExtResource("6_c6w4w")
+Line = "what did i do"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_n72w8"]
+script = ExtResource("6_c6w4w")
+Speaker = 3
+Line = "exist"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_5t6n6"]
+script = ExtResource("5_0hjh8")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_dloon"), SubResource("Resource_8uoc3"), SubResource("Resource_ibayf"), SubResource("Resource_lyqcx"), SubResource("Resource_n72w8")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_s8vs1"]
+script = ExtResource("4_0o0nf")
+DictData = Dictionary[String, ExtResource("5_0hjh8")]({
+"00": SubResource("Resource_5t6n6")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_x0gxw"]
+script = ExtResource("6_c6w4w")
+Line = "so are u chill yet gang"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_st1ev"]
+script = ExtResource("6_c6w4w")
+Speaker = 3
+Line = "die NOWWWWW"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_5lbel"]
+script = ExtResource("5_0hjh8")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_x0gxw"), SubResource("Resource_st1ev")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_ji22u"]
+script = ExtResource("6_c6w4w")
+Speaker = 1
+Line = "...im gonna kill this guy one day"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_l5d1n"]
+script = ExtResource("8_37jt2")
+ConditionType = 1
+RequiredPlayer = 1
+metadata/_custom_type_script = "uid://bjsaxob7yfqa7"
+
+[sub_resource type="Resource" id="Resource_0strv"]
+script = ExtResource("5_0hjh8")
+Condition = SubResource("Resource_l5d1n")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_ji22u")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_041nj"]
+script = ExtResource("6_c6w4w")
+Line = "dude... yuuka would HATE ts"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_ixrup"]
+script = ExtResource("8_37jt2")
+ConditionType = 1
+metadata/_custom_type_script = "uid://bjsaxob7yfqa7"
+
+[sub_resource type="Resource" id="Resource_lkngi"]
+script = ExtResource("5_0hjh8")
+Condition = SubResource("Resource_ixrup")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_041nj")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_aeuc0"]
+script = ExtResource("6_c6w4w")
+Speaker = 3
+Line = "anyway leave me the fuck alone thank uuuuu"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_rrxvn"]
+script = ExtResource("5_0hjh8")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_aeuc0")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_q4bio"]
+script = ExtResource("4_0o0nf")
+DictData = Dictionary[String, ExtResource("5_0hjh8")]({
+"00": SubResource("Resource_5lbel"),
+"00_yuuka": SubResource("Resource_0strv"),
+"00_yuuto": SubResource("Resource_lkngi"),
+"01": SubResource("Resource_rrxvn")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_xi85n"]
+script = ExtResource("6_c6w4w")
+Line = "(no use talking to him...)"
+CameraSubject = null
+metadata/_custom_type_script = "uid://7h4sds3ykomg"
+
+[sub_resource type="Resource" id="Resource_sktm1"]
+script = ExtResource("5_0hjh8")
+ArrayData = Array[ExtResource("6_c6w4w")]([SubResource("Resource_xi85n")])
+metadata/_custom_type_script = "uid://cbltr5c7xr7s0"
+
+[sub_resource type="Resource" id="Resource_0vrlb"]
+script = ExtResource("4_0o0nf")
+DictData = Dictionary[String, ExtResource("5_0hjh8")]({
+"00": SubResource("Resource_sktm1")
+})
+metadata/_custom_type_script = "uid://dlu7msbne4hpp"
+
+[sub_resource type="Resource" id="Resource_moh03"]
+script = ExtResource("9_dflbv")
+TreeData = Array[ExtResource("4_0o0nf")]([SubResource("Resource_s8vs1"), SubResource("Resource_q4bio"), SubResource("Resource_0vrlb")])
+metadata/_custom_type_script = "uid://cry7q52aiw4rr"
+
+[sub_resource type="Resource" id="Resource_uwe4j"]
+script = ExtResource("7_hrjil")
+EventType = 2
+EventDataList = Dictionary[String, Variant]({
+"dialogue": SubResource("Resource_moh03")
+})
+metadata/_custom_type_script = "uid://c5jo114vdi6ni"
+
+[sub_resource type="Resource" id="Resource_q7tp8"]
+script = ExtResource("10_82kj0")
+InteractableType = 1
+InteractionRange = 10.0
+InteractEvent = SubResource("Resource_uwe4j")
+metadata/_custom_type_script = "uid://dpfovalhplvc6"
+
+[node name="AreaState" type="Node3D" unique_id=373758576]
+
+[node name="Characters" type="Node3D" parent="." unique_id=323920289]
+
+[node name="kazuhito" parent="Characters" unique_id=1523544680 instance=ExtResource("1_ly3ai")]
 transform = Transform3D(0.9342356, 0, 0.35665646, 0, 1, 0, -0.35665646, 0, 0.9342356, -8.5, 5, -10)
 
 [node name="Sprite" parent="Characters/kazuhito" index="0"]
 sprite_frames = ExtResource("2_y5sta")
 
+[node name="Interactable" parent="Characters/kazuhito" unique_id=372533762 instance=ExtResource("3_efept")]
+transform = Transform3D(0.9342357, 0, -0.3566565, 0, 1, 0, 0.3566565, 0, 0.9342357, 0, 0, 0)
+interactable_data = SubResource("Resource_q7tp8")
+
+[node name="CollisionShape3D" parent="Characters/kazuhito/Interactable" index="0" unique_id=853651546]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
 [editable path="Characters/kazuhito"]
+[editable path="Characters/kazuhito/Interactable"]
