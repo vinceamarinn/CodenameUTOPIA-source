@@ -1,11 +1,18 @@
->IMPORTANT!!!!
-
-> TRIAL MODULE
-- create a test minigame (multiple choice? idk) and add the required logic for such to the trial handler
+>IMPORTANT!!!! IN ORDER
 
 > MINIGAME SYSTEM
-create the loading screen minigame!
+create the basic loading screen 'minigame'!
 make some test minigames to test the feature
+
+> TRIAL MODULE
+- create a test minigame (a basic multiple choice? idk) and add the required logic for such to the trial handler
+
+> UI MODULE
+add initial, basic functionality (adding, removing, adding to a group...)
+basic music player UI label using the metadata folder
+
+> OPTIONS
+add a rudimentary options menu, and make most of the options in the options menu functional!
 
 =================================================
 
