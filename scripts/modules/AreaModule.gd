@@ -110,7 +110,7 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	
 	# fade screen out
 	if not skip_transition:
-		UIModule.trans("in", 0.85, Color.BLACK, false)
+		UIModule.loading_in(0.85)
 		await UIModule.transition_ended
 	
 	#unload any already existing areas
@@ -182,7 +182,7 @@ func load_area(area_name:String, state:String, load_player:bool, load_characters
 	
 	# fade screen back in
 	if not skip_transition:
-		UIModule.trans("out", 1, Color.BLACK, false)
+		UIModule.loading_out(1)
 		await UIModule.transition_ended
 	
 	# change current area in the game state

@@ -7,6 +7,10 @@ extends Node
 @onready var UI = get_node("/root/GameMain/UI")
 @onready var transition = get_node("/root/GameMain/UI/Transition")
 
+# variables
+var loading_screen:Minigame = null ## Stores a reference to the loading screen minigame, so it can be deleted later.
+
+# signals
 signal transition_ended ## Fires whenever a transition tween finishes.
 
 func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ## Basic transition tween. Supports fading in, fading out and even color changing.
@@ -37,6 +41,18 @@ func trans(in_out:String, time:float, color:Color, tween_color:bool) -> void: ##
 	trans_tween.tween_property(transition, "modulate", end_goal, time)
 	await trans_tween.finished
 	emit_signal("transition_ended")
+
+func loading_in(fade_time:float) -> void: ## Causes the loading screen to fade in, and loads the loading screen minigame.
+	await trans("in", fade_time, Color.BLACK, false)
+	
+	loading_screen = GeneralModule.load_minigame("minigames/LoadingScreens.gd", UI)
+	loading_screen.init({})
+
+func loading_out(fade_time:float) -> void: ## Causes the loading screen to fade out, and destroys the loading screen minigame.
+	loading_screen.end()
+	loading_screen = null
+	
+	trans("out", fade_time, Color.BLACK, false)
 
 func remove_ui_element(ui_element) -> void:
 	pass

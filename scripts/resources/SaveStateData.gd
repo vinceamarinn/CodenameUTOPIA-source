@@ -14,7 +14,7 @@ class_name SaveStateData
 
 @export_group("Game State Data")
 @export var CurrentArea:String = "TestArea" ## Tracks the area in which you last saved your game.
-@export var CurrentMusic:String = "Beautiful1" ## Tracks the song that was playing when you last saved your game.
+@export var CurrentMusic:String = "Beautiful VINCE" ## Tracks the song that was playing when you last saved your game.
 @export var RemovedCharacters:Dictionary[String, Array] = {} ## Stores the names of any characters who were removed from the last-saved area state.
 
 @export_group("Player Data")

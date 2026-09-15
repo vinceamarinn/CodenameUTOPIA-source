@@ -23,7 +23,7 @@ func check_if_trial() -> bool: ## Verifies if the game is currently in trial mod
 
 func start_trial(trial_ID:int) -> void: ## Initiates the Trial Handler in order to begin a new trial. If the number provided is '0', it will load the current chapter's trial.
 	# load trial handler into new node at GameMain
-	var trial_handler = GeneralModule.load_minigame("trial/TrialHandler.gd", GameMain) 
+	var trial_handler:Minigame = GeneralModule.load_minigame("trial/TrialHandler.gd", GameMain) 
 	
 	# if the trial ID is 0, the trial handler will load the trial of the current chapter
 	if trial_ID == 0:

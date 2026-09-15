@@ -6,7 +6,11 @@ extends Minigame
 
 @onready var char_group = scenes_3D.get_node("Characters")
 
-# MINIGAME SPECIFIC VARIABLES
+## MINIGAME DATA VALUES
+# int trial_ID (mandatory) - chooses the trial to load & play.
+# bool skip_prep (optional) - chooses whether or not to skip the 'preparations' screen, mainly for debug purposes.
+
+## MINIGAME SPECIFIC VARIABLES
 var trial_script_node:Node = null ## References the trial script to read through.
 var start_point:Dictionary[String, Variant] = {} ## References which stage, key and line to start reading from.
 
@@ -35,7 +39,7 @@ func setup() -> bool: ## Initiates the provided trial.
 	story_flags.IsTrial = true
 	
 	# fade screen to black (or begin immediately if the screen is already black)
-	UIModule.trans("in", 2.25, Color.BLACK, false)
+	UIModule.loading_in(2.25)
 	await UIModule.transition_ended
 	
 	# load courtroom
@@ -80,7 +84,7 @@ func setup() -> bool: ## Initiates the provided trial.
 	
 	# setup is done!
 	# i believe here we can now load the preparations!
-	UIModule.trans("out", 0.01, Color.BLACK, false)
+	UIModule.loading_out(0.01)
 	
 	if not skip_prep:
 		pass

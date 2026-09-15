@@ -79,7 +79,7 @@ var known_names_list:Dictionary = { ## Dictionary assigning every character to t
 	Characters.NAOMI: tr("Naomi Anttonen"),
 	Characters.WILLOW: tr("Willow Asher"),
 	Characters.IKUE: tr("Ikue Fuyumi"),
-	Characters.SEBASTIAN: tr("Sebastian Kagaku"),
+	Characters.SEBASTIAN: tr("Sebastian Jewell"),
 	Characters.MADAME: tr("The Madame"),
 	#endregion
 	
@@ -114,7 +114,7 @@ func debug_message(sender:String, type:String, content:String, reason:String)  -
 func get_file_name(file:Variant) -> String: ## Gets the name of a file from its path.
 	return file.resource_path.get_file().get_basename()
 
-func load_minigame(minigame_path:String, node_parent:Node) -> Node: ## Attaches a chosen minigame handler script to a new base node in order to load it. Returns said node.
+func load_minigame(minigame_path:String, node_parent:Node) -> Minigame: ## Attaches a chosen minigame handler script to a new base node in order to load it. Returns said node.
 	# gets the script's name
 	var new_path = "res://scripts/" + minigame_path
 	
